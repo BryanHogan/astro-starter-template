@@ -17,3 +17,10 @@ Built by [Bryan Hogan](https://bryanhogan.com/).
 ## Updates
 
 This project uses Astro version v5.1.7.
+
+## How to use
+
+1. Clone project
+2. Remove git history - `rm -rf .git`
+3. Init new repository - `git init`, `git add.` and `git commit -m "Commit message"`
+4. Install dependencies - `npm install`
