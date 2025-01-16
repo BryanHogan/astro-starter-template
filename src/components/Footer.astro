@@ -1,0 +1,70 @@
+---
+import Icon from "./Icon.astro";
+---
+
+<footer class="set-base-layout-max-width">
+    <div class="flex-center flex-column">
+        <p class="text-align-center">A website by Bryan Hogan.</p><p class="text-align-center">
+            © 2025 - {String(new Date().getFullYear().toString())}
+        </p>
+    </div>
+    <ul role="list" class="flex-center">
+        <li>
+            <a href="" target="_blank">
+                <Icon name="instagram" label="Instagram icon" size="1.5rem"/>
+            </a>
+        </li>
+        <li>
+            <a href="" target="_blank">
+                <Icon name="threads" label="Threads icon" size="1.5rem"/>
+            </a>
+        </li>
+        <li>
+            <a href="" target="_blank">
+                <Icon name="mastodon" label="Mastodon icon" size="1.5rem"/>
+            </a>
+        </li>
+    </ul>
+    <ul role="list" class="flex-center navigation-container">
+        <li><p><a href="/">Home</a></p></li>
+        <li><p><a href="/privacy">Privacy</a></p></li>
+        <li><p><a href="/about">About</a></p></li>
+        <li><p><a href="/about#contact">Contact</a></p></li>
+        <li><p><a href="/sitemap-index.xml">Sitemap</a></p></li>
+    </ul>
+</footer>
+
+<style>
+    footer {
+        display: grid;
+        grid-template-columns: 1fr;
+        min-height: var(--footer-height);
+        align-items: center;
+        margin-inline: auto;
+        border-top: 1px solid var(--color-neutral-700);
+        >* {
+            height: max-content;
+            margin-block: var(--space-s);
+        }
+    }
+    ul {
+        gap: var(--space-s);
+    }
+    .navigation-container {
+        max-width: 75%;
+        margin-inline: auto;
+    }
+    p, li, img, a {
+        color: var(--color-neutral-600);
+        transition: color var(--transition-normal);
+    }
+    a:hover, a:focus-within {
+        color: var(--a-hover-color);
+    }
+
+    @media only screen and (min-width: 48rem) {
+        footer {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+    }
+</style>

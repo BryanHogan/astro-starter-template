@@ -1,0 +1,190 @@
+---
+import { Image } from "astro:assets";
+import Logo from "../assets/images/background.svg";
+import { Icons } from "./Icons";
+import Icon from "./Icon.astro";
+---
+
+<div class="backdrop-area">
+    <div class="header-container">
+        <header>
+            <a href="/"
+                ><Image
+                    src={Logo}
+                    alt="Logo icon"
+                    height="25"
+                    width="25"
+                    class="logo"
+                /></a
+            >
+            <button
+                aria-controls="primary-navigation"
+                aria-expanded="false"
+                class="menu-toggle-button"
+            >
+                <Icon
+                    name="bars"
+                    size="1.5rem"
+                    label="Bars"
+                    class="hamburger-icon"
+                />
+                <Icon
+                    name="close"
+                    size="1.5rem"
+                    label="Instagram"
+                    class="close-icon"
+                />
+            </button>
+            <nav class="primary-navigation">
+                <ul role="list">
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/about#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+</div>
+
+<style is:global>
+    .logo {
+        margin-left: 0.25rem;
+    }
+    .backdrop-area {
+        width: 100%;
+        height: var(--navbar-height);
+    }
+    .header-container {
+        width: 100%;
+        position: fixed;
+        z-index: 10;
+        background-color: var(--color-neutral-900);
+        background-color: color-mix(
+            in srgb,
+            var(--color-neutral-900) 95%,
+            transparent
+        );
+    }
+    .header-container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        backdrop-filter: blur(5px);
+        z-index: -1;
+    }
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-inline: auto;
+        max-width: var(--base-layout-max-width);
+        padding-inline: var(--side-gap-padding);
+        padding-block: var(--space-xs);
+        height: var(--navbar-height);
+    }
+    .primary-navigation ul {
+        display: flex;
+        gap: 1rem;
+        & li a {
+            padding: var(--space-s);
+            color: var(--color-neutral-500);
+            text-decoration: none;
+            transition: var(--transition-normal) color;
+            font-weight: var(--font-weight-semi-bold);
+            &:hover,
+            &:focus-within {
+                color: var(--a-hover-color);
+            }
+        }
+    }
+    .menu-toggle-button {
+        display: none;
+    }
+
+    @media only screen and (max-width: 27.999rem) {
+        .primary-navigation ul {
+            display: none;
+        }
+        .menu-toggle-button {
+            display: block;
+            position: absolute;
+            z-index: 30;
+            right: 1rem;
+            background-color: transparent;
+            padding: 0.5rem 0 0.5rem 0.5rem;
+            border: 0;
+            cursor: pointer;
+            & .close-icon {
+                display: none;
+            }
+        }
+        [aria-expanded="true"] {
+            .close-icon {
+                display: block;
+                /* Visibility: visible? */
+            }
+            .hamburger-icon {
+                display: none;
+            }
+        }
+        [aria-expanded="true"] ~ nav {
+            display: block;
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 80%;
+            margin-left: auto;
+            box-shadow: 0 0 0 100vmax hsl(0 0 0 / 0.7);
+            background-color: var(--color-neutral-900);
+            z-index: 20;
+            ul {
+                margin-top: 20vh;
+                display: grid;
+                gap: 2rem;
+                margin-left: max(3rem, 20vw);
+            }
+        }
+    }
+</style>
+
+<script>
+    function setupNavigation() {
+        const navigationToggle = document.querySelector(
+            '[aria-controls="primary-navigation"]',
+        ) as HTMLButtonElement | null;
+        const navigation = document.querySelector(
+            ".primary-navigation",
+        ) as HTMLElement | null;
+
+        if (!navigationToggle || !navigation) return;
+
+        const closeMenu = (event: Event) => {
+            if (navigation.contains(event.target as Node)) return;
+            navigationToggle.setAttribute("aria-expanded", "false");
+        };
+
+        const toggleMenu = (event: Event) => {
+            event.stopPropagation();
+            const navigationOpened =
+                navigationToggle.getAttribute("aria-expanded");
+            navigationToggle.setAttribute(
+                "aria-expanded",
+                navigationOpened === "false" ? "true" : "false",
+            );
+        };
+
+        navigationToggle.removeEventListener("click", toggleMenu);
+        document.removeEventListener("click", closeMenu);
+
+        navigationToggle.addEventListener("click", toggleMenu);
+        document.addEventListener("click", closeMenu);
+    }
+
+    setupNavigation();
+
+    document.addEventListener("astro:after-swap", setupNavigation);
+</script>
