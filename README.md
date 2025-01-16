@@ -13,3 +13,7 @@ Instead of starting with a blank canvas this project include all the things ever
 Find out why things are the way they are on my [web dev guide](https://webdev.bryanhogan.com/).
 
 Built by [Bryan Hogan](https://bryanhogan.com/).
+
+## Updates
+
+This project uses Astro version v5.1.7.
