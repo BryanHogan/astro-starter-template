@@ -1,0 +1,73 @@
+---
+import "../styles/reset.css";
+import "../styles/var.css";
+import "../styles/global.css";
+import "../styles/util.css";
+
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { ClientRouter } from "astro:transitions";
+
+interface Props {
+    title: string;
+    description: string;
+    headerMode?: string;
+    ogType?: string;
+}
+const { title, description, ogType="website"} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+if (canonicalURL.pathname.endsWith('/')) {
+    canonicalURL.pathname = canonicalURL.pathname.slice(0, -1);
+}
+
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>{title}</title>
+        <meta name="description" content={description} />
+    
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <!--  <link rel="icon" href="favicon.ico"> -->
+        <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+        <link rel="canonical" href={canonicalURL}>
+        <meta name="robots" content="index, follow">
+        <meta name="author" content="Author name" />
+        <meta name="copyright" content="Copyright owner" />
+        <meta name="theme-color" content="#fff">
+    
+    <!-- OpenGraph -->
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content="https://example.com/image.png" />
+        <meta property="og:image:alt" content="The alt attribute should describe the image in situations where the image can't be seen" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:site_name" content="Name of overall website" />
+        <meta property="og:type" content={ogType} /> <!-- Usually "website" or "article" -->
+        <meta property="og:url" content={canonicalURL} />
+        <meta property="og:locale" content="en"/>
+    
+    <!-- Twitter -->
+         <meta name="twitter:card" content="summary_large_image">
+         <meta name="twitter:url" content={canonicalURL}>
+         <meta name="twitter:title" content="Content Title">
+         <meta name="twitter:description" content={description}>
+         <meta name="twitter:image" content="https://example.com/image.png">
+         <meta name="twitter:image:alt" content="A text description of the image. Maximum 420 characters.">
+         <ClientRouter />
+      </head>
+    <body>
+        <Header />
+        <slot />
+        <Footer />
+    </body>
+</html>
+
+<style is:global>
+</style>

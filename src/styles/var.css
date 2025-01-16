@@ -1,0 +1,100 @@
+:root {
+
+    /* Color */
+    --color-neutral-900: #131210;
+    --color-neutral-800: #1b1b1a;
+    --color-neutral-700: #30302e;
+    --color-neutral-600: #666665;
+    --color-neutral-500: #858585;
+    --color-neutral-400: #A5A6A5;
+    --color-neutral-300: #C5C5C6;
+    --color-neutral-200: #E4E5E6;
+    --color-neutral-100: #F8F9FA;
+
+    --color-accent-900: #373E43;
+    --color-accent-800: #373D49;
+    --color-accent-700: #495B6B;
+    --color-accent-600: #5B788D;
+    --color-accent-500: #7FB4DA;
+    --color-accent-300: #B4D3E9;
+    --color-accent-100: #E4EEF5;
+
+    --color-accent-red-900: #623238;
+    --color-accent-red-500: #B13C3B;
+    --color-accent-red-100: #DBABAC;
+
+    /* Typography */
+    --font-family: ui-sans-serif, "Helvetica Neue", Arial;
+    --font-mono: ui-monospace, Menlo, monospace;
+
+    --font-size-small: 0.875rem;
+    --font-size-base: 16px;
+    /* or 18px*/
+    --font-size-large: 1.25rem;
+
+
+    --text-size-6xl: 4rem;
+    --text-size-5xl: 2.75rem;
+    /* desktop h1*/
+    --text-size-4xl: 2.25rem;
+    /* mobile h1; desktop h2 */
+    --text-size-3xl: 1.75rem;
+    /* mobile h2 */
+    --text-size-2xl: 1.5rem;
+    --text-size-xl: 1.25rem;
+
+    --font-weight-light: 300;
+    --font-weight-regular: 400;
+    --font-weight-semi-bold: 600;
+    --font-weight-bold: 700;
+
+    --font-line-height: 1.5;
+    --font-line-height-heading: 1.2;
+
+    /* Spacing */
+    --space-xss: 0.375rem;
+    --space-xs: 0.5rem;
+    --space-s: 0.75rem;
+    --space-m: 1.25rem;
+    --space-l: 2rem;
+    --space-xl: 3.25rem;
+    --space-2xl: 5.25rem;
+    --space-3xl: 8.5rem;
+
+    --flow-space: 1em;
+
+    /* Border */
+    --border-radius-s: 4px;
+    --border-radius-m: 8px;
+    --border-radius-l: 16px;
+
+    --border-width-s: 1px;
+    --border-width-m: 2px;
+    --border-width-l: 4px;
+
+    /* Shadows */
+    --text-shadow-s: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --text-shadow-m: 0 4px 4px rgba(0, 0, 0, 0.15);
+    --text-shadow-l: 0 6px 12px rgba(0, 0, 0, 0.2);
+
+    --box-shadow-s: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
+    --box-shadow-m: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    --box-shadow-l: 0px 4px 8px 0px rgba(0, 0, 0, 0.25);
+
+    /* Transitions */
+    --transition-normal: 0.2s ease;
+
+    /* consider adding animation var if needed */
+
+    /* Other */
+    --navbar-height: 3.5rem;
+    --footer-height: 8rem;
+    --side-gap-padding: var(--space-s);
+
+
+    --base-layout-max-width: 84rem;
+    --main-content-max-width: 45rem;
+
+    --opacity-weak: 0.3;
+    --opacity-strong: 0.7;
+}

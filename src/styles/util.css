@@ -1,0 +1,68 @@
+.height-smart-fill-screen {
+    min-height: calc(100svh - var(--navbar-height) - var(--footer-height));
+}
+
+.flow > *:not(:first-child){
+    margin-block-start: var(--flow-space);
+}
+
+.visually-hidden {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  width: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.margin-inline-auto {
+    margin-inline: auto;
+}
+
+.base-layout {
+  display: grid;
+  grid-template-columns: minmax(var(--side-gap-padding), 1fr) min(var(--base-layout-max-width), 100% - (var(--side-gap-padding) * 2)) minmax(var(--side-gap-padding), 1fr);
+  & > * {
+    grid-column: 2 / 3;
+  }
+  & > .full-width {
+    grid-column: 1 / -1;
+  }
+}
+
+.main-header-element {
+    padding-top: max(8svh, var(--navbar-height) + 2rem);
+}
+
+.side-gap-padding {
+    padding-inline: var(--side-gap-padding);
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.text-align-center {
+  text-align: center;
+}
+
+.set-base-layout-max-width {
+  max-width: min(var(--base-layout-max-width), 100% - (var(--side-gap-padding) * 2));
+}
+.set-main-content-max-width {
+  max-width: var(--main-content-max-width);
+}

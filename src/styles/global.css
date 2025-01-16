@@ -1,0 +1,81 @@
+:root {
+    font-size: var(--font-size-base);
+}
+
+body {
+    color: var(--color-neutral-100);
+    background-color: var(--color-neutral-900);
+    font-family: var(--font-family);
+    line-height: var(--font-line-height);
+}
+
+code {
+    font-family: var(--font-mono);
+}
+
+p,
+li,
+details,
+code,
+a,
+pre,
+img {
+    font-size: 1rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    line-height: var(--font-line-height-heading);
+}
+
+a {
+    color: var(--color-accent-300);
+}
+
+a:hover,
+a:focus-within {
+    color: var(--color-accent-700);
+}
+
+small {
+    font-size: var(--font-size-small);
+    color: var(--color-neutral-300);
+}
+
+h1 {
+    font-size: var(--text-size-4xl);
+}
+
+h2 {
+    font-size: var(--text-size-3xl);
+}
+
+h3 {
+    font-size: var(--text-size-2xl);
+}
+
+h4 {
+    font-size: var(--text-size-xl);
+}
+
+@media (min-width: 48rem) {
+    h1 {
+        font-size: var(--text-size-5xl);
+    }
+
+    h2 {
+        font-size: var(--text-size-4xl);
+    }
+
+    h3 {
+        font-size: var(--text-size-3xl);
+    }
+
+    h4 {
+        font-size: var(--text-size-2xl);
+    }
+}
