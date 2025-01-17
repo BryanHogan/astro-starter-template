@@ -22,5 +22,5 @@ This project uses Astro version v5.1.7.
 
 1. Clone project
 2. Remove git history - `rm -rf .git`
-3. Init new repository - `git init`, `git add.` and `git commit -m "Commit message"`
+3. Rename project (in package.json once and in package-lock.json twice)
 4. Install dependencies - `npm install`
