@@ -27,4 +27,4 @@ To use the full project:
 3. Rename project (in `package.json` once and in `package-lock.json` twice)
 4. Install dependencies - `npm install`
 
-Or you can also just take specific files or folders, e.g. the `style` folder or footer component.
+Or you can also just take specific files or folders, e.g. the `style` folder or `footer` component.
