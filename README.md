@@ -67,6 +67,6 @@ The CSS is split up so it stays easy to change:
 
 ## More
 
-Find out why things are the way they are in my [web development guide](https://webdev.bryanhogan.com/).
+Find out why things are the way they are in my [Clean Web Development Guide](https://webdev.bryanhogan.com/).
 
 Built by [Bryan Hogan](https://bryanhogan.com/).
