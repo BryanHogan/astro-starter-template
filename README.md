@@ -16,7 +16,7 @@ Built by [Bryan Hogan](https://bryanhogan.com/).
 
 ## Updates
 
-This project uses Astro version v5.1.7.
+This project uses Astro version v6.3.8.
 
 ## How to use
 
