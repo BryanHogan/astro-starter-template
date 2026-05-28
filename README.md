@@ -4,7 +4,7 @@ This is the Astro starter I use when I do not want to start from an empty folder
 
 It includes the basic things I need on almost every website: a layout, a header, a footer, useful CSS files, metadata in the `<head>`, a few example pages and sitemap generation.
 
-The goal is simple: start with a clean base and then adjust it for the project.
+The goal: Start with a clean base and then adjust it for the project.
 
 ## What is included
 
@@ -41,14 +41,12 @@ Or just copy the relevant files that you need, e.g. the `/styles` folder.
 - `npm run preview` previews the production build.
 - `npm run astro` runs Astro CLI commands.
 
-This project expects Node.js `22.12.0` or newer.
-
 ## Things to change for a real project
 
 Before publishing a website with this starter, go through these files:
 
 1. Rename the project in `package.json` and `package-lock.json`.
-2. Set the real website URL in `astro.config.mjs`.
+2. Set the website URL in `astro.config.mjs`.
 3. Update the page titles and descriptions in `src/pages/`.
 4. Update the metadata in `src/layouts/BaseLayout.astro`.
 5. Replace the favicon in `public/favicon.svg`.
@@ -61,10 +59,10 @@ Before publishing a website with this starter, go through these files:
 
 The CSS is split up so it stays easy to change:
 
-- [`reset.css`]() for browser defaults.
-- [`var.css`]() contains colors, typography, spacing and layout variables.
+- [`reset.css`](https://webdev.bryanhogan.com/css/css-reset/) for browser defaults.
+- [`var.css`](https://webdev.bryanhogan.com/css/variables/) contains colors, typography, spacing and layout variables.
 - `global.css` contains the basic styles for the whole site.
-- `util.css` contains utility classes.
+- [`util.css`](https://webdev.bryanhogan.com/css/utility-classes/) contains utility classes.
 
 
 ## More
