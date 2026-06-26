@@ -3,8 +3,8 @@
 }
 
 body {
-    color: var(--color-neutral-100);
-    background-color: var(--color-neutral-900);
+    color: var(--color-text);
+    background-color: var(--color-background);
     font-family: var(--font-family);
     line-height: var(--font-line-height);
 }
@@ -33,17 +33,21 @@ h6 {
 }
 
 a {
-    color: var(--color-accent-300);
+    color: var(--color-link);
 }
 
 a:hover,
 a:focus-within {
-    color: var(--color-accent-700);
+    color: var(--color-link-hover);
+}
+
+a:active {
+    color: var(--color-link-active);
 }
 
 small {
     font-size: var(--font-size-small);
-    color: var(--color-neutral-300);
+    color: var(--color-text-muted);
 }
 
 h1 {
