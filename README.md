@@ -101,6 +101,11 @@ The CSS is split into a few files:
 
 You can use the whole project, or just take the parts you need. For example only the styles folder, the base layout, the header or the footer.
 
+## Further notes
+
+- The color schema is heavily inspired from Flexoki: https://stephango.com/flexoki
+  - Using most of the colors, but a little trimmed down and with slights shifts, e.g. `--color-neutral-100` and `--color-neutral-900` are adjusted.
+
 ## Learn more
 
 Find out why things are the way they are in my [web development guide](https://webdev.bryanhogan.com/).
