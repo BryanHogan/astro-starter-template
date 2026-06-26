@@ -57,10 +57,10 @@ import Icon from "./Icon.astro";
         width: 100%;
         position: fixed;
         z-index: 10;
-        background-color: var(--color-neutral-900);
+        background-color: var(--color-background);
         background-color: color-mix(
             in srgb,
-            var(--color-neutral-900) 95%,
+            var(--color-background) 95%,
             transparent
         );
     }
@@ -96,7 +96,10 @@ import Icon from "./Icon.astro";
             font-weight: var(--font-weight-semi-bold);
             &:hover,
             &:focus-within {
-                color: var(--a-hover-color);
+                color: var(--color-link-hover);
+            }
+            &:active {
+                color: var(--color-link-active);
             }
         }
     }
@@ -138,7 +141,7 @@ import Icon from "./Icon.astro";
             width: 80%;
             margin-left: auto;
             box-shadow: 0 0 0 100vmax hsl(0 0 0 / 0.7);
-            background-color: var(--color-neutral-900);
+            background-color: var(--color-background);
             z-index: 20;
             ul {
                 margin-top: 20vh;
