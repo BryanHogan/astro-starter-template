@@ -96,7 +96,7 @@
     --color-white: #FFFCF0;
 
     /* Semantic color tokens */
-    
+
     --color-accent-100: var(--color-blue-100);
     --color-accent-200: var(--color-blue-200);
     --color-accent-300: var(--color-blue-300);
@@ -133,20 +133,16 @@
     --font-family: ui-sans-serif, "Helvetica Neue", "Helvetica", Arial;
     --font-mono: ui-monospace, Menlo, monospace;
 
-    --font-size-small: 0.875rem;
-    --font-size-base: 16px;
-    /* or 18px*/
-    --font-size-large: 1.25rem;
+    --font-size-s: 0.875rem;
+    --font-size-base: 1rem; /* or 16px for base*/
+    --font-size-l: 1.125rem;
 
-    --text-size-6xl: 4rem;
-    --text-size-5xl: 2.75rem;
-    /* desktop h1*/
-    --text-size-4xl: 2.25rem;
-    /* mobile h1; desktop h2 */
-    --text-size-3xl: 1.75rem;
-    /* mobile h2 */
-    --text-size-2xl: 1.5rem;
-    --text-size-xl: 1.25rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 1.75rem; /* mobile h2 */
+    --font-size-4xl: 2.25rem; /* mobile h1; desktop h2 */
+    --font-size-5xl: 2.75rem; /* desktop h1*/
+    --font-size-6xl: 4rem;
 
     --font-weight-light: 300;
     --font-weight-regular: 400;
