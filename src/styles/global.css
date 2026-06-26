@@ -45,8 +45,14 @@ a:active {
     color: var(--color-link-active);
 }
 
+/* Visible keyboard-focus indicator for all interactive elements */
+:focus-visible {
+    outline: 2px solid var(--color-focus-ring);
+    outline-offset: 2px;
+}
+
 small {
-    font-size: var(--font-size-small);
+    font-size: var(--font-size-s);
     color: var(--color-text-muted);
 }
 
