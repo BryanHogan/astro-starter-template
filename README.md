@@ -1,22 +1,27 @@
 # Astro Starter Template by Bryan Hogan
 
-This is the Astro starter I use when I do not want to start from an empty folder.
+Hi there!
 
-It includes the basic things I need on almost every website: a layout, a header, a footer, useful CSS files, metadata in the `<head>`, a few example pages and sitemap generation.
+This is my starter template for Astro.
 
-The goal: Start with a clean base and then adjust it for the project.
+I use it when I want to build a new website, but do not want to start with an empty folder again. It includes the things I need almost every time I build a site.
 
-## What is included
+Things like:
 
-- Astro v6
-- A `BaseLayout.astro` with the common page setup
-- CSS reset, variables, global styles and utility classes
-- Responsive header navigation
-- Footer with navigation and social links
-- Home, about and 404 pages
-- Sitemap setup with `@astrojs/sitemap`
+- a CSS reset
+- CSS variables
+- global styles
+- utility classes
+- a base layout
+- basic `<head>` metadata
+- a header
+- a footer
+- sitemap generation
+- a few example pages
 
-## How to use it
+The idea is to keep the starting point simple. Mostly HTML and CSS, with a small amount of JavaScript where it makes sense.
+
+## How to get started
 
 Install the dependencies:
 
@@ -24,49 +29,82 @@ Install the dependencies:
 npm install
 ```
 
-Start the dev server:
+Start the development server:
 
 ```bash
 npm run dev
 ```
 
----
+Astro will show you the local URL in the terminal. Usually it is:
 
-Or just copy the relevant files that you need, e.g. the `/styles` folder.
+```text
+http://localhost:4321
+```
+
+This project expects Node.js `22.12.0` or newer.
 
 ## Commands
 
 - `npm run dev` starts the local development server.
 - `npm run build` builds the website into `dist/`.
-- `npm run preview` previews the production build.
-- `npm run astro` runs Astro CLI commands.
+- `npm run preview` previews the build locally.
+- `npm run astro` lets you run Astro commands.
 
-## Things to change for a real project
+## What to change first
 
-Before publishing a website with this starter, go through these files:
+If you use this for a real project, change these things first:
 
 1. Rename the project in `package.json` and `package-lock.json`.
-2. Set the website URL in `astro.config.mjs`.
+2. Change the website URL in `astro.config.mjs`.
 3. Update the page titles and descriptions in `src/pages/`.
 4. Update the metadata in `src/layouts/BaseLayout.astro`.
 5. Replace the favicon in `public/favicon.svg`.
 6. Replace the logo image used in `src/components/Header.astro`.
-7. Change the header and footer links.
-8. Add real social links in `src/components/Footer.astro`.
-9. Adjust the design variables in `src/styles/var.css`.
+7. Change the header links.
+8. Change the footer links.
+9. Add your real social links in `src/components/Footer.astro`.
+10. Adjust the design variables in `src/styles/var.css`.
+
+Do not forget the metadata. The template still includes example values for the Open Graph image, author, copyright and site name.
+
+## Adding a new page
+
+Astro uses file based routing, so add new pages in `src/pages/`.
+
+A simple page can look like this:
+
+```astro
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Page title" description="Page description">
+    <main class="base-layout">
+        <section class="flow">
+            <h1>Page heading</h1>
+            <p>Page content.</p>
+        </section>
+    </main>
+</BaseLayout>
+```
+
+The `base-layout` class keeps content aligned with the normal page width. Use `full-width` on a direct child if something should go across the full page.
 
 ## CSS
 
-The CSS is split up so it stays easy to change:
+The CSS is split into a few files:
 
-- [`reset.css`](https://webdev.bryanhogan.com/css/css-reset/) for browser defaults.
-- [`var.css`](https://webdev.bryanhogan.com/css/variables/) contains colors, typography, spacing and layout variables.
-- `global.css` contains the basic styles for the whole site.
-- [`util.css`](https://webdev.bryanhogan.com/css/utility-classes/) contains utility classes.
+- `reset.css` removes default browser styling I do not want.
+- `var.css` contains colors, spacing, typography and layout variables.
+- `global.css` contains the basic styles for the whole website.
+- `util.css` contains small utility classes I use often.
 
+You can use the whole project, or just take the parts you need. For example only the styles folder, the base layout, the header or the footer.
 
-## More
+## Learn more
 
-Find out why things are the way they are in my [Clean Web Development Guide](https://webdev.bryanhogan.com/).
+Find out why things are the way they are in my [web development guide](https://webdev.bryanhogan.com/).
 
-Built by [Bryan Hogan](https://bryanhogan.com/).
+You probably also want to take a look at the [Astro documentation](https://docs.astro.build/en/getting-started/).
+
+This Astro Starter Template has been built by [Bryan Hogan](https://bryanhogan.com/).
