@@ -41,7 +41,7 @@ import Icon from "./Icon.astro";
         min-height: var(--footer-height);
         align-items: center;
         margin-inline: auto;
-        border-top: 1px solid var(--color-neutral-700);
+        border-top: 1px solid var(--color-border);
         >* {
             height: max-content;
             margin-block: var(--space-s);
@@ -55,11 +55,14 @@ import Icon from "./Icon.astro";
         margin-inline: auto;
     }
     p, li, img, a {
-        color: var(--color-neutral-600);
+        color: var(--color-text-muted);
         transition: color var(--transition-normal);
     }
     a:hover, a:focus-within {
-        color: var(--a-hover-color);
+        color: var(--color-link-hover);
+    }
+    a:active {
+        color: var(--color-link-active);
     }
 
     @media only screen and (min-width: 48rem) {

@@ -125,8 +125,8 @@
     --color-text-muted: var(--color-neutral-400);
     --color-border: var(--color-neutral-700);
     --color-link: var(--color-accent-300);
-    --color-link-hover: var(--color-accent-100);
-    --color-link-active: var(--color-accent-500);
+    --color-link-hover: var(--color-accent-200);
+    --color-link-active: var(--color-accent-100);
     --color-focus-ring: var(--color-accent-300);
 
     /* Typography */
