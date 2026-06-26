@@ -106,6 +106,18 @@ You can use the whole project, or just take the parts you need. For example only
 - The color schema is heavily inspired from Flexoki: https://stephango.com/flexoki
   - Using most of the colors, but a little trimmed down and with slights shifts, e.g. `--color-neutral-100` and `--color-neutral-900` are adjusted.
 
+## MDX Support
+
+This project adds the [MDX integration for Astro](https://docs.astro.build/en/guides/integrations-guide/mdx/), allowing you to write `.mdx` files in addition to the `.md` Markdown files.
+
+`.mdx.` files are very powerful and convenient as they are like Markdown files but also allow you to use JavaScript in them such as using Astro components in them.
+
+If you want to remove it do the following:
+
+1. Uninstall with `npm uninstall @astrojs/mdx`.
+2. Remove the `mdx()` line in `astro.config.mjs`.
+3. Delete any pages ending in `.mdx`. Or change them to `.md`.
+
 ## Learn more
 
 Find out why things are the way they are in my [web development guide](https://webdev.bryanhogan.com/).
