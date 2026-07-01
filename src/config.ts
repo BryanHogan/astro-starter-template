@@ -1,25 +1,19 @@
-/**
- * Site-wide configuration — the single source of truth for site-specific
- * information. Change these values to make the template your own; every
- * component and layout reads from here.
- */
+/** Site-wide config — the single source of truth for site-specific info. Edit these to make the template your own. */
 export const SITE = {
-    /** Canonical origin, no trailing slash. Feeds astro.config `site`, so
-     *  `Astro.site` (used for canonical/OG URLs) derives from this value. */
+    /** Canonical origin, no trailing slash. Feeds astro.config `site`, so Astro.site derives from it. */
     url: "https://example.com",
 
     /** Brand/site name — og:site_name, WebSite JSON-LD, footer. */
     name: "Site name",
 
-    /** Default title/description, used as fallbacks and in site-wide JSON-LD. */
+    /** Default title/description — used as fallbacks and in site-wide JSON-LD. */
     title: "Default title",
     description: "Default description.",
 
     /** Person behind the site — meta author, footer, JSON-LD author/publisher. */
     author: "Author name",
 
-    /** BCP-47 language tag — used directly for <html lang>; converted to the
-     *  language_TERRITORY form (e.g. en_US) for og:locale. */
+    /** BCP-47 language tag — used for <html lang>; converted to en_US form for og:locale. */
     locale: "en-US",
 
     /** Browser UI color — <meta name="theme-color">. Matches --color-accent-500. */
