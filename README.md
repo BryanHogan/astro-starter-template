@@ -125,3 +125,11 @@ Find out why things are the way they are in my [web development guide](https://w
 You probably also want to take a look at the [Astro documentation](https://docs.astro.build/en/getting-started/).
 
 This Astro Starter Template has been built by [Bryan Hogan](https://bryanhogan.com/).
+
+## To Do's
+
+Things that will be added to this project:
+
+- [ ] Tags
+- [ ] Social media .json setup
+- [ ] Maybe move more project setup into single .json file (e.g. head meta content)
