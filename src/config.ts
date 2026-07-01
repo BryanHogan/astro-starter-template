@@ -28,9 +28,9 @@ export const SITE = {
 
     /** Social profile URLs. Leave a value empty to hide that icon in the footer. */
     social: {
-        instagram: "",
-        threads: "",
-        mastodon: "",
+        instagram: "https://instagram.com/bryanhoganme",
+        threads: "https://www.threads.net/@bryanhoganme",
+        mastodon: "https://mastodon.social/@BryanHogan",
     },
 
     /** Analytics. Leave `umamiId` empty to disable the umami script entirely. */
