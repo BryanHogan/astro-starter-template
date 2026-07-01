@@ -1,30 +1,32 @@
 ---
 import Icon from "./Icon.astro";
+import { SITE } from "../config";
+
+// Only render icons for networks that have a URL set in src/config.ts.
+const socialLinks = ([
+    { name: "instagram", label: "Instagram icon", url: SITE.social.instagram },
+    { name: "threads", label: "Threads icon", url: SITE.social.threads },
+    { name: "mastodon", label: "Mastodon icon", url: SITE.social.mastodon },
+] as const).filter((link) => link.url);
 ---
 
 <footer class="set-base-layout-max-width">
     <div class="flex-center flex-column">
-        <p class="text-align-center">A website by Bryan Hogan.</p><p class="text-align-center">
-            © 2025 - {String(new Date().getFullYear().toString())}
+        <p class="text-align-center">A website by {SITE.author}.</p><p class="text-align-center">
+            © {SITE.startYear} - {new Date().getFullYear()}
         </p>
     </div>
-    <ul role="list" class="flex-center">
-        <li>
-            <a href="" target="_blank">
-                <Icon name="instagram" label="Instagram icon" size="1.5rem"/>
-            </a>
-        </li>
-        <li>
-            <a href="" target="_blank">
-                <Icon name="threads" label="Threads icon" size="1.5rem"/>
-            </a>
-        </li>
-        <li>
-            <a href="" target="_blank">
-                <Icon name="mastodon" label="Mastodon icon" size="1.5rem"/>
-            </a>
-        </li>
-    </ul>
+    {socialLinks.length > 0 && (
+        <ul role="list" class="flex-center">
+            {socialLinks.map((link) => (
+                <li>
+                    <a href={link.url} target="_blank" rel="noopener noreferrer">
+                        <Icon name={link.name} label={link.label} size="1.5rem" />
+                    </a>
+                </li>
+            ))}
+        </ul>
+    )}
     <ul role="list" class="flex-center navigation-container">
         <li><p><a href="/">Home</a></p></li>
         <li><p><a href="/privacy">Privacy</a></p></li>

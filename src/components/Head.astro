@@ -1,5 +1,6 @@
 ---
 import { ClientRouter } from "astro:transitions";
+import { SITE } from "../config";
 
 interface Props {
     title: string;
@@ -23,18 +24,17 @@ const {
     canonical,
     ogTitle = title,
     ogDescription = description,
-    ogImage = "/og-default.png",
-    ogImageAlt = "Social preview image for this site",
+    ogImage = SITE.ogImage,
+    ogImageAlt = SITE.ogImageAlt,
     ogType = "website",
     articlePublished,
     articleModified,
     articleTags,
     robots = "index, follow",
-    author = "Author name",
+    author = SITE.author,
 } = Astro.props;
 
-// Site-wide placeholders — change these for your project.
-const siteName = "Site name";
+const siteName = SITE.name;
 
 const canonicalURL = canonical
     ? new URL(canonical, Astro.site)
@@ -82,7 +82,7 @@ const websiteJsonLd = {
     "@type": "WebSite",
     name: siteName,
     url: siteURL,
-    description: description,
+    description: SITE.description,
     author: {
         "@type": "Person",
         name: author,
@@ -121,7 +121,7 @@ const websiteJsonLd = {
 <meta property="og:site_name" content={siteName} />
 <meta property="og:type" content={ogType} />
 <meta property="og:url" content={canonicalURL} />
-<meta property="og:locale" content="en" />
+<meta property="og:locale" content={SITE.locale.replace("-", "_")} />
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
@@ -158,11 +158,13 @@ const websiteJsonLd = {
      <link rel="alternate" type="application/rss+xml" title="Blog posts by Author name" href="/rss.xml" /> -->
 
 <!-- Misc -->
-<meta name="copyright" content="Copyright owner" />
-<meta name="theme-color" content="#1C1B1A" />
+<meta name="copyright" content={SITE.copyright} />
+<meta name="theme-color" content={SITE.themeColor} />
 
-<!-- Analytics — set your own data-website-id, then uncomment:
-     <script is:inline defer src="https://cloud.umami.is/script.js" data-website-id="YOUR-WEBSITE-ID"></script> -->
+<!-- Analytics — set SITE.analytics.umamiId in src/config.ts to enable -->
+{SITE.analytics.umamiId && (
+    <script is:inline defer src="https://cloud.umami.is/script.js" data-website-id={SITE.analytics.umamiId}></script>
+)}
 
 <ClientRouter />
 
