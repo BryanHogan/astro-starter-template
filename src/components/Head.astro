@@ -1,0 +1,170 @@
+---
+import { ClientRouter } from "astro:transitions";
+
+interface Props {
+    title: string;
+    description: string;
+    canonical?: string;
+    ogTitle?: string;
+    ogDescription?: string;
+    ogImage?: string;
+    ogImageAlt?: string;
+    ogType?: "website" | "article";
+    articlePublished?: Date;
+    articleModified?: Date;
+    articleTags?: string[];
+    robots?: string;
+    author?: string;
+}
+
+const {
+    title,
+    description,
+    canonical,
+    ogTitle = title,
+    ogDescription = description,
+    ogImage = "/og-default.png",
+    ogImageAlt = "Social preview image for this site",
+    ogType = "website",
+    articlePublished,
+    articleModified,
+    articleTags,
+    robots = "index, follow",
+    author = "Author name",
+} = Astro.props;
+
+// Site-wide placeholders — change these for your project.
+const siteName = "Site name";
+
+const canonicalURL = canonical
+    ? new URL(canonical, Astro.site)
+    : new URL(Astro.url.pathname, Astro.site);
+
+if (canonicalURL.pathname.endsWith("/") && canonicalURL.pathname !== "/") {
+    canonicalURL.pathname = canonicalURL.pathname.slice(0, -1);
+}
+
+// Resolve to an absolute URL whether ogImage is a local path or already absolute.
+const socialImageURL = new URL(ogImage, Astro.site);
+
+// Astro.site is guaranteed by config; fall back to the canonical origin just in case.
+const siteURL = Astro.site?.toString() ?? `${canonicalURL.origin}/`;
+
+// Page-level structured data.
+const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": ogType === "article" ? "Article" : "WebPage",
+    headline: title,
+    description: description,
+    url: canonicalURL.toString(),
+    author: {
+        "@type": "Person",
+        name: author,
+        url: siteURL,
+    },
+    publisher: {
+        "@type": "Person",
+        name: author,
+        url: siteURL,
+    },
+    image: socialImageURL.toString(),
+    ...(ogType === "article" && {
+        datePublished: articlePublished?.toISOString(),
+        dateModified: articleModified?.toISOString(),
+        keywords: articleTags?.join(", "),
+    }),
+};
+
+// Site-wide structured data (WebSite + SearchAction), homepage only.
+// urlTemplate is built as a string so the {search_term_string} token is kept literal.
+const websiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: siteName,
+    url: siteURL,
+    description: description,
+    author: {
+        "@type": "Person",
+        name: author,
+        url: siteURL,
+    },
+    potentialAction: {
+        "@type": "SearchAction",
+        target: {
+            "@type": "EntryPoint",
+            urlTemplate: `${siteURL}blog?search={search_term_string}`,
+        },
+        "query-input": "required name=search_term_string",
+    },
+};
+---
+
+<!-- Document -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<!-- Primary SEO -->
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalURL} />
+<meta name="robots" content={robots} />
+<meta name="author" content={author} />
+
+<!-- Open Graph -->
+<meta property="og:title" content={ogTitle} />
+<meta property="og:description" content={ogDescription} />
+<meta property="og:image" content={socialImageURL} />
+<meta property="og:image:alt" content={ogImageAlt} />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:site_name" content={siteName} />
+<meta property="og:type" content={ogType} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:locale" content="en" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={canonicalURL} />
+<meta name="twitter:title" content={ogTitle} />
+<meta name="twitter:description" content={ogDescription} />
+<meta name="twitter:image" content={socialImageURL} />
+<meta name="twitter:image:alt" content={ogImageAlt} />
+
+<!-- Article-specific meta (only rendered when the props are provided) -->
+{articlePublished && (
+    <meta property="article:published_time" content={articlePublished.toISOString()} />
+)}
+{articleModified && (
+    <meta property="article:modified_time" content={articleModified.toISOString()} />
+)}
+{articleTags && articleTags.map((tag) => (
+    <meta property="article:tag" content={tag} />
+))}
+
+<!-- Structured data (JSON-LD) -->
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+{Astro.url.pathname === "/" && (
+    <script type="application/ld+json" set:html={JSON.stringify(websiteJsonLd)} />
+)}
+
+<!-- Icons -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<!-- Add a public/favicon.ico if you want a fallback: <link rel="icon" href="/favicon.ico" /> -->
+
+<!-- Discovery -->
+<link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
+<!-- RSS feed — add an endpoint first (npm i @astrojs/rss + src/pages/rss.xml.js), then enable:
+     <link rel="alternate" type="application/rss+xml" title="Blog posts by Author name" href="/rss.xml" /> -->
+
+<!-- Misc -->
+<meta name="copyright" content="Copyright owner" />
+<meta name="theme-color" content="#1C1B1A" />
+
+<!-- Analytics — set your own data-website-id, then uncomment:
+     <script is:inline defer src="https://cloud.umami.is/script.js" data-website-id="YOUR-WEBSITE-ID"></script> -->
+
+<ClientRouter />
+
+<!-- Escape hatch: pages can inject page-specific head tags via <Fragment slot="head"> -->
+<slot name="head" />
