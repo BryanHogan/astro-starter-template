@@ -25,7 +25,7 @@ const a11yAttributes = label ? ({ 'aria-label': label } as const) : ({ 'aria-hid
 
 <style define:vars={{ 'icon-color': color, 'icon-size': size }}>
 	svg {
-		color: var(--icon-color);
+		color: var(--icon-color, currentColor);
 		font-size: var(--icon-size, 1rem);
 		width: 1em;
 		height: 1em;
