@@ -1,5 +1,7 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
+import "../styles/markdown.css";
+
 
 interface Props {
     title: string;
@@ -20,5 +22,11 @@ interface Props {
 
 <BaseLayout {...Astro.props}>
     <slot name="head" slot="head" />
-    <slot />
+    <main class="base-layout">
+        <div
+            class="height-smart-fill-screen markdown-container margin-inline-auto set-main-content-max-width main-header-element"
+        >
+            <slot />
+        </div>
+    </main>
 </BaseLayout>

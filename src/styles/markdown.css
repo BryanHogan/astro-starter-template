@@ -1,0 +1,100 @@
+.markdown-container {
+    max-width: min(100%, var(--main-content-max-width));
+    & >*:not(:first-child) {
+        margin-block-start: var(--flow-space);
+    }
+    & >div>p:not(:first-child) {
+        margin-block-start: var(--flow-space);
+    }
+    p {
+        color: var(--color-neutral-100);
+        
+    }
+    a {
+        color: var(--a-hover-color);
+        &:hover {
+            color: var(--color-accent-200);
+        }
+    }
+    a[href^="http"]:not([href*="//bryanhogan.com"])::after {
+        content: "";
+        display: inline-block;
+        width: 0.8em;
+        height: 0.8em;
+        margin-left: 0.25em;
+        background-color: currentColor;
+        mask: url("/icons/external-link.svg") no-repeat center / contain;
+        /*-webkit-mask: url("/icons/external-link.svg") no-repeat center / contain;*/
+    }
+    img {
+        max-width: 100%;
+        height: auto;
+        border-radius: var(--border-radius-s);
+        margin-inline: auto;
+        display: block;
+    }
+    h1, h2, h3, h4, h5, h6 {
+        overflow-wrap: anywhere;
+    }
+    ol, ul {
+        padding-inline-start: 1em;
+    }
+    li {
+        overflow-wrap: anywhere;
+        margin-bottom: 0.5em;
+    }
+    blockquote {
+        border-inline-start: 1px solid var(--color-accent-500);
+        padding: var(--space-s) var(--space-m) var(--space-s) var(--space-m);
+        border-radius: 0 var(--border-radius-m) var(--border-radius-m) 0;
+        background-color: var(--color-neutral-800);
+    }
+    blockquote footer {
+        margin-top: 0.5em;
+    }
+    table {
+        display: block;
+        max-width: 100%;
+        width: fit-content;
+        border-collapse: collapse;
+        border: 2px solid var(--border-color);
+        border-spacing: 0;
+        margin-inline: auto;
+        overflow: auto;
+        td {
+            border: 1px solid var(--border-color);
+            padding: var(--space-2xs) var(--space-xs);
+        }
+        th {
+            border: 1px solid var(--border-color);
+            padding: var(--space-s) var(--space-m);
+            font-weight: var(--font-weight-semi-bold);
+        }
+        tbody tr:nth-child(odd) {
+            background-color: var(--color-neutral-800);
+        }
+    }
+    hr {
+        border: 0;
+        border-bottom: 1px solid var(--border-color);
+    }
+    code, code span, pre {
+        border-radius: var(--border-radius-s);
+        color: var(--color-accent-200) !important;
+        overflow: auto;
+        max-width: 100%;
+        background-color: var(--color-neutral-800) !important;
+    }
+    code {
+        background-color: var(--color-neutral-800) !important;
+        font-size: var(--variable-font-size);
+    }
+    pre {
+        padding: var(--space-xs) var(--space-s);
+        tab-size: 2;
+    }
+}
+
+.markdown-container :is(h1, h2, h3):not(:first-child) {
+    margin-block-start: 1.75em;
+}
