@@ -155,30 +155,34 @@ import Icon from "./Icon.astro";
 </style>
 
 <script>
+    let navigationToggle: HTMLButtonElement | null = null;
+    let navigation: HTMLElement | null = null;
+
+    const closeMenu = (event: Event) => {
+        if (navigation?.contains(event.target as Node)) return;
+        navigationToggle?.setAttribute("aria-expanded", "false");
+    };
+
+    const toggleMenu = (event: Event) => {
+        event.stopPropagation();
+        const navigationOpened = navigationToggle?.getAttribute(
+            "aria-expanded",
+        );
+        navigationToggle?.setAttribute(
+            "aria-expanded",
+            navigationOpened === "false" ? "true" : "false",
+        );
+    };
+
     function setupNavigation() {
-        const navigationToggle = document.querySelector(
+        navigationToggle = document.querySelector(
             '[aria-controls="primary-navigation"]',
         ) as HTMLButtonElement | null;
-        const navigation = document.querySelector(
+        navigation = document.querySelector(
             ".primary-navigation",
         ) as HTMLElement | null;
 
         if (!navigationToggle || !navigation) return;
-
-        const closeMenu = (event: Event) => {
-            if (navigation.contains(event.target as Node)) return;
-            navigationToggle.setAttribute("aria-expanded", "false");
-        };
-
-        const toggleMenu = (event: Event) => {
-            event.stopPropagation();
-            const navigationOpened =
-                navigationToggle.getAttribute("aria-expanded");
-            navigationToggle.setAttribute(
-                "aria-expanded",
-                navigationOpened === "false" ? "true" : "false",
-            );
-        };
 
         navigationToggle.removeEventListener("click", toggleMenu);
         document.removeEventListener("click", closeMenu);
