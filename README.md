@@ -130,6 +130,7 @@ This Astro Starter Template has been built by [Bryan Hogan](https://bryanhogan.c
 
 Things that will be added to this project:
 
+- [ ] Icon stuff
 - [ ] Tags
 - [ ] Social media .json setup
 - [ ] Maybe move more project setup into single .json file (e.g. head meta content)
