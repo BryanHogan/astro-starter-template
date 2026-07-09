@@ -5,7 +5,7 @@ import "../styles/global.css";
 import "../styles/util.css";
 
 import Head from "../components/Head.astro";
-import Header from "../components/Header.astro";
+import HeaderNavigation from "../components/HeaderNavigation.astro";
 import Footer from "../components/Footer.astro";
 import { SITE } from "../config";
 
@@ -34,7 +34,7 @@ interface Props {
         </Head>
     </head>
     <body>
-        <Header />
+        <HeaderNavigation />
         <slot />
         <Footer />
     </body>
