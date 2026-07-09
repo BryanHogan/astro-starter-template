@@ -1,0 +1,21 @@
+---
+import { Image } from 'astro:assets';
+import heroImage from '../assets/images/Seoul-Image-900-900.png';
+---
+
+<div class="hero-section">
+    <h1>This site's h1</h1>
+    <p>Descriptive text few lines long.</p>
+    <p>Next line.</p>
+    <!-- Button accent -->
+    <!-- Button secondary -->
+</div>
+<div>
+    <Image src={heroImage} alt="Hero image alt text. Describe the image." />
+</div>
+
+<style>
+    .hero-section {
+        display: flex;
+    }
+</style>

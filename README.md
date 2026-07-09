@@ -133,3 +133,5 @@ Things that will be added to this project:
 - [ ] Tags
 - [ ] Social media .json setup
 - [ ] Maybe move more project setup into single .json file (e.g. head meta content)
+- [ ] Card and card group component
+- [ ] Hero component
