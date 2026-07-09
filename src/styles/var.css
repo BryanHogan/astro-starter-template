@@ -207,8 +207,8 @@
     --side-gap-padding: var(--space-s);
 
 
-    --base-layout-max-width: 84rem;
-    --main-content-max-width: 45rem;
+    --site-max-width: 84rem;
+    --content-max-width: 45rem;
 
     --opacity-weak: 0.3;
     --opacity-strong: 0.7;

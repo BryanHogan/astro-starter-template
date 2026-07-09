@@ -1,5 +1,4 @@
 .markdown-container {
-    max-width: min(100%, var(--main-content-max-width));
     & >*:not(:first-child) {
         margin-block-start: var(--flow-space);
     }

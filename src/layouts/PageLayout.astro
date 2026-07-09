@@ -25,11 +25,9 @@ const props = { ...frontmatter, ...rest };
 
 <BaseLayout {...props}>
     <slot name="head" slot="head" />
-    <main class="base-layout">
-        <div
-            class="height-smart-fill-screen markdown-container margin-inline-auto set-main-content-max-width main-header-element"
-        >
-            <slot />
-        </div>
+    <main
+        class="base-layout base-layout-content markdown-container height-smart-fill-screen main-header-element"
+    >
+        <slot />
     </main>
 </BaseLayout>
