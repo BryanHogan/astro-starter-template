@@ -18,9 +18,12 @@ interface Props {
     robots?: string;
     author?: string;
 }
+
+const { frontmatter, ...rest } = Astro.props as Props & { frontmatter?: Props };
+const props = { ...frontmatter, ...rest };
 ---
 
-<BaseLayout {...Astro.props}>
+<BaseLayout {...props}>
     <slot name="head" slot="head" />
     <main class="base-layout">
         <div
