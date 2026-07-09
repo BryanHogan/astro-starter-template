@@ -1,0 +1,50 @@
+---
+type HeadingLevel = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+
+interface Props {
+    title: string;
+    headline: string;
+    as?: HeadingLevel;
+    id?: string;
+}
+
+const {
+    title,
+    headline,
+    as: Heading = "h2",
+    id = title
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9\s-]/g, "")
+        .replace(/\s+/g, "-"),
+} = Astro.props;
+---
+
+<div class="section-title">
+    <Heading id={id}>{title}</Heading>
+    <p>{headline}</p>
+</div>
+
+<style>
+    .section-title > :first-child {
+        font-size: var(--font-size-base);
+        color: var(--color-accent-300);
+        font-weight: var(--font-weight-semi-bold);
+    }
+    .section-title > p {
+        font-size: var(--font-size-3xl);
+        font-weight: var(--font-weight-bold);
+        line-height: var(--font-line-height-heading);
+        color: var(--color-text);
+        margin-block-start: var(--space-s);
+    }
+    .section-title:not(:first-child) {
+        margin-block-start: 1.75em;
+    }
+
+    @media (min-width: 48rem) {
+        .section-title > p {
+            font-size: var(--font-size-4xl);
+        }
+    }
+</style>
