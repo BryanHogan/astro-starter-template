@@ -130,6 +130,8 @@ This Astro Starter Template has been built by [Bryan Hogan](https://bryanhogan.c
 
 Things that will be added to this project:
 
+- [ ] Clean up agents.md
+- [ ] CLean up buttons
 - [ ] Icon stuff
 - [ ] Tags
 - [ ] Social media .json setup

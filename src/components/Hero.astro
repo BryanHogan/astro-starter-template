@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import heroImage from "../assets/images/Seoul-Image-900-900.png";
+import Button from "./Button.astro";
 ---
 
 <div class="hero-section full-width set-site-max-width margin-inline-auto">
@@ -12,8 +13,8 @@ import heroImage from "../assets/images/Seoul-Image-900-900.png";
         </p>
         <p>The easiest way to make your next website.</p>
         <div class="hero-buttons">
-            <a href="/about">Get started</a>
-            <a href="/blog">Learn more</a>
+            <Button href="/about">Get started</Button>
+            <Button href="/blog" variant="ghost" iconRight="rightcaret">Learn more</Button>
         </div>
     </div>
     <div class="image-side">
@@ -35,6 +36,12 @@ import heroImage from "../assets/images/Seoul-Image-900-900.png";
         p {
             margin-bottom: var(--space-s);
         }
+    }
+    .hero-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-s);
+        margin-top: var(--space-m);
     }
     .image-side {
         order: -1;

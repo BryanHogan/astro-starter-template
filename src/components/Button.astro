@@ -1,0 +1,147 @@
+---
+import Icon from "./Icon.astro";
+import { Icons } from "./Icons";
+
+interface Props {
+    /** Link mode: renders an <a> with this href. Omit for action mode: renders a <button>. */
+    href?: string;
+    /** Action mode only. */
+    type?: "button" | "submit" | "reset";
+    variant?: "primary" | "secondary" | "outline" | "ghost" | "danger";
+    size?: "small" | "medium" | "large";
+    iconLeft?: keyof typeof Icons;
+    iconRight?: keyof typeof Icons;
+    class?: string;
+    [key: string]: any;
+}
+
+const {
+    href,
+    type = "button",
+    variant = "primary",
+    size = "medium",
+    iconLeft,
+    iconRight,
+    class: className,
+    ...rest
+} = Astro.props;
+
+const Tag = href ? "a" : "button";
+---
+
+<Tag
+    class:list={["button", variant, size, className]}
+    href={href}
+    type={href ? undefined : type}
+    {...rest}
+>
+    {iconLeft && <Icon name={iconLeft} size="1em" />}
+    <slot />
+    {iconRight && <Icon name={iconRight} size="1em" />}
+</Tag>
+
+<style>
+    .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: var(--border-width-s) solid transparent;
+        border-radius: var(--border-radius-m);
+        font-weight: var(--font-weight-semi-bold);
+        line-height: 1;
+        text-decoration: none;
+        cursor: pointer;
+        background-color: transparent;
+        transition:
+            var(--transition-normal) background-color,
+            var(--transition-normal) color,
+            var(--transition-normal) border-color;
+        &:disabled,
+        &[aria-disabled="true"] {
+            opacity: var(--opacity-strong);
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+    }
+
+    .small {
+        padding: var(--space-2xs) var(--space-s);
+        font-size: var(--font-size-s);
+        gap: var(--space-2xs);
+    }
+    .medium {
+        padding: var(--space-xs) var(--space-m);
+        font-size: var(--font-size-base);
+        gap: var(--space-xs);
+    }
+    .large {
+        padding: var(--space-s) var(--space-l);
+        font-size: var(--font-size-l);
+        gap: var(--space-xs);
+    }
+
+    /* Each variant sets color on hover/active too, so the global
+       a:hover / a:active link colors don't bleed into link-mode buttons. */
+    .primary {
+        background-color: var(--color-accent-400);
+        color: var(--color-black);
+        &:hover,
+        &:focus-within {
+            background-color: var(--color-accent-300);
+            color: var(--color-black);
+        }
+        &:active {
+            background-color: var(--color-accent-200);
+            color: var(--color-black);
+        }
+    }
+    .secondary {
+        background-color: var(--color-surface);
+        color: var(--color-text);
+        &:hover,
+        &:focus-within {
+            background-color: var(--color-surface-muted);
+            color: var(--color-text);
+        }
+        &:active {
+            color: var(--color-text);
+        }
+    }
+    .outline {
+        border-color: var(--color-border);
+        color: var(--color-text);
+        &:hover,
+        &:focus-within {
+            border-color: var(--color-accent-300);
+            background-color: var(--color-surface);
+            color: var(--color-text);
+        }
+        &:active {
+            color: var(--color-text);
+        }
+    }
+    .ghost {
+        color: var(--color-text);
+        &:hover,
+        &:focus-within {
+            background-color: var(--color-surface);
+            color: var(--color-text);
+        }
+        &:active {
+            color: var(--color-text);
+        }
+    }
+    .danger {
+        background-color: var(--color-red-600);
+        color: var(--color-white);
+        &:hover,
+        &:focus-within {
+            background-color: var(--color-red-500);
+            color: var(--color-white);
+        }
+        &:active {
+            background-color: var(--color-red-400);
+            color: var(--color-white);
+        }
+    }
+</style>
