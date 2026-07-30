@@ -1,76 +1,131 @@
 ---
-import { Image } from "astro:assets";
-import heroImage from "../assets/images/Seoul-Image-900-900.png";
-import Button from "./Button.astro";
+interface Props {
+    headingId?: string;
+    class?: string;
+}
+
+const {
+    headingId = "hero-title",
+    class: className,
+} = Astro.props;
 ---
 
-<div class="hero-section full-width set-site-max-width margin-inline-auto">
-    <div class="text-side">
-        <h1 class="">Astro Starter Template</h1>
-        <p>
-            A template built by Bryan Hogan for performant high-quality
-            websites.
+<section
+    class:list={[
+        "hero-section",
+        "full-width",
+        "set-site-max-width",
+        "margin-inline-auto",
+        className,
+    ]}
+    aria-labelledby={headingId}
+>
+    <div class="hero-content">
+        <slot name="eyebrow" />
+
+        <h1 id={headingId}>
+            <slot name="heading" />
+        </h1>
+
+        <p class="hero-description">
+            <slot name="description" />
         </p>
-        <p>The easiest way to make your next website.</p>
+
         <div class="hero-buttons">
-            <Button href="/about">Get started</Button>
-            <Button href="/blog" variant="ghost" iconRight="rightcaret">Learn more</Button>
+            <slot name="actions" />
         </div>
     </div>
-    <div class="image-side">
-        <Image src={heroImage} alt="Hero image alt text. Describe the image." />
+
+    <div class="hero-media">
+        <slot name="media" />
     </div>
-</div>
+</section>
 
 <style>
     .hero-section {
-        display: flex;
-        flex-direction: column;
+        --hero-columns: minmax(0, 1fr);
+        --hero-section-gap: var(--space-l);
+        --hero-content-alignment: center;
+        --hero-content-max-width: var(--content-max-width);
+        --hero-actions-direction: column;
+        --hero-actions-justification: center;
+        --hero-action-width: 100%;
+        --hero-media-max-width: 24rem;
+
+        display: grid;
+        grid-template-columns: var(--hero-columns);
         align-items: center;
         justify-content: center;
-        gap: var(--space-l);
+        gap: var(--hero-section-gap);
         min-height: 70svh;
-        h1 {
-            margin-bottom: var(--space-m);
-        }
-        p {
-            margin-bottom: var(--space-s);
-        }
+        padding-block: var(--space-l);
     }
+
+    .hero-content {
+        width: 100%;
+        max-width: var(--hero-content-max-width);
+        margin-inline: auto;
+        text-align: var(--hero-content-alignment);
+    }
+
+    .hero-content > h1 {
+        margin: 0 0 var(--space-m);
+    }
+
+    .hero-description {
+        color: var(--color-text-subtle);
+        font-size: var(--font-size-l);
+    }
+
     .hero-buttons {
         display: flex;
+        flex-direction: var(--hero-actions-direction);
         flex-wrap: wrap;
+        justify-content: var(--hero-actions-justification);
+        align-items: center;
         gap: var(--space-s);
         margin-top: var(--space-m);
     }
-    .image-side {
-        order: -1;
-        flex: 1;
-        min-height: 0;
+
+    .hero-buttons :global(.button) {
+        width: var(--hero-action-width);
+    }
+
+    .hero-media {
         display: flex;
         align-items: center;
         justify-content: center;
-        img {
-            width: auto;
-            max-width: 24rem;
-            max-height: 100%;
-            border-radius: var(--border-radius-m);
-        }
+        width: 100%;
+        min-width: 0;
     }
+
+    .hero-media :global(img) {
+        width: auto;
+        max-width: min(var(--hero-media-max-width), 100%);
+        max-height: 100%;
+        border-radius: var(--border-radius-m);
+    }
+
     @media (min-width: 48rem) {
         .hero-section {
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-            gap: var(--space-xl);
-            width: auto;
+            --hero-section-gap: var(--space-xl);
+            --hero-actions-direction: row;
+            --hero-action-width: auto;
+            --hero-media-max-width: 32rem;
         }
-        .text-side {
+    }
+
+    @media (min-width: 64rem) {
+        .hero-section {
+            --hero-columns: minmax(0, 1.1fr) minmax(18rem, 0.9fr);
+            --hero-content-alignment: start;
+            --hero-content-max-width: 36rem;
+            --hero-actions-justification: flex-start;
+            --hero-media-max-width: 30rem;
         }
-        .image-side {
-            order: 0;
-            width: auto;
-            align-items: center;
+
+        .hero-content {
+            margin-inline: 0;
         }
     }
 </style>

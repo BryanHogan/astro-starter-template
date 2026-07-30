@@ -65,6 +65,15 @@
   text-align: center;
 }
 
+.eyebrow {
+  margin-bottom: var(--space-s);
+  color: var(--color-accent-300);
+  font-size: var(--font-size-s);
+  font-weight: var(--font-weight-semi-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .set-site-max-width {
   max-width: min(var(--site-max-width), 100% - (var(--side-gap-padding) * 2));
 }

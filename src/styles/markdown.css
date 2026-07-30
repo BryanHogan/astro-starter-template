@@ -5,7 +5,7 @@
     & >div>p:not(:first-child) {
         margin-block-start: var(--flow-space);
     }
-    p {
+    p:not(.eyebrow) {
         color: var(--color-neutral-100);
         
     }
