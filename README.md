@@ -140,3 +140,65 @@ Things that will be added to this project:
 - [x] Hero component
 
 ---
+
+# Astro Starter Template by Bryan Hogan: The best way to build a simple website
+
+Welcome! This is **Bryan Hogan's Astro Starter Template**, the easiest way to build a website that you fully control.
+
+*This section is currently still being worked on!*
+
+## What makes this website starter so special and useful
+
+This starter template helps you quickly build a high-quality website that is performant, aesthetically pleasing, provides good UX, accessible, SEO-friendly, free, lock-in free and bloat free.
+
+Do you need a blog? This is the project for you.  
+Do you need a personal website? This is the project for you.  
+Do you need a landing page? You guessed it.
+
+You can write your content in markdown. The output is a simple static website that you can host anywhere you want for free.
+
+## How to use it
+
+Download / Clone this repository, enter your information in 'src/config.ts', adjust your content and styles, and ready for publish!
+
+Need some more details?
+
+(Future TO DO: Add detailed setup)
+
+### How to write markdown content
+
+You are new to writing in markdown? Then it's a great time to get started! Writing markdown is simple, and most loved by AI as well.
+
+See: https://www.markdownguide.org/cheat-sheet/
+
+### How to add a new page
+
+(Add)
+
+### How to change the colors and styling
+
+(Add)
+
+## Resources & References
+
+Astro: https://astro.build/
+
+Clean Web Dev Guide: https://webdev.bryanhogan.com/
+
+This Astro Starter Template has been built by [Bryan Hogan](https://bryanhogan.com/).
+
+## Explanations & Why (Change title?)
+
+### MDX
+
+### CSS Setup
+
+## Roadmap & To-Dos
+
+Active:
+
+Planned:
+
+
+### Specific To Dos being worked on
+
