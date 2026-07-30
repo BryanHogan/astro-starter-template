@@ -9,27 +9,22 @@ import Button from "../components/Button.astro";
 import { Image } from "astro:assets";
 import heroImage from "../assets/images/Seoul-Image-900-900.png";
 
-<Hero>
-    <p slot="eyebrow" class="eyebrow">Lightweight, accessible and SEO-ready</p>
-    <Fragment slot="heading">Astro Starter Template</Fragment>
-    <Fragment slot="description">
-        A template built by Bryan Hogan for performant high-quality websites.
-    </Fragment>
+<Hero
+    heading="Astro Starter Template"
+    headingId="home-hero-title"
+    eyebrow="Lightweight, accessible and SEO-ready"
+    description="A template built by Bryan Hogan for performant high-quality websites."
+>
     <Fragment slot="actions">
         <Button href="/about" size="large" iconRight="rightcaret">Get started</Button>
-        <Button
-            href="/blog"
-            variant="outline"
-            iconRight="rightcaret"
-            size="large"
-        >
-            Learn more
-        </Button>
+        <Button href="/blog" variant="outline" iconRight="rightcaret" size="large">Learn more</Button>
     </Fragment>
     <Image
         slot="media"
         src={heroImage}
         alt="Traffic passing Gwanghwamun Square in Seoul with Bugaksan mountain in the background."
+        loading="eager"
+        fetchpriority="high"
     />
 </Hero>
 

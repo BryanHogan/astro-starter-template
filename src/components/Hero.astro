@@ -1,44 +1,64 @@
 ---
-interface Props {
-    headingId?: string;
-    class?: string;
-}
+import type { HTMLAttributes } from "astro/types";
+
+type Props = Omit<
+    HTMLAttributes<"section">,
+    "aria-labelledby" | "class:list"
+> & {
+    heading: string;
+    headingId: string;
+    eyebrow?: string;
+    description?: string;
+};
 
 const {
-    headingId = "hero-title",
+    heading,
+    headingId,
+    eyebrow,
+    description,
     class: className,
+    ...rest
 } = Astro.props;
+
+const hasActions = Astro.slots.has("actions");
+const hasMedia = Astro.slots.has("media");
 ---
 
 <section
+    {...rest}
     class:list={[
         "hero-section",
         "full-width",
         "set-site-max-width",
         "margin-inline-auto",
+        { "has-media": hasMedia },
         className,
     ]}
     aria-labelledby={headingId}
 >
     <div class="hero-content">
-        <slot name="eyebrow" />
+        {eyebrow && <p class="eyebrow">{eyebrow}</p>}
 
-        <h1 id={headingId}>
-            <slot name="heading" />
-        </h1>
+        <h1 id={headingId}>{heading}</h1>
 
-        <p class="hero-description">
-            <slot name="description" />
-        </p>
+        {description && <p class="hero-description">{description}</p>}
 
-        <div class="hero-buttons">
-            <slot name="actions" />
-        </div>
+        {
+            hasActions && (
+                <div class="hero-actions">
+                    <slot name="actions" />
+                </div>
+            )
+        }
     </div>
 
-    <div class="hero-media">
-        <slot name="media" />
-    </div>
+    {
+        hasMedia && (
+            <div class="hero-media">
+                <slot name="media" />
+            </div>
+        )
+    }
 </section>
 
 <style>
@@ -55,9 +75,8 @@ const {
         display: grid;
         grid-template-columns: var(--hero-columns);
         align-items: center;
-        justify-content: center;
         gap: var(--hero-section-gap);
-        min-height: 70svh;
+        min-height: var(--hero-min-height, 70svh);
         padding-block: var(--space-l);
     }
 
@@ -77,7 +96,7 @@ const {
         font-size: var(--font-size-l);
     }
 
-    .hero-buttons {
+    .hero-actions {
         display: flex;
         flex-direction: var(--hero-actions-direction);
         flex-wrap: wrap;
@@ -87,7 +106,7 @@ const {
         margin-top: var(--space-m);
     }
 
-    .hero-buttons :global(.button) {
+    .hero-actions :global(.button) {
         width: var(--hero-action-width);
     }
 
@@ -101,8 +120,8 @@ const {
 
     .hero-media :global(img) {
         width: auto;
+        height: auto;
         max-width: min(var(--hero-media-max-width), 100%);
-        max-height: 100%;
         border-radius: var(--border-radius-m);
     }
 
@@ -116,7 +135,7 @@ const {
     }
 
     @media (min-width: 64rem) {
-        .hero-section {
+        .hero-section.has-media {
             --hero-columns: minmax(0, 1.1fr) minmax(18rem, 0.9fr);
             --hero-content-alignment: start;
             --hero-content-max-width: 36rem;
@@ -124,7 +143,7 @@ const {
             --hero-media-max-width: 30rem;
         }
 
-        .hero-content {
+        .hero-section.has-media .hero-content {
             margin-inline: 0;
         }
     }

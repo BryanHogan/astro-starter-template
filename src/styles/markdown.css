@@ -5,9 +5,8 @@
     & >div>p:not(:first-child) {
         margin-block-start: var(--flow-space);
     }
-    p:not(.eyebrow) {
+    :where(p:not(.eyebrow)) {
         color: var(--color-neutral-100);
-        
     }
     a {
         color: var(--a-hover-color);
