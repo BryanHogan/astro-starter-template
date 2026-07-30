@@ -1,6 +1,6 @@
 ---
 import Icon from "./Icon.astro";
-import { Icons } from "./Icons";
+import type { IconName } from "./Icons";
 
 interface Props {
     /** Link mode: renders an <a> with this href. Omit for action mode: renders a <button>. */
@@ -9,8 +9,8 @@ interface Props {
     type?: "button" | "submit" | "reset";
     variant?: "primary" | "secondary" | "outline" | "ghost" | "danger";
     size?: "small" | "medium" | "large";
-    iconLeft?: keyof typeof Icons;
-    iconRight?: keyof typeof Icons;
+    iconLeft?: IconName;
+    iconRight?: IconName;
     class?: string;
     [key: string]: any;
 }

@@ -1,7 +1,6 @@
 ---
 import { Image } from "astro:assets";
 import Logo from "../assets/images/background.svg";
-import { Icons } from "./Icons";
 import Icon from "./Icon.astro";
 ---
 
@@ -18,6 +17,7 @@ import Icon from "./Icon.astro";
                 /></a
             >
             <button
+                aria-label="Navigation menu"
                 aria-controls="primary-navigation"
                 aria-expanded="false"
                 class="menu-toggle-button"
@@ -25,13 +25,11 @@ import Icon from "./Icon.astro";
                 <Icon
                     name="bars"
                     size="1.5rem"
-                    label="Bars"
                     class="hamburger-icon"
                 />
                 <Icon
                     name="close"
                     size="1.5rem"
-                    label="Close icon"
                     class="close-icon"
                 />
             </button>

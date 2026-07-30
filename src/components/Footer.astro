@@ -4,9 +4,9 @@ import { SITE } from "../config";
 
 // Only render icons for networks that have a URL set in src/config.ts.
 const socialLinks = ([
-    { name: "instagram", label: "Instagram icon", url: SITE.social.instagram },
-    { name: "threads", label: "Threads icon", url: SITE.social.threads },
-    { name: "mastodon", label: "Mastodon icon", url: SITE.social.mastodon },
+    { name: "instagram", label: "Instagram", url: SITE.social.instagram },
+    { name: "threads", label: "Threads", url: SITE.social.threads },
+    { name: "mastodon", label: "Mastodon", url: SITE.social.mastodon },
 ] as const).filter((link) => link.url);
 ---
 
@@ -21,7 +21,8 @@ const socialLinks = ([
             {socialLinks.map((link) => (
                 <li>
                     <a href={link.url} target="_blank" rel="noopener noreferrer">
-                        <Icon name={link.name} label={link.label} size="1.5rem" />
+                        <span class="visually-hidden">{link.label}</span>
+                        <Icon name={link.name} size="1.5rem" />
                     </a>
                 </li>
             ))}
