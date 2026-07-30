@@ -6,6 +6,7 @@ type Props = Omit<
     "aria-labelledby" | "class:list"
 > & {
     heading: string;
+    headingHighlight?: string;
     headingId: string;
     eyebrow?: string;
     description?: string;
@@ -13,6 +14,7 @@ type Props = Omit<
 
 const {
     heading,
+    headingHighlight,
     headingId,
     eyebrow,
     description,
@@ -39,7 +41,7 @@ const hasMedia = Astro.slots.has("media");
     <div class="hero-content">
         {eyebrow && <p class="eyebrow">{eyebrow}</p>}
 
-        <h1 id={headingId}>{heading}</h1>
+        <h1 id={headingId}>{heading}{headingHighlight && " "}{headingHighlight && <span class="hero-heading-highlight">{headingHighlight}</span>}</h1>
 
         {description && <p class="hero-description">{description}</p>}
 
@@ -89,6 +91,10 @@ const hasMedia = Astro.slots.has("media");
 
     .hero-content > h1 {
         margin: 0 0 var(--space-m);
+    }
+
+    .hero-heading-highlight {
+        color: var(--hero-highlight-color, var(--color-accent-200));
     }
 
     .hero-description {
