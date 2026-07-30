@@ -141,6 +141,18 @@ const hasMedia = Astro.slots.has("media");
             --hero-content-max-width: 36rem;
             --hero-actions-justification: flex-start;
             --hero-media-max-width: 30rem;
+
+            max-width: min(
+                var(
+                    --hero-layout-max-width,
+                    calc(
+                        var(--hero-content-max-width) +
+                            var(--hero-media-max-width) +
+                            var(--hero-section-gap)
+                    )
+                ),
+                calc(100% - (var(--side-gap-padding) * 2))
+            );
         }
 
         .hero-section.has-media .hero-content {
