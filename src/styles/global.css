@@ -1,11 +1,12 @@
 :root {
-    font-size: var(--font-size-base);
+    font-size: 100%;
 }
 
 body {
     color: var(--color-text);
     background-color: var(--color-background);
     font-family: var(--font-family);
+    font-size: var(--font-size-base);
     line-height: var(--font-line-height);
 }
 
@@ -20,7 +21,7 @@ code,
 a,
 pre,
 img {
-    font-size: 1rem;
+    font-size: var(--font-size-base);
 }
 
 h1,
