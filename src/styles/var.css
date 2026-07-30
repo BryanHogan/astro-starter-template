@@ -1,4 +1,5 @@
 :root {
+    color-scheme: dark;
 
     /* Color */
 
@@ -213,4 +214,20 @@
     --opacity-weak: 0.3;
     --opacity-strong: 0.7;
 
+}
+
+[data-theme="light"] {
+    color-scheme: light;
+
+    --color-background: var(--color-neutral-100);
+    --color-surface: var(--color-neutral-200);
+    --color-surface-muted: var(--color-neutral-300);
+    --color-text: var(--color-neutral-900);
+    --color-text-subtle: var(--color-neutral-700);
+    --color-text-muted: var(--color-neutral-600);
+    --color-border: var(--color-neutral-300);
+    --color-link: var(--color-accent-700);
+    --color-link-hover: var(--color-accent-800);
+    --color-link-active: var(--color-accent-900);
+    --color-focus-ring: var(--color-accent-700);
 }

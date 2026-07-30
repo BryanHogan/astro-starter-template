@@ -6,12 +6,12 @@
         margin-block-start: var(--flow-space);
     }
     :where(p:not(.eyebrow)) {
-        color: var(--color-neutral-100);
+        color: var(--color-text);
     }
     a {
-        color: var(--a-hover-color);
+        color: var(--color-link);
         &:hover {
-            color: var(--color-accent-200);
+            color: var(--color-link-hover);
         }
     }
     a[href^="http"]:not([href*="//bryanhogan.com"])::after {
@@ -45,7 +45,7 @@
         border-inline-start: 1px solid var(--color-accent-500);
         padding: var(--space-s) var(--space-m) var(--space-s) var(--space-m);
         border-radius: 0 var(--border-radius-m) var(--border-radius-m) 0;
-        background-color: var(--color-neutral-800);
+        background-color: var(--color-surface);
     }
     blockquote footer {
         margin-top: 0.5em;
@@ -55,36 +55,36 @@
         max-width: 100%;
         width: fit-content;
         border-collapse: collapse;
-        border: 2px solid var(--border-color);
+        border: 2px solid var(--color-border);
         border-spacing: 0;
         margin-inline: auto;
         overflow: auto;
         td {
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--color-border);
             padding: var(--space-2xs) var(--space-xs);
         }
         th {
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--color-border);
             padding: var(--space-s) var(--space-m);
             font-weight: var(--font-weight-semi-bold);
         }
         tbody tr:nth-child(odd) {
-            background-color: var(--color-neutral-800);
+            background-color: var(--color-surface);
         }
     }
     hr {
         border: 0;
-        border-bottom: 1px solid var(--border-color);
+        border-bottom: 1px solid var(--color-border);
     }
     code, code span, pre {
         border-radius: var(--border-radius-s);
-        color: var(--color-accent-200) !important;
+        color: var(--color-link) !important;
         overflow: auto;
         max-width: 100%;
-        background-color: var(--color-neutral-800) !important;
+        background-color: var(--color-surface) !important;
     }
     code {
-        background-color: var(--color-neutral-800) !important;
+        background-color: var(--color-surface) !important;
         font-size: var(--variable-font-size);
     }
     pre {

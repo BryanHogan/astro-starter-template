@@ -10,6 +10,11 @@ body {
     line-height: var(--font-line-height);
 }
 
+[data-theme] {
+    color: var(--color-text);
+    background-color: var(--color-background);
+}
+
 code {
     font-family: var(--font-mono);
 }
