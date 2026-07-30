@@ -2,49 +2,60 @@
 type HeadingLevel = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 
 interface Props {
+    eyebrow: string;
     title: string;
-    headline: string;
     as?: HeadingLevel;
+    /** Override the generated ID when preserving an anchor or repeating a title. */
     id?: string;
+    class?: string;
 }
 
 const {
+    eyebrow,
     title,
-    headline,
     as: Heading = "h2",
-    id = title
-        .toLowerCase()
-        .trim()
-        .replace(/[^a-z0-9\s-]/g, "")
-        .replace(/\s+/g, "-"),
+    id,
+    class: className,
 } = Astro.props;
+
+if (typeof eyebrow !== "string" || !eyebrow.trim()) {
+    throw new Error("SectionTitle requires a non-empty `eyebrow` prop.");
+}
+
+if (typeof title !== "string" || !title.trim()) {
+    throw new Error("SectionTitle requires a non-empty `title` prop.");
+}
+
+const eyebrowText = eyebrow.trim();
+const titleText = title.trim();
+
+const createHeadingId = (value: string) =>
+    value
+        .normalize("NFKC")
+        .toLowerCase()
+        .replace(/[^\p{L}\p{N}]+/gu, "-")
+        .replace(/^-+|-+$/g, "");
+
+const headingId = id ?? createHeadingId(titleText);
+
+if (!headingId) {
+    throw new Error(
+        "SectionTitle could not generate an ID from `title`; provide an explicit `id` prop.",
+    );
+}
+
+if (/\s/u.test(headingId)) {
+    throw new Error("SectionTitle `id` must not contain whitespace.");
+}
 ---
 
-<div class="section-title">
-    <Heading id={id}>{title}</Heading>
-    <p>{headline}</p>
-</div>
+<Heading id={headingId} class:list={["section-title", className]}>
+    <span class="eyebrow">{eyebrowText}</span>{" "}
+    <span class="section-title__text">{titleText}</span>
+</Heading>
 
 <style>
-    .section-title > :first-child {
-        font-size: var(--font-size-base);
-        color: var(--color-accent-300);
-        font-weight: var(--font-weight-semi-bold);
-    }
-    .section-title > p {
-        font-size: var(--font-size-3xl);
-        font-weight: var(--font-weight-bold);
-        line-height: var(--font-line-height-heading);
-        color: var(--color-text);
-        margin-block-start: var(--space-s);
-    }
-    .section-title:not(:first-child) {
-        margin-block-start: 1.75em;
-    }
-
-    @media (min-width: 48rem) {
-        .section-title > p {
-            font-size: var(--font-size-4xl);
-        }
+    .section-title > span {
+        display: block;
     }
 </style>

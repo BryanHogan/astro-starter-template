@@ -30,6 +30,7 @@ h4,
 h5,
 h6 {
     line-height: var(--font-line-height-heading);
+    font-weight: var(--font-weight-bold);
 }
 
 a {
@@ -70,6 +71,14 @@ h3 {
 
 h4 {
     font-size: var(--font-size-xl);
+}
+
+h5 {
+    font-size: var(--font-size-l);
+}
+
+h6 {
+    font-size: var(--font-size-base);
 }
 
 @media (min-width: 48rem) {

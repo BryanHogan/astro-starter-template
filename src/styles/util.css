@@ -66,10 +66,11 @@
 }
 
 .eyebrow {
-  margin-bottom: var(--space-s);
+  margin-block-end: var(--space-s);
   color: var(--color-accent-300);
   font-size: var(--font-size-s);
   font-weight: var(--font-weight-semi-bold);
+  line-height: var(--font-line-height);
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
