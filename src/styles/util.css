@@ -38,24 +38,6 @@
   --layout-width: var(--content-max-width);
 }
 
-.color-reverse-section {
-  display: grid;
-  align-content: start;
-  grid-template-columns:
-    minmax(var(--side-gap-padding), 1fr)
-    min(var(--content-max-width), 100% - (var(--side-gap-padding) * 2))
-    minmax(var(--side-gap-padding), 1fr);
-  padding-block: var(--space-2xl);
-
-  & > * {
-    grid-column: 2 / 3;
-  }
-
-  & > *:not(:first-child) {
-    margin-block-start: var(--flow-space);
-  }
-}
-
 .main-header-element {
     padding-top: max(8svh, var(--navbar-height) + 2rem);
 }
