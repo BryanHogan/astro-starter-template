@@ -83,15 +83,15 @@ const Tag = href ? "a" : "button";
     /* Each variant sets color on hover/active too, so the global
        a:hover / a:active link colors don't bleed into link-mode buttons. */
     .primary {
-        background-color: var(--color-accent-400);
+        background-color: var(--color-accent-300);
         color: var(--color-black);
         &:hover,
         &:focus-within {
-            background-color: var(--color-accent-300);
+            background-color: var(--color-accent-200);
             color: var(--color-black);
         }
         &:active {
-            background-color: var(--color-accent-200);
+            background-color: var(--color-accent-100);
             color: var(--color-black);
         }
     }
