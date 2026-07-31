@@ -4,7 +4,7 @@ type HeadingLevel = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 interface Props {
     eyebrow: string;
     title: string;
-    as?: HeadingLevel;
+    as: HeadingLevel;
     /** Override the generated ID when preserving an anchor or repeating a title. */
     id?: string;
     class?: string;
@@ -13,7 +13,7 @@ interface Props {
 const {
     eyebrow,
     title,
-    as: Heading = "h2",
+    as: Heading,
     id,
     class: className,
 } = Astro.props;

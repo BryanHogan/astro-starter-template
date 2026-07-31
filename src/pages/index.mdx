@@ -8,6 +8,7 @@ import Hero from "../components/Hero.astro";
 import Button from "../components/Button.astro";
 import Card from "../components/Card.astro";
 import CardGrid from "../components/CardGrid.astro";
+import SectionTitle from "../components/SectionTitle.astro";
 import { Image } from "astro:assets";
 import heroImage from "../assets/images/Seoul-Image-900-900.png";
 
@@ -19,8 +20,8 @@ import heroImage from "../assets/images/Seoul-Image-900-900.png";
     description="A template built by Bryan Hogan for performant high-quality websites."
 >
     <Fragment slot="actions">
-        <Button href="/about" size="large" iconRight="right-caret">Get started</Button>
-        <Button href="/blog" variant="outline" iconRight="right-caret" size="large">Learn more</Button>
+        <Button href="https://github.com/BryanHogan/astro-starter-template" size="large" iconRight="right-caret">Get started</Button>
+        <Button href="#what-is-included" variant="outline" iconRight="right-caret" size="large">Learn more</Button>
     </Fragment>
     <Image
         slot="media"
@@ -36,110 +37,112 @@ import heroImage from "../assets/images/Seoul-Image-900-900.png";
     data-theme="light"
 >
 
-## The best way to create a simple website 
+<SectionTitle
+    as="h2"
+    eyebrow="Simple, fast, accessible and free"
+    title="The best way to create a simple website"
+/>
 
 Everything a simple high-quality website needs is provided.
 
-Simple, fast, accessible and free.
-
 No lock-in, everything owned by you. Write content in Markdown, take it anywhere you want.
 
-<CardGrid setWidth="large" columns={3} class={"padding-top-l"}>
-<Card
-    title="Performance first"
-    icon="moon"
->
-    <p>Astro ships minimal JavaScript by default for a fast, lightweight foundation.</p>
+<CardGrid setWidth="large" columns={3} class="margin-top-l">
+<Card heading="h3" title="Simple styling" icon="setting">
+
+The styling is already set up. Change the CSS variables in var.css to make the design your own.
+
 </Card>
-<Card
-    title="Performance first"
-    icon="moon"
->
-    <p>Astro ships minimal JavaScript by default for a fast, lightweight foundation.</p>
+<Card heading="h3" title="Write in Markdown" icon="pencil">
+
+Focus on the content. Use Markdown for simple pages and MDX when you want to add a component.
+
 </Card>
-<Card
-    title="Performance first"
-    icon="moon"
->
-    <p>Astro ships minimal JavaScript by default for a fast, lightweight foundation.</p>
+<Card heading="h3" title="Host it anywhere" icon="cloud-download">
+
+Astro builds a static website. The output is yours and you can host it wherever you want.
+
 </Card>
 </CardGrid>
 
 </section>
 
-## Three card variants
+<SectionTitle
+    as="h2"
+    class="margin-top-2xl"
+    eyebrow="Use it for"
+    title="A blog, personal website or landing page"
+/>
 
+Use the whole project, or just take the parts you need.
 
+<CardGrid setWidth="small" columns={2} class="margin-top-l">
+<Card title="Blog">
 
-### 1. Card with top media
+Write posts in Markdown or MDX. The included prose styles cover headings, lists, tables, code, and images.
 
-<CardGrid>
-<Card
-    heading="h4"
-    title="Built for the web"
-    setWidth="small"
-    mediaAspect="wide"
->
-    <div
-        slot="media"
-        aria-hidden="true"
-        style="background:
-            radial-gradient(circle at 78% 24%, var(--color-accent-alt-200) 0, transparent 24%),
-            radial-gradient(circle at 18% 110%, var(--color-accent-400) 0, transparent 40%),
-            linear-gradient(135deg, var(--color-accent-900), var(--color-accent-alt-500));"
-    />
-    <p>Use the media slot for an image, video, or a styled background element.</p>
-    <Button slot="actions" href="/about" size="medium">Learn more</Button>
 </Card>
+<Card title="Personal website">
 
-Everything you will ever need, maybe?
+Add an about page, your work, and contact details. Everything stays in a project you control.
 
-</CardGrid>
-Okay!
-
-<CardGrid>
-<Card
-    title="Performance first"
-    icon="moon"
->
-    <p>Astro ships minimal JavaScript by default for a fast, lightweight foundation.</p>
 </Card>
-<Card
-    title="Performance first"
-    icon="laptop"
->
-    <p>Astro ships minimal JavaScript by default for a fast, lightweight foundation.</p>
+<Card title="Landing page">
+
+The hero, buttons, cards, and full-width sections give you the pieces for a simple landing page.
+
 </Card>
 </CardGrid>
 
-### 2. Card with icon
+<SectionTitle
+    as="h2"
+    class="padding-top-2xl"
+    eyebrow="The basics"
+    title="What is included"
+/>
 
-<Card
-    title="Performance first"
-    icon="laptop"
->
-    <p>Astro ships minimal JavaScript by default for a fast, lightweight foundation.</p>
+The idea is to keep the starting point simple. Mostly HTML and CSS, with a small amount of JavaScript where it makes sense.
+
+<CardGrid setWidth="large" columns={3} class="margin-top-l">
+<Card heading="h3" title="Pages and layouts" icon="desktop">
+
+Use Astro or MDX pages. Shared layouts handle the site structure and the styling for longer Markdown content.
+
 </Card>
+<Card heading="h3" title="Components" icon="approve-check-circle">
 
-### 3. Plain card
+Header, footer, hero, buttons, cards, icons, and section titles are included and ready to use.
 
-<Card
-    title="Content friendly"
->
-    <p>Use a plain card when a clear title and concise description are all you need.</p>
 </Card>
+<Card heading="h3" title="Simple styling" icon="setting">
 
-## Text heading 2
+Plain CSS with a reset, variables, global styles, utilities, and styles for Markdown content.
 
-The standard Lorem Ipsum passage, used since 1966
+</Card>
+<Card heading="h3" title="SEO ready" icon="magnifier">
 
-"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-Section 1.10.32 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC
+The head component includes the metadata, canonical URLs, social cards, and structured data you need.
 
-"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
-1914 translation by H. Rackham
+</Card>
+<Card heading="h3" title="Static website" icon="code-branch">
 
-"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?"
-Section 1.10.33 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC
+Astro generates static pages and sends very little JavaScript to the browser by default.
 
-"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
+</Card>
+<Card heading="h3" title="Sitemap" icon="link">
+
+A sitemap is generated when you build, using the website URL in src/config.ts.
+
+</Card>
+</CardGrid>
+
+<SectionTitle
+    as="h2"
+    class="margin-top-2xl"
+    eyebrow="Get started"
+    title="How to use it"
+/>
+
+Download or clone the repository, enter your information in src/config.ts, adjust your content and styles, and you are ready to publish.
+
+<Button href="https://github.com/BryanHogan/astro-starter-template" size="large" class="margin-bottom-2xl" style="justify-self: start">View the repository</Button>
