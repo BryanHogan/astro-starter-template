@@ -7,6 +7,7 @@ description: Astro Start Template landing page section.
 import Hero from "../components/Hero.astro";
 import Button from "../components/Button.astro";
 import Card from "../components/Card.astro";
+import CardGrid from "../components/CardGrid.astro";
 import { Image } from "astro:assets";
 import heroImage from "../assets/images/Seoul-Image-900-900.png";
 
@@ -35,9 +36,11 @@ import heroImage from "../assets/images/Seoul-Image-900-900.png";
     data-theme="light"
 >
 
-## A light section, powered by semantic tokens
+## The best way to create a simple website 
 
-This section locally switches its background, text, links, borders, and controls to the light theme without changing the rest of the page.
+Everything a simple high-quality website needs is provided.
+
+Simple, fast, accessible and free.
 
 </section>
 
@@ -62,6 +65,23 @@ This section locally switches its background, text, links, borders, and controls
     <p>Use the media slot for an image, video, or a styled background element.</p>
     <Button slot="actions" href="/about" size="medium">Learn more</Button>
 </Card>
+
+Okay!
+
+<CardGrid>
+<Card
+    title="Performance first"
+    icon="moon"
+>
+    <p>Astro ships minimal JavaScript by default for a fast, lightweight foundation.</p>
+</Card>
+<Card
+    title="Performance first"
+    icon="laptop"
+>
+    <p>Astro ships minimal JavaScript by default for a fast, lightweight foundation.</p>
+</Card>
+</CardGrid>
 
 ### 2. Card with icon
 

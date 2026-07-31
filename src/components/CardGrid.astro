@@ -6,12 +6,12 @@ type GridWidth = "small" | "large" | "full";
 
 type Props = Omit<HTMLAttributes<"div">, "class:list"> & {
     columns?: ColumnCount;
-    width?: GridWidth;
+    setWidth?: GridWidth;
 };
 
 const {
     columns = 2,
-    width = "small",
+    setWidth = "small",
     class: className,
     ...rest
 } = Astro.props;
@@ -22,8 +22,10 @@ if (columns !== 2 && columns !== 3) {
 
 const gridWidths: GridWidth[] = ["small", "large", "full"];
 
-if (!gridWidths.includes(width)) {
-    throw new Error("CardGrid `width` must be small, large, or full.");
+if (!gridWidths.includes(setWidth)) {
+    throw new Error(
+        "CardGrid `setWidth` must be small, large, or full.",
+    );
 }
 
 const widthClasses: Record<GridWidth, string[]> = {
@@ -42,7 +44,7 @@ const widthClasses: Record<GridWidth, string[]> = {
     class:list={[
         "card-grid",
         `columns-${columns}`,
-        widthClasses[width],
+        widthClasses[setWidth],
         className,
     ]}
 >
