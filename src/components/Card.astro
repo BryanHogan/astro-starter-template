@@ -166,6 +166,11 @@ const hasActions = Astro.slots.has("actions");
         object-fit: cover;
     }
 
+    .card-media :global(img) {
+        margin-inline: 0;
+        border-radius: 0;
+    }
+
     .card-content {
         display: flex;
         flex: 1;
@@ -230,6 +235,7 @@ const hasActions = Astro.slots.has("actions");
         align-items: center;
         justify-content: flex-end;
         gap: var(--space-xs);
+        margin-block-start: auto;
         padding-block-start: var(--space-xs);
     }
 

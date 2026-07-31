@@ -96,6 +96,6 @@
     }
 }
 
-.markdown-container :is(h1, h2, h3):not(:first-child) {
+.markdown-container > :is(h1, h2, h3):not(:first-child) {
     margin-block-start: 1.75em;
 }
