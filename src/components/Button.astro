@@ -8,6 +8,7 @@ interface Props {
     /** Action mode only. */
     type?: "button" | "submit" | "reset";
     variant?: "primary" | "secondary" | "outline" | "ghost" | "danger";
+    /** Explicit sizes use intrinsic width. Omit to allow the parent layout to stretch the button. */
     size?: "small" | "medium" | "large";
     iconLeft?: IconName;
     iconRight?: IconName;
@@ -19,7 +20,7 @@ const {
     href,
     type = "button",
     variant = "primary",
-    size = "medium",
+    size,
     iconLeft,
     iconRight,
     class: className,
@@ -27,10 +28,19 @@ const {
 } = Astro.props;
 
 const Tag = href ? "a" : "button";
+// This distinction is intentional: an omitted size may stretch with its parent layout,
+// while an explicit size opts into an intrinsic-width button.
+const visualSize = size ?? "medium";
 ---
 
 <Tag
-    class:list={["button", variant, size, className]}
+    class:list={[
+        "button",
+        variant,
+        visualSize,
+        { "explicit-size": size !== undefined },
+        className,
+    ]}
     href={href}
     type={href ? undefined : type}
     {...rest}
@@ -62,6 +72,11 @@ const Tag = href ? "a" : "button";
             cursor: not-allowed;
             pointer-events: none;
         }
+    }
+
+    .explicit-size {
+        inline-size: fit-content;
+        max-inline-size: 100%;
     }
 
     .small {
