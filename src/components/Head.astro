@@ -50,6 +50,9 @@ const socialImageURL = new URL(ogImage, Astro.site);
 // Astro.site is guaranteed by config; fall back to the canonical origin just in case.
 const siteURL = Astro.site?.toString() ?? `${canonicalURL.origin}/`;
 
+// Link the configured social profiles to the person represented in JSON-LD.
+const socialProfileURLs = Object.values(SITE.social).filter((url) => url.length > 0);
+
 // Page-level structured data.
 const jsonLd = {
     "@context": "https://schema.org",
@@ -61,11 +64,13 @@ const jsonLd = {
         "@type": "Person",
         name: author,
         url: siteURL,
+        sameAs: socialProfileURLs,
     },
     publisher: {
         "@type": "Person",
         name: author,
         url: siteURL,
+        sameAs: socialProfileURLs,
     },
     image: socialImageURL.toString(),
     ...(ogType === "article" && {
@@ -86,6 +91,7 @@ const websiteJsonLd = {
         "@type": "Person",
         name: author,
         url: siteURL,
+        sameAs: socialProfileURLs,
     },
 };
 ---
