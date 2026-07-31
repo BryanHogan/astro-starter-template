@@ -145,8 +145,12 @@ const websiteJsonLd = {
 
 <!-- Discovery -->
 <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
-<!-- RSS feed — add an endpoint first (npm i @astrojs/rss + src/pages/rss.xml.js), then enable:
-     <link rel="alternate" type="application/rss+xml" title="Blog posts by Author name" href="/rss.xml" /> -->
+<link
+    rel="alternate"
+    type="application/rss+xml"
+    title={`${SITE.name} RSS feed`}
+    href="/rss.xml"
+/>
 
 <!-- Misc -->
 <meta name="copyright" content={SITE.author} />
