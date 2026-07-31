@@ -5,9 +5,9 @@ The project builds successfully. The remaining work is primarily release cleanup
 ## Must fix before release
 
 - [X] Add `public/og-default.png` at 1200 × 630, or update `SITE.ogImage` to reference an existing social-sharing image.
-- [ ] Add a `/privacy` page, or remove the Privacy link from the footer.
-- [ ] Add a contact section with `id="contact"` to the About page, or update the header and footer Contact links.
-- [ ] Remove or replace the `/index2` test route so it is not published or included in the sitemap.
+- [x] Add a `/privacy` page, or remove the Privacy link from the footer.
+- [x] Add a contact section with `id="contact"` to the About page, or update the header and footer Contact links.
+- [x] Remove or replace the `/index2` test route so it is not published or included in the sitemap.
 - [ ] Replace the `/index` test link inside `index2.astro` if that page is retained.
 - [ ] Generate `robots.txt` from `SITE.url`, or replace the `https://<YOUR SITE>` placeholder manually.
 - [ ] Set the 404 page to `noindex, nofollow` and avoid emitting unnecessary canonical and structured-data metadata for it.

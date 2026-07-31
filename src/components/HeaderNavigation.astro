@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
-import Logo from "../assets/images/background.svg";
 import Icon from "./Icon.astro";
+/* If using image in /src: import Logo from "../assets/logo.svg"; // Then do "src={Logo}" */
 ---
 
 <div class="backdrop-area">
@@ -9,7 +9,7 @@ import Icon from "./Icon.astro";
         <header>
             <a href="/"
                 ><Image
-                    src={Logo}
+                    src="/favicon.svg"
                     alt="Logo icon"
                     height="25"
                     width="25"
