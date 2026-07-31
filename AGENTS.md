@@ -5,9 +5,9 @@ This is Bryan Hogan's Astro starter template — a lightweight, accessible found
 ## 🏗️ Project Structure
 
 - **Framework**: Astro 7 with MDX support
-- **Site URL**: https://starter.bryanhogan.me (set in `src/config.ts`, not hardcoded). People are expected to place their URL there themselves when using this template.
+- **Site URL**: https://starter.bryanhogan.com (set in `src/config.ts`, not hardcoded). People are expected to place their URL there themselves when using this template.
 - **Node**: >= 22.12.0
-- **Pages**: `.astro` and `.mdx` files in `src/pages/` (no content collections)
+- **Pages**: `.astro` and `.mdx` files in `src/pages/`
 - **No RSS, tests, or linter** — the Head component notes how to add an RSS feed if needed
 
 ## 📦 Key Dependencies
@@ -58,10 +58,3 @@ This is Bryan Hogan's Astro starter template — a lightweight, accessible found
 - Optional umami analytics (enabled by setting `SITE.analytics.umamiId`)
 - Accessibility: visible focus ring, `.visually-hidden` utility, `aria` handling in Icon and navigation components
 - Icons are inline SVG strings in `Icons.ts`, rendered through `Icon.astro`
-
-## 🚧 Work in Progress
-
-- `Button.astro` is a stub (planned types: primary, secondary, subtle, ghost; sizes: grow, large, medium, small)
-- `Hero.astro` is under construction
-- To-dos in `src/config.ts`: automatic og-image generation, more analytics options
-- Don't treat these stubs as finished patterns to copy

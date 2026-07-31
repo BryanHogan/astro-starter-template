@@ -1,7 +1,7 @@
 /** Site-wide config — the single source of truth for site-specific info. Edit these to make the template your own. */
 export const SITE = {
     /** Canonical origin, no trailing slash. Feeds astro.config `site`, so Astro.site derives from it. */
-    url: "https://starter.bryanhogan.me",
+    url: "https://starter.bryanhogan.com",
 
     /** Brand/site name — og:site_name, WebSite JSON-LD, footer. */
     name: "Astro Starter Template",
