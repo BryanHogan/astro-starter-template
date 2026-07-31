@@ -1,0 +1,77 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import "../styles/markdown.css";
+import { SITE } from "../config";
+
+interface Props {
+    title: string;
+    description: string;
+    pubDate: Date;
+}
+
+const { title, description, pubDate } = Astro.props;
+
+const formattedPubDate = new Intl.DateTimeFormat(SITE.locale, {
+    dateStyle: "long",
+    timeZone: "UTC",
+}).format(pubDate);
+---
+
+<BaseLayout
+    title={title}
+    description={description}
+    ogType="article"
+    articlePublished={pubDate}
+>
+    <main class="base-layout base-layout-content height-smart-fill-screen">
+        <article class="blog-post">
+            <header class="blog-post-header main-header-element">
+                <time
+                    class="blog-post-date"
+                    datetime={pubDate.toISOString().slice(0, 10)}
+                >
+                    {formattedPubDate}
+                </time>
+                <h1>{title}</h1>
+                <p class="blog-post-description">{description}</p>
+            </header>
+
+            <div class="blog-post-body markdown-container">
+                <slot />
+            </div>
+        </article>
+    </main>
+</BaseLayout>
+
+<style>
+    .blog-post {
+        min-width: 0;
+        padding-block-end: var(--space-2xl);
+    }
+
+    .blog-post-header {
+        display: grid;
+        gap: var(--space-s);
+    }
+
+    .blog-post-date {
+        color: var(--color-text-muted);
+        font-size: var(--font-size-s);
+    }
+
+    .blog-post-header h1 {
+        overflow-wrap: anywhere;
+        text-wrap: balance;
+    }
+
+    .blog-post-description {
+        max-inline-size: 40rem;
+        color: var(--color-text-subtle);
+        font-size: var(--font-size-l);
+        text-wrap: pretty;
+    }
+
+    .blog-post-body {
+        margin-block-start: var(--space-xl);
+    }
+</style>

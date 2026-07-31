@@ -75,8 +75,7 @@ const jsonLd = {
     }),
 };
 
-// Site-wide structured data (WebSite + SearchAction), homepage only.
-// urlTemplate is built as a string so the {search_term_string} token is kept literal.
+// Site-wide structured data (WebSite), homepage only.
 const websiteJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
@@ -87,14 +86,6 @@ const websiteJsonLd = {
         "@type": "Person",
         name: author,
         url: siteURL,
-    },
-    potentialAction: {
-        "@type": "SearchAction",
-        target: {
-            "@type": "EntryPoint",
-            urlTemplate: `${siteURL}blog?search={search_term_string}`,
-        },
-        "query-input": "required name=search_term_string",
     },
 };
 ---

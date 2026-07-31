@@ -1,0 +1,142 @@
+---
+import { getCollection } from "astro:content";
+import { SITE } from "../config";
+
+interface Props {
+    /** Maximum number of posts to display. Omit to show every post. */
+    limit?: number;
+    /** Heading level used for each post title. */
+    headingLevel?: "h2" | "h3" | "h4";
+}
+
+const { limit, headingLevel: Heading = "h2" } = Astro.props;
+
+if (limit !== undefined && (!Number.isInteger(limit) || limit < 1)) {
+    throw new Error("BlogPostsList `limit` must be a positive integer.");
+}
+
+const headingLevels = ["h2", "h3", "h4"] as const;
+
+if (!headingLevels.includes(Heading)) {
+    throw new Error("BlogPostsList `headingLevel` must be h2, h3, or h4.");
+}
+
+const titleCollator = new Intl.Collator(SITE.locale);
+const dateFormatter = new Intl.DateTimeFormat(SITE.locale, {
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+});
+
+const posts = (await getCollection("blog"))
+    .sort((a, b) => {
+        const dateDifference =
+            b.data.pubDate.getTime() - a.data.pubDate.getTime();
+
+        return dateDifference || titleCollator.compare(a.data.title, b.data.title);
+    })
+    .slice(0, limit);
+---
+
+{
+    posts.length > 0 ? (
+        <ul class="blog-posts" role="list">
+            {posts.map((post) => (
+                <li class="blog-posts-item">
+                    <a class="blog-posts-link" href={`/blog/${post.id}`}>
+                        <div class="blog-posts-content">
+                            <Heading class="blog-posts-title">
+                                {post.data.title}
+                            </Heading>
+                            <p class="blog-posts-description">
+                                {post.data.description}
+                            </p>
+                        </div>
+                        <time
+                            class="blog-posts-date"
+                            datetime={post.data.pubDate
+                                .toISOString()
+                                .slice(0, 10)}
+                        >
+                            {dateFormatter.format(post.data.pubDate)}
+                        </time>
+                    </a>
+                </li>
+            ))}
+        </ul>
+    ) : (
+        <p class="blog-posts-empty">No posts yet.</p>
+    )
+}
+
+<style>
+    .blog-posts {
+        display: grid;
+        gap: var(--space-2xs);
+        padding: 0;
+    }
+
+    .blog-posts-item {
+        margin: 0;
+    }
+
+    .blog-posts-link {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: var(--space-l);
+        align-items: start;
+        margin-inline: calc(var(--space-s) * -1);
+        padding: var(--space-s);
+        color: var(--color-text);
+        border-radius: var(--border-radius-m);
+        text-decoration: none;
+        transition:
+            color var(--transition-normal),
+            background-color var(--transition-normal);
+    }
+
+    .blog-posts-link:hover,
+    .blog-posts-link:focus-visible {
+        color: var(--color-link-hover);
+        background-color: var(--color-surface);
+    }
+
+    .blog-posts-content {
+        min-width: 0;
+    }
+
+    .blog-posts-title {
+        color: inherit;
+        font-size: var(--font-size-base);
+        font-weight: var(--font-weight-semi-bold);
+    }
+
+    .blog-posts-description {
+        margin-block-start: var(--space-2xs);
+        color: var(--color-text-subtle);
+        font-size: var(--font-size-base);
+    }
+
+    .blog-posts-date {
+        padding-block-start: 0.1em;
+        color: var(--color-text-muted);
+        font-size: var(--font-size-s);
+        white-space: nowrap;
+    }
+
+    .blog-posts-empty {
+        color: var(--color-text-muted);
+    }
+
+    @media (max-width: 35rem) {
+        .blog-posts-link {
+            grid-template-columns: minmax(0, 1fr);
+            gap: var(--space-2xs);
+        }
+
+        .blog-posts-date {
+            grid-row: 1;
+            padding-block-start: 0;
+        }
+    }
+</style>

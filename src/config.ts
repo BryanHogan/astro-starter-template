@@ -23,8 +23,8 @@ export const SITE = {
     startYear: 2025,
 
     /** Default social share image (place the file in public/) and its alt text. */
-    ogImage: "/og-default.png", // To Do: Generate this automatically.
-    ogImageAlt: "Astro Starter Template by Bryan Hogan", // To Do: Generate this automatically.
+    ogImage: "/og-default.png",
+    ogImageAlt: "Astro Starter Template by Bryan Hogan",
 
     /** Social profile URLs. Leave a value empty to hide that icon in the footer. */
     social: {
