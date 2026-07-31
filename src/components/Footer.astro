@@ -2,11 +2,12 @@
 import Icon from "./Icon.astro";
 import { SITE } from "../config";
 
-// Only render icons for networks that have a URL set in src/config.ts.
-const socialLinks = ([
-    { name: "instagram", label: "Instagram", url: SITE.social.instagram },
-    { name: "threads", label: "Threads", url: SITE.social.threads },
-    { name: "mastodon", label: "Mastodon", url: SITE.social.mastodon },
+// Social icons are optional; the local RSS feed is always available.
+const iconLinks = ([
+    { name: "instagram", label: "Instagram", url: SITE.social.instagram, external: true, type: undefined },
+    { name: "threads", label: "Threads", url: SITE.social.threads, external: true, type: undefined },
+    { name: "mastodon", label: "Mastodon", url: SITE.social.mastodon, external: true, type: undefined },
+    { name: "rss", label: "Subscribe via RSS", url: "/rss.xml", external: false, type: "application/rss+xml" },
 ] as const).filter((link) => link.url);
 ---
 
@@ -16,12 +17,19 @@ const socialLinks = ([
             © {SITE.startYear} - {new Date().getFullYear()}
         </p>
     </div>
-    {socialLinks.length > 0 && (
+    {iconLinks.length > 0 && (
         <ul role="list" class="flex-center">
-            {socialLinks.map((link) => (
+            {iconLinks.map((link) => (
                 <li>
-                    <a href={link.url} target="_blank" rel="noopener noreferrer">
-                        <span class="visually-hidden">{link.label}</span>
+                    <a
+                        href={link.url}
+                        type={link.type}
+                        target={link.external ? "_blank" : undefined}
+                        rel={link.external ? "noopener noreferrer" : undefined}
+                    >
+                        <span class="visually-hidden">
+                            {link.label}{link.external && " (opens in a new tab)"}
+                        </span>
                         <Icon name={link.name} size="1.5rem" />
                     </a>
                 </li>
