@@ -4,7 +4,7 @@ The project builds successfully. The remaining work is primarily release cleanup
 
 ## Must fix before release
 
-- [ ] Add `public/og-default.png` at 1200 × 630, or update `SITE.ogImage` to reference an existing social-sharing image.
+- [X] Add `public/og-default.png` at 1200 × 630, or update `SITE.ogImage` to reference an existing social-sharing image.
 - [ ] Add a `/privacy` page, or remove the Privacy link from the footer.
 - [ ] Add a contact section with `id="contact"` to the About page, or update the header and footer Contact links.
 - [ ] Remove or replace the `/index2` test route so it is not published or included in the sitemap.
@@ -15,15 +15,15 @@ The project builds successfully. The remaining work is primarily release cleanup
 
 ## Starter features to complete
 
-- [ ] Replace the Lorem Ipsum and temporary copy on the Home, About, and Blog pages with useful starter examples.
-- [ ] Replace vague placeholder titles and descriptions with realistic SEO examples.
-- [ ] Add a blog content collection and frontmatter schema.
-- [ ] Add individual blog-post routes and a reusable post layout.
-- [ ] Turn `/blog` into a post listing rather than a single placeholder page.
-- [ ] Add publication and modified-date handling for articles.
-- [ ] Add tags and tag archive pages.
-- [ ] Add reusable Card and CardGroup components for posts, features, and landing-page content.
-- [ ] Optionally add blog pagination once multiple sample posts exist.
+- [X] Replace the Lorem Ipsum and temporary copy on the Home, About, and Blog pages with useful starter examples.
+- [x] Replace vague placeholder titles and descriptions with realistic SEO examples.
+- [x] Add a blog content collection and frontmatter schema.
+- [x] Add individual blog-post routes and a reusable post layout.
+- [x] Turn `/blog` into a post listing rather than a single placeholder page.
+- [x] Add publication and modified-date handling for articles.
+- [x] Add tags and tag archive pages.
+- [x] Add reusable Card and CardGroup components for posts, features, and landing-page content.
+- [x] Optionally add blog pagination once multiple sample posts exist.
 - [ ] Add configured social profile URLs to JSON-LD through a `sameAs` array.
 - [ ] Replace the placeholder header graphic with an intentional site logo.
 - [ ] Add favicon fallbacks and an Apple touch icon; optionally add a web app manifest.
@@ -60,8 +60,4 @@ The project builds successfully. The remaining work is primarily release cleanup
 These are useful additions, but they are not required for the lightweight baseline.
 
 - [ ] Add an RSS feed if the completed blog needs syndication.
-- [ ] Add additional analytics providers if there is a clear use case.
-- [ ] Add a site-wide light/dark theme switcher.
-- [ ] Add a broader automated test or lint suite if the template grows more interactive.
-- [ ] Add dependency-update automation such as Dependabot or Renovate.
 
