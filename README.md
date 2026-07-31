@@ -18,6 +18,7 @@ This starter template includes:
 
 - **Simple styling.** You don't have to think about the styling, you can just focus on the content. Scalable styling is done through just CSS including `reset.css`, `var.css` for CSS variables, `global.css`, `util.css` for utility classes and `markdown.css`.
 - **SEO ready.** All the `<head>` meta data that you need.
+- **RSS feed.** Blog posts are available at `/rss.xml` with feed auto-discovery enabled.
 - **Components:**
   - Header
   - Footer

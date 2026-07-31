@@ -8,11 +8,13 @@ This is Bryan Hogan's Astro starter template — a lightweight, accessible found
 - **Site URL**: https://starter.bryanhogan.com (set in `src/config.ts`, not hardcoded). People are expected to place their URL there themselves when using this template.
 - **Node**: >= 22.12.0
 - **Pages**: `.astro` and `.mdx` files in `src/pages/`
-- **No RSS, tests, or linter** — the Head component notes how to add an RSS feed if needed
+- **RSS**: Summary feed generated from the blog content collection at `/rss.xml`
+- **No tests or linter**
 
 ## 📦 Key Dependencies
 
 - `@astrojs/mdx` - MDX pages with component imports
+- `@astrojs/rss` - RSS feed generation from the blog content collection
 - `@astrojs/sitemap` - Sitemap generation
 
 ## 🛠️ Available Scripts
@@ -55,6 +57,7 @@ This is Bryan Hogan's Astro starter template — a lightweight, accessible found
 - Pages can inject page-specific head tags via `<Fragment slot="head">`
 - View transitions via `<ClientRouter />`
 - Sitemap at `/sitemap-index.xml`; `trailingSlash: 'never'`
+- RSS feed at `/rss.xml` with matching non-trailing-slash post URLs
 - Optional umami analytics (enabled by setting `SITE.analytics.umamiId`)
 - Accessibility: visible focus ring, `.visually-hidden` utility, `aria` handling in Icon and navigation components
 - Icons are inline SVG strings in `Icons.ts`, rendered through `Icon.astro`
