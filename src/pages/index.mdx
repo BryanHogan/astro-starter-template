@@ -6,6 +6,7 @@ description: Astro Start Template landing page section.
 
 import Hero from "../components/Hero.astro";
 import Button from "../components/Button.astro";
+import Card from "../components/Card.astro";
 import { Image } from "astro:assets";
 import heroImage from "../assets/images/Seoul-Image-900-900.png";
 
@@ -39,6 +40,45 @@ import heroImage from "../assets/images/Seoul-Image-900-900.png";
 This section locally switches its background, text, links, borders, and controls to the light theme without changing the rest of the page.
 
 </section>
+
+## Three card variants
+
+### 1. Card with top media
+
+<Card
+    heading="h4"
+    title="Built for the web"
+    setWidth="small"
+    mediaAspect="wide"
+>
+    <div
+        slot="media"
+        aria-hidden="true"
+        style="background:
+            radial-gradient(circle at 78% 24%, var(--color-accent-alt-200) 0, transparent 24%),
+            radial-gradient(circle at 18% 110%, var(--color-accent-400) 0, transparent 40%),
+            linear-gradient(135deg, var(--color-accent-900), var(--color-accent-alt-500));"
+    />
+    <p>Use the media slot for an image, video, or a styled background element.</p>
+    <Button slot="actions" href="/about" size="medium">Learn more</Button>
+</Card>
+
+### 2. Card with icon
+
+<Card
+    title="Performance first"
+    icon="laptop"
+>
+    <p>Astro ships minimal JavaScript by default for a fast, lightweight foundation.</p>
+</Card>
+
+### 3. Plain card
+
+<Card
+    title="Content friendly"
+>
+    <p>Use a plain card when a clear title and concise description are all you need.</p>
+</Card>
 
 ## Text heading 2
 

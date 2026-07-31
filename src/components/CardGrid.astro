@@ -1,0 +1,74 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+type ColumnCount = 2 | 3;
+type GridWidth = "small" | "large" | "full";
+
+type Props = Omit<HTMLAttributes<"div">, "class:list"> & {
+    columns?: ColumnCount;
+    width?: GridWidth;
+};
+
+const {
+    columns = 2,
+    width = "small",
+    class: className,
+    ...rest
+} = Astro.props;
+
+if (columns !== 2 && columns !== 3) {
+    throw new Error("CardGrid `columns` must be either 2 or 3.");
+}
+
+const gridWidths: GridWidth[] = ["small", "large", "full"];
+
+if (!gridWidths.includes(width)) {
+    throw new Error("CardGrid `width` must be small, large, or full.");
+}
+
+const widthClasses: Record<GridWidth, string[]> = {
+    small: ["set-content-max-width"],
+    large: [
+        "full-width",
+        "set-site-max-width",
+        "margin-inline-auto",
+    ],
+    full: ["full-width"],
+};
+---
+
+<div
+    {...rest}
+    class:list={[
+        "card-grid",
+        `columns-${columns}`,
+        widthClasses[width],
+        className,
+    ]}
+>
+    <slot />
+</div>
+
+<style>
+    .card-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--space-m);
+        width: 100%;
+    }
+
+    .card-grid > :global(*) {
+        min-width: 0;
+        margin-block-start: 0 !important;
+    }
+
+    @media (min-width: 48rem) {
+        .columns-2 {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .columns-3 {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+    }
+</style>

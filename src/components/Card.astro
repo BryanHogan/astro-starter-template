@@ -1,0 +1,246 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import Icon from "./Icon.astro";
+import type { IconName } from "./Icons";
+
+type HeadingLevel = "h2" | "h3" | "h4" | "h5" | "h6";
+type CardWidth = "small" | "medium" | "large";
+type MediaAspect = "wide" | "square" | "portrait";
+
+type Props = Omit<
+    HTMLAttributes<"div">,
+    "class:list" | "title"
+> & {
+    title: string;
+    heading?: HeadingLevel;
+    icon?: IconName;
+    setWidth?: CardWidth;
+    mediaAspect?: MediaAspect;
+};
+
+const {
+    title,
+    heading,
+    icon,
+    setWidth,
+    mediaAspect = "wide",
+    class: className,
+    ...rest
+} = Astro.props;
+
+if (typeof title !== "string" || !title.trim()) {
+    throw new Error("Card requires a non-empty `title` prop.");
+}
+
+const headingLevels: HeadingLevel[] = ["h2", "h3", "h4", "h5", "h6"];
+
+if (heading && !headingLevels.includes(heading)) {
+    throw new Error(
+        "Card `heading` must be h2, h3, h4, h5, or h6.",
+    );
+}
+
+const cardWidths: CardWidth[] = ["small", "medium", "large"];
+
+if (setWidth && !cardWidths.includes(setWidth)) {
+    throw new Error("Card `setWidth` must be small, medium, or large.");
+}
+
+const mediaAspects: MediaAspect[] = ["wide", "square", "portrait"];
+
+if (!mediaAspects.includes(mediaAspect)) {
+    throw new Error(
+        "Card `mediaAspect` must be wide, square, or portrait.",
+    );
+}
+
+const titleText = title.trim();
+const Title = heading ?? "div";
+const hasMedia = Astro.slots.has("media");
+const hasActions = Astro.slots.has("actions");
+---
+
+<div
+    {...rest}
+    class:list={[
+        "card",
+        {
+            "card-with-media": hasMedia,
+        },
+        setWidth && `card-width-${setWidth}`,
+        className,
+    ]}
+>
+    {
+        hasMedia && (
+            <div
+                class:list={[
+                    "card-media",
+                    `card-media-${mediaAspect}`,
+                ]}
+            >
+                <slot name="media" />
+            </div>
+        )
+    }
+
+    <div class="card-content">
+        <div class="card-heading">
+            {
+                icon && (
+                    <span class="card-icon" aria-hidden="true">
+                        <Icon name={icon} size="var(--icon-size-l)" />
+                    </span>
+                )
+            }
+            <Title class="card-title">{titleText}</Title>
+        </div>
+
+        <div class="card-body">
+            <slot />
+        </div>
+
+        {
+            hasActions && (
+                <div class="card-actions">
+                    <slot name="actions" />
+                </div>
+            )
+        }
+    </div>
+</div>
+
+<style>
+    .card {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        color: var(--color-text);
+        background-color: var(--color-surface);
+        border: var(--border-width-s) solid var(--color-border);
+        border-radius: var(--border-radius-m);
+        box-shadow: var(--box-shadow-s);
+    }
+
+    .card-width-small {
+        max-inline-size: 24rem;
+    }
+
+    .card-width-medium {
+        max-inline-size: 36rem;
+    }
+
+    .card-width-large {
+        max-inline-size: var(--content-max-width);
+    }
+
+    .card-media {
+        position: relative;
+        overflow: hidden;
+        background-color: var(--color-surface-muted);
+        border-block-end: var(--border-width-s) solid var(--color-border);
+    }
+
+    .card-media-wide {
+        aspect-ratio: 16 / 9;
+    }
+
+    .card-media-square {
+        aspect-ratio: 1;
+    }
+
+    .card-media-portrait {
+        aspect-ratio: 4 / 5;
+    }
+
+    .card-media :global(> *) {
+        width: 100%;
+        height: 100%;
+    }
+
+    .card-media :global(:is(img, video)) {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .card-content {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        gap: var(--space-s);
+        min-width: 0;
+        padding: var(--space-m);
+    }
+
+    .card-heading {
+        display: flex;
+        align-items: center;
+        gap: var(--space-s);
+        min-width: 0;
+    }
+
+    .card-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        padding: var(--space-xs);
+        color: var(--color-accent-400);
+        border: var(--border-width-s) solid var(--color-accent-400);
+        border-radius: var(--border-radius-m);
+    }
+
+    .card-title {
+        min-width: 0;
+        color: var(--color-text);
+        font-size: var(--font-size-xl);
+        font-weight: var(--font-weight-semi-bold);
+        line-height: var(--font-line-height-heading);
+        text-wrap: balance;
+    }
+
+    .card-body {
+        flex: 1;
+        min-width: 0;
+        color: var(--color-text-subtle);
+    }
+
+    .card:not(.card-with-media) .card-content {
+        justify-content: center;
+    }
+
+    .card:not(.card-with-media) .card-body {
+        flex: none;
+    }
+
+    .card-body :global(:where(p, li)) {
+        color: var(--color-text-subtle);
+    }
+
+    .card-body > :global(* + *) {
+        margin-block-start: var(--space-s);
+    }
+
+    .card-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: flex-end;
+        gap: var(--space-xs);
+        padding-block-start: var(--space-xs);
+    }
+
+    @media (min-width: 48rem) {
+        .card-content {
+            padding: var(--space-l);
+        }
+
+        .card-with-media .card-content {
+            padding: var(--space-m);
+        }
+    }
+</style>
