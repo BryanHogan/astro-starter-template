@@ -1,5 +1,6 @@
 ---
 import { Image } from "astro:assets";
+import { SITE } from "../config";
 import Icon from "./Icon.astro";
 /* If using image in /src: import Logo from "../assets/logo.svg"; // Then do "src={Logo}" */
 
@@ -17,7 +18,7 @@ const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
             <a href="/"
                 ><Image
                     src="/favicon.svg"
-                    alt="Logo icon"
+                    alt={SITE.name}
                     height="25"
                     width="25"
                     class="logo"
