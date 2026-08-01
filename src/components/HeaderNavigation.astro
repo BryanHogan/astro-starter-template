@@ -2,6 +2,13 @@
 import { Image } from "astro:assets";
 import Icon from "./Icon.astro";
 /* If using image in /src: import Logo from "../assets/logo.svg"; // Then do "src={Logo}" */
+
+const navigationLinks = [
+    { href: "/blog", label: "Blog" },
+    { href: "/about", label: "About" },
+    { href: "/contact", label: "Contact" },
+];
+const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
 ---
 
 <div class="backdrop-area">
@@ -35,9 +42,26 @@ import Icon from "./Icon.astro";
             </button>
             <nav id="primary-navigation" class="primary-navigation">
                 <ul role="list">
-                    <li><a href="/blog">Blog</a></li>
-                    <li><a href="/about">About</a></li>
-                    <li><a href="/contact">Contact</a></li>
+                    {
+                        navigationLinks.map(({ href, label }) => {
+                            const isCurrent =
+                                currentPath === href ||
+                                currentPath.startsWith(`${href}/`);
+
+                            return (
+                                <li>
+                                    <a
+                                        href={href}
+                                        aria-current={
+                                            isCurrent ? "page" : undefined
+                                        }
+                                    >
+                                        {label}
+                                    </a>
+                                </li>
+                            );
+                        })
+                    }
                 </ul>
             </nav>
         </header>
@@ -99,6 +123,13 @@ import Icon from "./Icon.astro";
             }
             &:active {
                 color: var(--color-link-active);
+            }
+            &[aria-current="page"] {
+                color: var(--color-text-subtle);
+                text-decoration-line: underline;
+                text-decoration-color: var(--color-link);
+                text-decoration-thickness: var(--border-width-m);
+                text-underline-offset: var(--space-2xs);
             }
         }
     }

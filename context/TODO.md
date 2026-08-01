@@ -35,7 +35,7 @@ The project builds successfully. The remaining work is primarily release cleanup
 - [x] Manage and restore focus when the mobile navigation opens and closes.
 - [x] Prevent background scrolling while the mobile navigation is open.
 - [ ] Clean up navigation event listeners correctly across Astro view transitions.
-- [ ] Add `aria-current="page"` and a visible active state to the current navigation link.
+- [x] Add `aria-current="page"` and a visible active state to the current navigation link.
 - [ ] Give the home/logo link an accessible name based on `SITE.name` instead of `Logo icon`.
 
 ## Documentation and maintenance
@@ -60,4 +60,3 @@ The project builds successfully. The remaining work is primarily release cleanup
 These are useful additions, but they are not required for the lightweight baseline.
 
 - [ ] Add an RSS feed if the completed blog needs syndication.
-
