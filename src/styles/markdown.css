@@ -108,6 +108,10 @@
 
         tbody tr:nth-child(odd) {
             background-color: var(--color-surface);
+
+            code:not(pre code) {
+                background-color: var(--color-background);
+            }
         }
     }
 
