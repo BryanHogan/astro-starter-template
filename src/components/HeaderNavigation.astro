@@ -153,39 +153,36 @@ import Icon from "./Icon.astro";
 </style>
 
 <script>
-    function setupNavigation() {
+    function handleNavigationClick(event: MouseEvent) {
         const navigationToggle = document.querySelector(
             '[aria-controls="primary-navigation"]',
         ) as HTMLButtonElement | null;
         const navigation = document.querySelector(
-            ".primary-navigation",
+            "#primary-navigation",
         ) as HTMLElement | null;
+        const eventTarget = event.target;
 
-        if (!navigationToggle || !navigation) return;
+        if (
+            !navigationToggle ||
+            !navigation ||
+            !(eventTarget instanceof Node)
+        )
+            return;
 
-        const closeMenu = (event: Event) => {
-            if (navigation.contains(event.target as Node)) return;
-            navigationToggle.setAttribute("aria-expanded", "false");
-        };
-
-        const toggleMenu = (event: Event) => {
-            event.stopPropagation();
+        if (navigationToggle.contains(eventTarget)) {
             const navigationOpened =
                 navigationToggle.getAttribute("aria-expanded");
             navigationToggle.setAttribute(
                 "aria-expanded",
                 navigationOpened === "false" ? "true" : "false",
             );
-        };
+            return;
+        }
 
-        navigationToggle.removeEventListener("click", toggleMenu);
-        document.removeEventListener("click", closeMenu);
-
-        navigationToggle.addEventListener("click", toggleMenu);
-        document.addEventListener("click", closeMenu);
+        if (!navigation.contains(eventTarget)) {
+            navigationToggle.setAttribute("aria-expanded", "false");
+        }
     }
 
-    setupNavigation();
-
-    document.addEventListener("astro:after-swap", setupNavigation);
+    document.addEventListener("click", handleNavigationClick);
 </script>
