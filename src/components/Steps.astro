@@ -1,0 +1,78 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+type Props = Omit<HTMLAttributes<"div">, "class:list">;
+
+const {
+    class: className,
+    ...rest
+} = Astro.props;
+---
+
+<div {...rest} class:list={["steps", className]}>
+    <slot />
+</div>
+
+<style>
+    .steps {
+        --step-marker-size: var(--space-l);
+        --step-line-width: var(--border-width-s);
+    }
+
+    .steps > :global(ol) {
+        counter-reset: steps-counter;
+        list-style: none;
+        margin: 0;
+        padding-inline-start: 0;
+    }
+
+    .steps > :global(ol > li) {
+        counter-increment: steps-counter;
+        position: relative;
+        min-height: var(--step-marker-size);
+        margin: 0;
+        padding-block-end: var(--space-l);
+        padding-inline-start: calc(
+            var(--step-marker-size) + var(--space-m)
+        );
+    }
+
+    .steps > :global(ol > li:last-child) {
+        padding-block-end: 0;
+    }
+
+    .steps > :global(ol > li::before) {
+        content: counter(steps-counter);
+        position: absolute;
+        z-index: 1;
+        inset-block-start: 0;
+        inset-inline-start: 0;
+        display: grid;
+        place-items: center;
+        inline-size: var(--step-marker-size);
+        block-size: var(--step-marker-size);
+        color: var(--color-link);
+        background-color: var(--color-surface);
+        border: var(--step-line-width) solid var(--color-link);
+        border-radius: 50%;
+        font-size: var(--font-size-s);
+        font-weight: var(--font-weight-semi-bold);
+        line-height: 1;
+    }
+
+    .steps > :global(ol > li:not(:last-child)::after) {
+        content: "";
+        position: absolute;
+        inset-block-start: var(--step-marker-size);
+        inset-block-end: 0;
+        inset-inline-start: calc(
+            (var(--step-marker-size) - var(--step-line-width)) / 2
+        );
+        inline-size: var(--step-line-width);
+        background-color: var(--color-border);
+    }
+
+    .steps > :global(ol > li > * + *) {
+        margin-block-start: var(--space-s);
+    }
+</style>

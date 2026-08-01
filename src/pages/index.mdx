@@ -9,6 +9,7 @@ import Button from "../components/Button.astro";
 import Card from "../components/Card.astro";
 import CardGrid from "../components/CardGrid.astro";
 import SectionTitle from "../components/SectionTitle.astro";
+import Steps from "../components/Steps.astro";
 import { Image } from "astro:assets";
 import heroImage from "../assets/images/Seoul-Image-900-900.png";
 
@@ -111,25 +112,17 @@ Canonical URLs, social metadata, structured data, and a sitemap help search engi
     title="Three steps, then make it your own"
 />
 
-<CardGrid setWidth="large" columns={3} class="margin-top-l">
-<Card heading="h3" title="1. Get the project" icon="download">
+<Steps class="margin-top-l">
 
-Clone or download the repository and install the project dependencies.
+1. **Get the project.** Clone or download the repository and install the project dependencies.
 
-</Card>
-<Card heading="h3" title="2. Add your details" icon="setting">
+2. **Add your details.** Update `src/config.ts` with your website name, URL, author details, social links, and analytics settings.
 
-Update `src/config.ts` with your website name, URL, author details, social links, and analytics settings.
+3. **Write and publish.** Create your pages in Markdown or Astro, adjust the design tokens, and host the generated static site wherever you want.
 
-</Card>
-<Card heading="h3" title="3. Write and publish" icon="rocket">
+</Steps>
 
-Create your pages in Markdown or Astro, adjust the design tokens, and host the generated static site wherever you want.
-
-</Card>
-</CardGrid>
-
-<Button href="https://github.com/BryanHogan/astro-starter-template#how-to-use-it" size="large" class="margin-top-l" style="justify-self: start">Read the setup guide</Button>
+<Button href="https://github.com/BryanHogan/astro-starter-template#how-to-use-it" size="large" class="margin-top-2xl margin-bottom-l">Read the setup guide</Button>
 
 <section
     class="full-width base-layout base-layout-content flow margin-top-2xl padding-top-2xl padding-bottom-2xl"
