@@ -88,7 +88,7 @@
     }
     code {
         background-color: var(--color-surface) !important;
-        font-size: var(--variable-font-size);
+        font-size: var(--font-size-s);
     }
     pre {
         padding: var(--space-xs) var(--space-s);

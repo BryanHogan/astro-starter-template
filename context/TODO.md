@@ -34,9 +34,9 @@ The project builds successfully. The remaining work is primarily release cleanup
 - [x] Add Escape-to-close behavior to the mobile navigation.
 - [x] Manage and restore focus when the mobile navigation opens and closes.
 - [x] Prevent background scrolling while the mobile navigation is open.
-- [ ] Clean up navigation event listeners correctly across Astro view transitions.
+- [x] Clean up navigation event listeners correctly across Astro view transitions.
 - [x] Add `aria-current="page"` and a visible active state to the current navigation link.
-- [ ] Give the home/logo link an accessible name based on `SITE.name` instead of `Logo icon`.
+- [x] Give the home/logo link an accessible name based on `SITE.name` instead of `Logo icon`.
 
 ## Documentation and maintenance
 
