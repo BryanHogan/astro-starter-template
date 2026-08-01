@@ -7,9 +7,15 @@ interface Props {
     limit?: number;
     /** Heading level used for each post title. */
     headingLevel?: "h2" | "h3" | "h4";
+    /** Whether to display each post description. */
+    showDescription?: boolean;
 }
 
-const { limit, headingLevel: Heading = "h2" } = Astro.props;
+const {
+    limit,
+    headingLevel: Heading = "h2",
+    showDescription = true,
+} = Astro.props;
 
 if (limit !== undefined && (!Number.isInteger(limit) || limit < 1)) {
     throw new Error("BlogPostsList `limit` must be a positive integer.");
@@ -48,9 +54,11 @@ const posts = (await getCollection("blog"))
                             <Heading class="blog-posts-title">
                                 {post.data.title}
                             </Heading>
-                            <p class="blog-posts-description">
-                                {post.data.description}
-                            </p>
+                            {showDescription && (
+                                <p class="blog-posts-description">
+                                    {post.data.description}
+                                </p>
+                            )}
                         </div>
                         <time
                             class="blog-posts-date"

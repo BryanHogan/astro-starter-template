@@ -33,7 +33,6 @@ const formattedPubDate = new Intl.DateTimeFormat(SITE.locale, {
                     {formattedPubDate}
                 </time>
                 <h1>{title}</h1>
-                <p class="blog-post-description">{description}</p>
             </header>
 
             <div class="blog-post-body markdown-container">
@@ -62,13 +61,6 @@ const formattedPubDate = new Intl.DateTimeFormat(SITE.locale, {
     .blog-post-header h1 {
         overflow-wrap: anywhere;
         text-wrap: balance;
-    }
-
-    .blog-post-description {
-        max-inline-size: 40rem;
-        color: var(--color-text-subtle);
-        font-size: var(--font-size-l);
-        text-wrap: pretty;
     }
 
     .blog-post-body {
