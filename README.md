@@ -33,8 +33,6 @@ Download / Clone this repository, enter your information in 'src/config.ts', adj
 
 Need some more details?
 
-(Future TO DO: Add detailed setup)
-
 <details>
 
 <summary>Setup if you already know what you are doing</summary>
@@ -56,7 +54,7 @@ Commands:
 
 You are new to writing in markdown? Then it's a great time to get started! Writing markdown is simple, and most loved by AI as well.
 
-See: https://www.markdownguide.org/cheat-sheet/
+See the [markdown style guide](https://starter.bryanhogan.com/blog/markdown-style-guide/) for how to write markdown content.
 
 </details>
 

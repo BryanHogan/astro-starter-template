@@ -1,7 +1,7 @@
 ---
 layout: ../layouts/PageLayout.astro
 title: Astro Starter Template by Bryan Hogan
-description: Astro Start Template landing page section.
+description: A free Astro starter template for fast, accessible websites you fully control.
 ---
 
 import Hero from "../components/Hero.astro";
@@ -13,15 +13,15 @@ import { Image } from "astro:assets";
 import heroImage from "../assets/images/Seoul-Image-900-900.png";
 
 <Hero
-    heading="An Astro Starter Template"
-    headingHighlight="for you."
+    heading="The simplest way to build"
+    headingHighlight="a high-quality website."
     headingId="home-hero-title"
-    eyebrow="Lightweight, accessible and SEO-ready"
-    description="A template built by Bryan Hogan for performant high-quality websites."
+    eyebrow="Fast, accessible, SEO optimized, and easy to host"
+    description="A free Astro starter template with everything you need to create an excellent website, write it in Markdown, and make it completely yours."
 >
     <Fragment slot="actions">
-        <Button href="https://github.com/BryanHogan/astro-starter-template" size="large">Get started</Button>
-        <Button href="#what-is-included" variant="outline" iconRight="right-caret" size="large">Learn more</Button>
+        <Button href="https://github.com/BryanHogan/astro-starter-template" size="large">View on GitHub</Button>
+        <Button href="#what-is-this" variant="outline" iconRight="down-caret" size="large">See how it works</Button>
     </Fragment>
     <Image
         slot="media"
@@ -33,61 +33,73 @@ import heroImage from "../assets/images/Seoul-Image-900-900.png";
 </Hero>
 
 <section
+    id="what-is-this"
     class="full-width base-layout base-layout-content flow padding-top-2xl padding-bottom-2xl"
     data-theme="light"
 >
 
 <SectionTitle
     as="h2"
-    eyebrow="Simple, fast, accessible and free"
-    title="The best way to create a simple website"
+    eyebrow="What is this?"
+    title="A simple way to make your website"
 />
 
-Everything a simple high-quality website needs is provided.
+This is a starting point for creating a website you fully control. You write in Markdown, the pages are fast and performant, accessibility is built in, and the whole project is free.
 
-No lock-in, everything owned by you. Write content in Markdown, take it anywhere you want.
+Clone the project, add your details to `src/config.ts`, write your content, and host the generated static site. The setup is simple, and static hosting can be free.
 
-<CardGrid setWidth="large" columns={3} class="margin-top-l">
-<Card heading="h3" title="Simple styling" icon="setting">
-
-The styling is already set up. Change the CSS variables in var.css to make the design your own.
-
-</Card>
-<Card heading="h3" title="Easy to edit" icon="pencil">
-
-Focus on the content. Pages are written using markdown and are setup to make editing as easy as possible.
-
-</Card>
-<Card heading="h3" title="Host it anywhere" icon="cloud-download">
-
-Astro builds a static website. The output is yours and you can host it wherever you want.
-
-</Card>
-</CardGrid>
+Use it as it is, change every part of it, or take only what you need. Make the website you want and, more importantly, one you love using.
 
 </section>
 
 <SectionTitle
     as="h2"
     class="margin-top-2xl"
-    eyebrow="Use it for"
-    title="A blog, personal website or landing page"
+    eyebrow="Why is it cool?"
+    title="The useful parts are already here"
 />
 
-Use the whole project, or just take the parts you need. Use it for anything you want, a **blog**, **personal website**, **landing page** or **anything else** you want. You can adjust everything to build anything you want.
+The template handles the foundation, while keeping you in control of the content, code, and design.
 
-<CardGrid>
+<CardGrid setWidth="large" columns={2} class="margin-top-l">
+<Card heading="h3" title="You are in control" icon="padlock">
 
-<Card title="Write in Markdown">
-
-Write all of your pages including blog posts in markdown, the easiest way to write content. So you can edit your content with the app of your choice and also move the content wherever you want.
-
-The included styling covers everything you can do in markdown, including headings, lists, tables, code, images and more.
+The code, content, and finished website belong to you. Change anything, host it anywhere, and move it whenever you want.
 
 </Card>
-<Card title="Fast setup">
+<Card heading="h3" title="Write in Markdown" icon="pencil">
 
-Adjust one simple `config.ts` file to make the website yours.
+Markdown is easy to write, works in many different apps, and is simple to move elsewhere. It is also a format AI tools understand and work with well.
+
+</Card>
+<Card heading="h3" title="Fast and performant" icon="rocket">
+
+Astro generates static pages and sends very little JavaScript to the browser by default, so your website stays quick.
+
+</Card>
+<Card heading="h3" title="Accessible by default" icon="approve-check-circle">
+
+The structure, navigation, focus states, and components give you an accessible starting point you can build on.
+
+</Card>
+<Card heading="h3" title="Free to use" icon="heart">
+
+The project is free, and you can publish a static website using a free hosting plan from several providers.
+
+</Card>
+<Card heading="h3" title="CSS that can grow" icon="setting">
+
+A small token-based CSS system gives you consistent colors, spacing, typography, layouts, and utilities without adding framework bloat.
+
+</Card>
+<Card heading="h3" title="Components included" icon="puzzle">
+
+Headers, footers, heroes, buttons, cards, icons, and section titles are ready to use and easy to adjust.
+
+</Card>
+<Card heading="h3" title="SEO optimized" icon="magnifier">
+
+Canonical URLs, social metadata, structured data, and a sitemap help search engines understand and present your website. An RSS feed also makes it easy for readers to follow new posts.
 
 </Card>
 </CardGrid>
@@ -95,52 +107,71 @@ Adjust one simple `config.ts` file to make the website yours.
 <SectionTitle
     as="h2"
     class="padding-top-2xl"
-    eyebrow="The basics"
-    title="What is included"
+    eyebrow="How to use it"
+    title="Three steps, then make it your own"
 />
 
-The idea is to keep the starting point simple. Mostly HTML and CSS, with a small amount of JavaScript where it makes sense.
-
 <CardGrid setWidth="large" columns={3} class="margin-top-l">
-<Card heading="h3" title="Pages and layouts" icon="desktop">
+<Card heading="h3" title="1. Get the project" icon="download">
 
-Use Astro or MDX pages. Shared layouts handle the site structure and the styling for longer Markdown content.
-
-</Card>
-<Card heading="h3" title="Components" icon="approve-check-circle">
-
-Header, footer, hero, buttons, cards, icons, and section titles are included and ready to use.
+Clone or download the repository and install the project dependencies.
 
 </Card>
-<Card heading="h3" title="Simple styling" icon="setting">
+<Card heading="h3" title="2. Add your details" icon="setting">
 
-Plain CSS with a reset, variables, global styles, utilities, and styles for Markdown content.
-
-</Card>
-<Card heading="h3" title="SEO ready" icon="magnifier">
-
-The head component includes the metadata, canonical URLs, social cards, and structured data you need.
+Update `src/config.ts` with your website name, URL, author details, social links, and analytics settings.
 
 </Card>
-<Card heading="h3" title="Static website" icon="code-branch">
+<Card heading="h3" title="3. Write and publish" icon="rocket">
 
-Astro generates static pages and sends very little JavaScript to the browser by default.
-
-</Card>
-<Card heading="h3" title="Sitemap" icon="link">
-
-A sitemap is generated when you build, using the website URL in src/config.ts.
+Create your pages in Markdown or Astro, adjust the design tokens, and host the generated static site wherever you want.
 
 </Card>
 </CardGrid>
 
+<Button href="https://github.com/BryanHogan/astro-starter-template#how-to-use-it" size="large" class="margin-top-l" style="justify-self: start">Read the setup guide</Button>
+
+<section
+    class="full-width base-layout base-layout-content flow margin-top-2xl padding-top-2xl padding-bottom-2xl"
+    data-theme="light"
+>
+
+<SectionTitle
+    as="h2"
+    eyebrow="Where it fits"
+    title="Use it for almost anything"
+/>
+
+Build a **blog**, **personal website**, **landing page**, **company website**, or something completely different. Start small and add more only when you need it.
+
+</section>
+
 <SectionTitle
     as="h2"
     class="margin-top-2xl"
-    eyebrow="Get started"
-    title="How to use it"
+    eyebrow="Ready to begin?"
+    title="Create the website you want"
 />
 
-Download or clone the repository, enter your information in src/config.ts, adjust your content and styles, and you are ready to publish.
+Use the starter for your next website. If it saves you time and you want to help me keep improving it, you can also support the project financially.
 
-<Button href="https://github.com/BryanHogan/astro-starter-template" size="large" class="margin-bottom-2xl" style="justify-self: start">View the repository</Button>
+<CardGrid class="margin-top-l margin-bottom-2xl">
+<Card heading="h3" title="Use the project" icon="github">
+
+Clone the repository, make it yours, and publish something you love.
+
+<Fragment slot="actions">
+    <Button href="https://github.com/BryanHogan/astro-starter-template" size="large">Use this starter</Button>
+</Fragment>
+
+</Card>
+<Card heading="h3" title="Support the project" icon="heart">
+
+Help support the time spent maintaining the template and making it better.
+
+<Fragment slot="actions">
+    <Button href="https://github.com/sponsors/BryanHogan" variant="outline" size="large">Support financially</Button>
+</Fragment>
+
+</Card>
+</CardGrid>
