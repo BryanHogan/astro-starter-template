@@ -46,17 +46,21 @@ The project builds successfully. The remaining work is primarily release cleanup
 - [ ] Document how to create Astro and MDX pages.
 - [ ] Document how to customize colors, typography, spacing, and themes.
 - [ ] Add component usage examples for Button, Hero, Icon, and SectionTitle.
-- [ ] Add deployment guidance for common static hosts.
 - [ ] Update the README feature list and roadmap to match the actual project state.
 - [ ] Add a `LICENSE` file defining how the starter may be reused.
-- [ ] Add `@astrojs/check` and TypeScript as development dependencies.
-- [ ] Add an `npm run check` script.
+
 - [ ] Add a small CI workflow that runs the project check and production build.
-- [ ] Fix the undefined `--variable-font-size` reference in `markdown.css` by using an existing token or adding a documented monospace-size token.
+- [x] Fix the undefined `--variable-font-size` reference in `markdown.css` by using an existing token or adding a documented monospace-size token.
 - [ ] Replace the header's hard-coded `z-index: 10` with the existing `--z-navbar` design token.
 
 ## Optional extensions
 
 These are useful additions, but they are not required for the lightweight baseline.
 
-- [ ] Add an RSS feed if the completed blog needs syndication.
+- [x] Add an RSS feed if the completed blog needs syndication.
+
+## Don't do now but consider for the future
+
+- [ ] Add deployment guidance for common static hosts.
+- [ ] Add `@astrojs/check` and TypeScript as development dependencies.
+- [ ] Add an `npm run check` script.
