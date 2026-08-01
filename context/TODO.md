@@ -62,5 +62,6 @@ These are useful additions, but they are not required for the lightweight baseli
 ## Don't do now but consider for the future
 
 - [ ] Add deployment guidance for common static hosts.
+- [ ] Create a web tool that can create the custom styling CSS variables
 - [ ] Add `@astrojs/check` and TypeScript as development dependencies.
 - [ ] Add an `npm run check` script.
