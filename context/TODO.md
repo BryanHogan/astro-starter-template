@@ -8,9 +8,9 @@ The project builds successfully. The remaining work is primarily release cleanup
 - [x] Add a `/privacy` page, or remove the Privacy link from the footer.
 - [x] Add a contact section with `id="contact"` to the About page, or update the header and footer Contact links.
 - [x] Remove or replace the `/index2` test route so it is not published or included in the sitemap.
-- [ ] Replace the `/index` test link inside `index2.astro` if that page is retained.
-- [ ] Generate `robots.txt` from `SITE.url`, or replace the `https://<YOUR SITE>` placeholder manually.
-- [ ] Set the 404 page to `noindex, nofollow` and avoid emitting unnecessary canonical and structured-data metadata for it.
+- [x] Replace the `/index` test link inside `index2.astro` if that page is retained.
+- [x] Generate `robots.txt` from `SITE.url`, or replace the `https://<YOUR SITE>` placeholder manually.
+- [x] Set the 404 page to `noindex, nofollow` and avoid emitting unnecessary canonical and structured-data metadata for it.
 - [ ] Implement blog search for `?search=...`, or remove the unsupported `SearchAction` structured data from `Head.astro`.
 
 ## Starter features to complete
@@ -24,16 +24,16 @@ The project builds successfully. The remaining work is primarily release cleanup
 - [x] Add tags and tag archive pages.
 - [x] Add reusable Card and CardGroup components for posts, features, and landing-page content.
 - [x] Optionally add blog pagination once multiple sample posts exist.
-- [ ] Add configured social profile URLs to JSON-LD through a `sameAs` array.
-- [ ] Replace the placeholder header graphic with an intentional site logo.
+- [x] Add configured social profile URLs to JSON-LD through a `sameAs` array.
+- [x] Replace the placeholder header graphic with an intentional site logo.
 - [ ] Add favicon fallbacks and an Apple touch icon; optionally add a web app manifest.
 
 ## Accessibility and interaction
 
 - [ ] Add a skip-to-content link in `BaseLayout.astro` and a stable ID on the main content area.
-- [ ] Add Escape-to-close behavior to the mobile navigation.
-- [ ] Manage and restore focus when the mobile navigation opens and closes.
-- [ ] Prevent background scrolling while the mobile navigation is open.
+- [x] Add Escape-to-close behavior to the mobile navigation.
+- [x] Manage and restore focus when the mobile navigation opens and closes.
+- [x] Prevent background scrolling while the mobile navigation is open.
 - [ ] Clean up navigation event listeners correctly across Astro view transitions.
 - [ ] Add `aria-current="page"` and a visible active state to the current navigation link.
 - [ ] Give the home/logo link an accessible name based on `SITE.name` instead of `Logo icon`.
