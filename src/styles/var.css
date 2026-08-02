@@ -136,6 +136,7 @@
     --font-mono: ui-monospace, Menlo, monospace;
 
     --font-size-s: 0.875rem;
+    --font-size-code: 1rem;
     --font-size-base: 1.125rem; /* or 16px for base*/
     --font-size-l: 1.25rem;
 
