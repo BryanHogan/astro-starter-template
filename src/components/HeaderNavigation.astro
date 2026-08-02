@@ -4,12 +4,10 @@ import { SITE } from "../config";
 import Icon from "./Icon.astro";
 /* If using image in /src: import Logo from "../assets/logo.svg"; // Then do "src={Logo}" */
 
-const navigationLinks = [
-    { href: "/blog", label: "Blog" },
-    { href: "/about", label: "About" },
-    { href: "/contact", label: "Contact" },
-];
+const navigationLinks = SITE.header.links;
 const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
+const isExternal = (link: { readonly href: string; readonly external?: boolean }) =>
+    link.external ?? false;
 ---
 
 <div class="backdrop-area">
@@ -24,47 +22,58 @@ const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
                     class="logo"
                 /></a
             >
-            <button
-                aria-label="Navigation menu"
-                aria-controls="primary-navigation"
-                aria-expanded="false"
-                class="menu-toggle-button"
-            >
-                <Icon
-                    name="bars"
-                    size="1.5rem"
-                    class="hamburger-icon"
-                />
-                <Icon
-                    name="close"
-                    size="1.5rem"
-                    class="close-icon"
-                />
-            </button>
-            <nav id="primary-navigation" class="primary-navigation">
-                <ul role="list">
-                    {
-                        navigationLinks.map(({ href, label }) => {
-                            const isCurrent =
-                                currentPath === href ||
-                                currentPath.startsWith(`${href}/`);
+            {navigationLinks.length > 0 && (
+                <Fragment>
+                    <button
+                        aria-label="Navigation menu"
+                        aria-controls="primary-navigation"
+                        aria-expanded="false"
+                        class="menu-toggle-button"
+                    >
+                        <Icon
+                            name="bars"
+                            size="1.5rem"
+                            class="hamburger-icon"
+                        />
+                        <Icon
+                            name="close"
+                            size="1.5rem"
+                            class="close-icon"
+                        />
+                    </button>
+                    <nav id="primary-navigation" class="primary-navigation">
+                        <ul role="list">
+                            {
+                                navigationLinks.map((link) => {
+                                    const external = isExternal(link);
+                                    const isCurrent =
+                                        !external &&
+                                        (currentPath === link.href ||
+                                            currentPath.startsWith(`${link.href}/`));
 
-                            return (
-                                <li>
-                                    <a
-                                        href={href}
-                                        aria-current={
-                                            isCurrent ? "page" : undefined
-                                        }
-                                    >
-                                        {label}
-                                    </a>
-                                </li>
-                            );
-                        })
-                    }
-                </ul>
-            </nav>
+                                    return (
+                                        <li>
+                                            <a
+                                                href={link.href}
+                                                target={external ? "_blank" : undefined}
+                                                rel={external ? "noopener noreferrer" : undefined}
+                                                aria-current={isCurrent ? "page" : undefined}
+                                            >
+                                                {link.label}
+                                                {external && (
+                                                    <span class="visually-hidden">
+                                                        {" "}(opens in a new tab)
+                                                    </span>
+                                                )}
+                                            </a>
+                                        </li>
+                                    );
+                                })
+                            }
+                        </ul>
+                    </nav>
+                </Fragment>
+            )}
         </header>
     </div>
 </div>
@@ -208,6 +217,18 @@ const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
                 "aria-expanded",
                 navigationOpened === "false" ? "true" : "false",
             );
+            return;
+        }
+
+        if (navigation.contains(eventTarget)) {
+            const targetElement =
+                eventTarget instanceof Element
+                    ? eventTarget
+                    : eventTarget.parentElement;
+
+            if (targetElement?.closest("a")) {
+                navigationToggle.setAttribute("aria-expanded", "false");
+            }
             return;
         }
 

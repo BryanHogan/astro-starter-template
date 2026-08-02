@@ -77,7 +77,7 @@ If port 4321 is already in use, Astro selects another port; use the exact URL pr
 - Edit or replace the example pages in `src/pages/`.
 - Add blog posts to `src/content/blog/`.
 - Add processed images to `src/assets/images/` or static files to `public/`.
-- Update the navigation links in `src/components/HeaderNavigation.astro` and `src/components/Footer.astro` when your page structure changes.
+- Update the header and footer navigation links in `src/config.ts` when your page structure changes.
 
 ### 6. Build and preview the production site
 

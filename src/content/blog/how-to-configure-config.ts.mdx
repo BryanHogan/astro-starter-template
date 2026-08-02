@@ -16,7 +16,7 @@ If you want to get started quickly, change:
 4. `description`
 5. `author`
 6. `ogImage` and `ogImageAlt`
-7. The links in `footer`
+7. The links in `header` and `footer`
 
 You can leave unused social links and analytics empty.
 
@@ -34,6 +34,18 @@ export const SITE = {
     startYear: 2026,
     ogImage: "/og-default.png",
     ogImageAlt: "The My First Website logo on a blue background",
+    header: {
+        links: [
+            { label: "Blog", href: "/blog" },
+            { label: "About", href: "/about" },
+            { label: "Contact", href: "/contact" },
+            {
+                label: "External site",
+                href: "https://example.com",
+                external: true,
+            },
+        ],
+    },
     social: [
         { icon: "instagram", label: "Instagram", href: "" },
         { icon: "threads", label: "Threads", href: "" },
@@ -230,6 +242,27 @@ Add another object to `social` and check that its icon exists in `src/components
 
 </details>
 
+## `header`
+
+The header navigation is an ordered list of links.
+
+```ts
+header: {
+    links: [
+        { label: "Blog", href: "/blog" },
+        { label: "About", href: "/about" },
+        { label: "Contact", href: "/contact" },
+        {
+            label: "External site",
+            href: "https://example.com",
+            external: true,
+        },
+    ],
+},
+```
+
+Add, remove, or reorder entries to change the navigation without editing the header component. Internal links use a site-relative path and automatically show an active state for the current page. For a link to another website, use its full URL and add `external: true` so it opens safely in a new tab. Leave `links` empty for a logo-only header.
+
 ## `footer`
 
 The footer navigation is split into labeled link groups and a smaller utility row.
@@ -290,6 +323,6 @@ Check that:
 2. The name, title, description, and author are yours.
 3. The language and start year are correct.
 4. `public/og-default.png` is your image and has useful alternative text.
-5. Footer links point to your pages and external links use `external: true`.
+5. Header and footer links point to your pages and external links use `external: true`.
 6. Unused social links and analytics are empty.
 7. Your pages and posts also have their own titles and descriptions.

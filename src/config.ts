@@ -26,6 +26,15 @@ export const SITE = {
     ogImage: "/og-default.png",
     ogImageAlt: "Astro Starter Template by Bryan Hogan",
 
+    /** Header navigation. Add, remove, or reorder links without editing the header component. */
+    header: {
+        links: [
+            { label: "Blog", href: "/blog" },
+            { label: "About", href: "/about" },
+            { label: "Contact", href: "/contact" },
+        ],
+    },
+
     /** Social profiles. Leave `href` empty to hide a profile in the footer. */
     social: [
         {

@@ -67,4 +67,4 @@ These are useful additions, but they are not required for the lightweight baseli
 ---
 
 - [ ] Adjust BlogPostLayout: Top navigation, next prev post, 
-- [ ] Footer and Header should be adjusted in the config file also
+- [x] Footer and Header should be adjusted in the config file also
