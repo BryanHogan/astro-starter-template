@@ -63,3 +63,8 @@ These are useful additions, but they are not required for the lightweight baseli
 - [ ] Create a web tool that can create the custom styling CSS variables
 - [ ] Add `@astrojs/check` and TypeScript as development dependencies.
 - [ ] Add an `npm run check` script.
+
+---
+
+- [ ] Adjust BlogPostLayout: Top navigation, next prev post, 
+- [ ] Footer and Header should be adjusted in the config file also

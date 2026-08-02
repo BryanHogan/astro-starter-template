@@ -108,7 +108,7 @@ The finished site is placed in `dist/`. The preview command lets you check it be
 
 - [How to configure `src/config.ts`](https://starter.bryanhogan.com/blog/how-to-configure-config.ts)
 - [How to create Astro and MDX pages](https://starter.bryanhogan.com/blog/how-to-create-a-new-page)
-- [How to customize the design system](https://starter.bryanhogan.com/blog/how-to-customize-the-design-system)
+- [Customizing the design](https://starter.bryanhogan.com/blog/customizing-the-design)
 - [Component showcase](https://starter.bryanhogan.com/blog/component-showcase)
 - [Markdown style guide](https://starter.bryanhogan.com/blog/markdown-style-guide)
 
