@@ -1,0 +1,272 @@
+---
+title: Component showcase
+description: Simple examples of the Button, Card, CardGrid, Hero, Icon, and SectionTitle components.
+pubDate: 2026-08-01
+---
+
+Components are ready-made parts of a page. Import one into an Astro or MDX file, then add it where you want it to appear.
+
+The example import paths below are for files directly inside `src/pages/`. Change the path if your file is somewhere else.
+
+import Button from "../../components/Button.astro";
+import Card from "../../components/Card.astro";
+import CardGrid from "../../components/CardGrid.astro";
+import Icon from "../../components/Icon.astro";
+import SectionTitle from "../../components/SectionTitle.astro";
+
+## Button
+
+Use a Button for an important link or action.
+
+```mdx
+import Button from "../components/Button.astro";
+
+<Button href="/contact">Contact me</Button>
+```
+
+Live example:
+
+<Button href="#button-options">Contact me</Button>
+
+Add a style with `variant` and a size with `size`:
+
+```mdx
+<Button href="/about" variant="outline" size="large">
+    Learn more
+</Button>
+```
+
+<Button href="#button-options" variant="outline" size="large">Learn more</Button>
+
+### Button options
+
+| Prop | Choices | Default |
+| --- | --- | --- |
+| `href` | Any page or website address | No address; renders a button. |
+| `variant` | `primary`, `secondary`, `outline`, `ghost`, `danger` | `primary` |
+| `size` | `small`, `medium`, `large` | Looks like `medium` |
+| `iconLeft` | An icon name | No icon |
+| `iconRight` | An icon name | No icon |
+
+Add an icon like this:
+
+```mdx
+<Button href="https://astro.build" iconRight="external">
+    Visit Astro
+</Button>
+```
+
+<details>
+
+<summary>Button links, actions, and extra attributes</summary>
+
+When `href` is present, Button renders a link. Without `href`, it renders a native button.
+
+Use `type="submit"` inside a form:
+
+```mdx
+<Button type="submit" iconLeft="approve-check">Save</Button>
+```
+
+The available button types are `button`, `submit`, and `reset`. You can also pass normal attributes such as `disabled`, `name`, `value`, `target`, `rel`, `aria-*`, and `class`.
+
+An explicit `size` keeps the button at its natural width. Without one, a parent layout may stretch it.
+
+</details>
+
+## Cards and card grids
+
+Use CardGrid to arrange related Cards. The grid stacks them on small screens.
+
+```mdx
+import Card from "../components/Card.astro";
+import CardGrid from "../components/CardGrid.astro";
+
+<CardGrid columns={2}>
+    <Card title="Fast" heading="h3" icon="rocket">
+        <p>Astro ships less JavaScript by default.</p>
+    </Card>
+    <Card title="Flexible" heading="h3" icon="setting">
+        <p>Add only the features your site needs.</p>
+    </Card>
+</CardGrid>
+```
+
+Live example:
+
+<CardGrid columns={2}>
+    <Card title="Fast" heading="h3" icon="rocket">
+        <p>Astro ships less JavaScript by default.</p>
+    </Card>
+    <Card title="Flexible" heading="h3" icon="setting">
+        <p>Add only the features your site needs.</p>
+    </Card>
+</CardGrid>
+
+Card also supports `media`, `actions`, `mediaAspect`, and `setWidth`. CardGrid supports two or three columns and `small`, `large`, or `full` widths.
+
+## Hero
+
+A Hero is the large introduction at the top of a page. It includes the page's main heading, so normally use it only once.
+
+```mdx
+import Hero from "../components/Hero.astro";
+import Button from "../components/Button.astro";
+
+<Hero
+    heading="Build your first website"
+    headingHighlight="with Astro."
+    headingId="home-title"
+    eyebrow="Simple and flexible"
+    description="Start with useful pages, components, and styles."
+>
+    <Fragment slot="actions">
+        <Button href="/about" size="large">Learn more</Button>
+    </Fragment>
+</Hero>
+```
+
+The required values are:
+
+- `heading` is the main heading text.
+- `headingId` is a unique name that connects the hero to its heading.
+
+`headingHighlight`, `eyebrow`, and `description` are optional. The `actions` slot is for buttons.
+
+<details>
+
+<summary>Add an image to the Hero</summary>
+
+Use the `media` slot:
+
+```mdx
+import { Image } from "astro:assets";
+import heroImage from "../assets/images/hero.png";
+
+<Hero heading="Welcome" headingId="welcome-title">
+    <Image
+        slot="media"
+        src={heroImage}
+        alt="Describe what is shown in the image"
+        loading="eager"
+    />
+</Hero>
+```
+
+The Hero changes to a two-column layout on wide screens when it has media.
+
+</details>
+
+<details>
+
+<summary>Change the Hero layout</summary>
+
+You can set CSS custom properties through `style`:
+
+```mdx
+<Hero
+    heading="A smaller hero"
+    headingId="small-hero-title"
+    style="--hero-min-height: 45svh; --hero-highlight-color: var(--color-accent-alt-200);"
+/>
+```
+
+Other available values include `--hero-content-max-width`, `--hero-media-max-width`, `--hero-section-gap`, `--hero-columns`, `--hero-actions-direction`, and `--hero-layout-max-width`.
+
+</details>
+
+## Icon
+
+Use Icon to show one of the SVG icons in `src/components/Icons.ts`.
+
+```mdx
+import Icon from "../components/Icon.astro";
+
+<Icon name="rocket" />
+```
+
+Live example: <Icon name="rocket" />
+
+The icon uses the current text color and is `1rem` by default. Change its size or color when needed:
+
+```mdx
+<Icon
+    name="information"
+    label="Information"
+    size="1.5rem"
+    color="var(--color-accent-300)"
+/>
+```
+
+<Icon name="information" label="Information" size="1.5rem" color="var(--color-accent-300)" />
+
+If nearby text already explains the icon, leave out `label`. The icon will be hidden from screen readers. Add a short `label` when the icon has meaning on its own.
+
+<details>
+
+<summary>Icon options and names</summary>
+
+| Prop | Purpose |
+| --- | --- |
+| `name` | Required name from `Icons.ts`. |
+| `label` | Accessible text for an icon with meaning. |
+| `size` | A CSS size such as `1.5rem` or `1em`. |
+| `color` | A CSS color or design token. |
+| `class` | An extra CSS class. |
+
+Open `src/components/Icons.ts` for the complete list. It includes arrows, carets, common actions, social networks, browsers, hosting providers, and development tools.
+
+</details>
+
+## SectionTitle
+
+SectionTitle gives page sections a small label and a heading.
+
+```mdx
+import SectionTitle from "../components/SectionTitle.astro";
+
+<SectionTitle
+    as="h2"
+    eyebrow="What is included"
+    title="A useful starting point"
+/>
+```
+
+Live example:
+
+<SectionTitle
+    as="h3"
+    eyebrow="Example"
+    title="A consistent section heading"
+/>
+
+Use `as="h2"` for a main section below the page title. Use `as="h3"` for a section inside an `h2` section.
+
+<details>
+
+<summary>SectionTitle IDs and other options</summary>
+
+| Prop | Purpose |
+| --- | --- |
+| `eyebrow` | Required small label above the title. |
+| `title` | Required heading text. |
+| `as` | Required heading level from `h1` to `h6`. |
+| `id` | Optional custom link target. |
+| `class` | Optional extra CSS class. |
+
+An ID is normally made from the title. For example, `A useful starting point` becomes `a-useful-starting-point`.
+
+Add your own ID when the same title appears more than once:
+
+```mdx
+<SectionTitle
+    as="h2"
+    id="homepage-features"
+    eyebrow="Included"
+    title="Features"
+/>
+```
+
+The eyebrow and title cannot be empty, and a custom ID cannot contain spaces.
+
+</details>
