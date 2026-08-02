@@ -16,6 +16,7 @@ const { previousPost, nextPost } = Astro.props;
                 <a
                     class="post-navigation-link post-navigation-previous"
                     href={previousPost.href}
+                    rel="prev"
                 >
                     <span class="post-navigation-label">Previous post</span>
                     <span class="post-navigation-title">
@@ -28,6 +29,7 @@ const { previousPost, nextPost } = Astro.props;
                 <a
                     class="post-navigation-link post-navigation-next"
                     href={nextPost.href}
+                    rel="next"
                 >
                     <span class="post-navigation-label">Next post</span>
                     <span class="post-navigation-title">{nextPost.title}</span>
@@ -55,7 +57,6 @@ const { previousPost, nextPost } = Astro.props;
         flex-direction: column;
         gap: var(--space-s);
         min-width: 0;
-        min-height: 8rem;
         padding: var(--space-m);
         color: var(--color-text);
         text-decoration: none;
