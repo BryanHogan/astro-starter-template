@@ -1,5 +1,106 @@
 ---
 title: How to create a new page
-description: How to create a new page in this Astro Starter Template.
+description: Learn how to add a simple MDX or Astro page to your first website.
 pubDate: 2026-08-01
 ---
+
+Every page in `src/pages/` becomes a page on your website. See the existing page such as `index.mdx` for reference.
+
+## How page names become URLs
+
+| File | Website address |
+| --- | --- |
+| `src/pages/index.mdx` | `/` |
+| `src/pages/about.mdx` | `/about` |
+| `src/pages/services.mdx` | `/services` |
+| `src/pages/team/alex.mdx` | `/team/alex` |
+
+Use lowercase filenames with hyphens, such as `work-with-me.mdx`.
+
+## Create an MDX page
+
+Use MDX when your page is mostly text, headings, lists, images, and a few components.
+
+Create `src/pages/services.mdx`:
+
+```mdx
+---
+layout: ../layouts/PageLayout.astro
+title: Services
+description: Learn about the services I offer.
+---
+
+import TopSpacingElement from "../components/TopSpacingElement.astro";
+import Button from "../components/Button.astro";
+
+<TopSpacingElement />
+
+# Services
+
+I help people create simple and useful websites.
+
+## Website design
+
+Add a short description of your service here.
+
+<Button href="/contact">Contact me</Button>
+```
+
+You can now visit `/services`.
+
+The beginning part between the `---` lines is called frontmatter:
+
+- `layout` adds the shared header, footer, page styles, and page information.
+- `title` is the title shown in the browser and search results.
+- `description` is a short summary of the page.
+
+Imports go below the frontmatter and before the component is used.
+
+## Create a blog post
+
+Regular pages go in `src/pages/`. Blog posts go in `src/content/blog/`.
+
+Create a file such as `src/content/blog/my-first-post.mdx`:
+
+```mdx
+---
+title: My first post
+description: A short introduction to my first blog post.
+pubDate: 2026-08-01
+---
+
+## My first section
+
+Write your post here.
+```
+
+The post will appear at `/blog/my-first-post`. Start blog post sections with `##` because the blog layout already shows the post title as the main heading.
+
+Keep blog post files directly inside `src/content/blog/`.
+
+<details>
+
+<summary>Add page-specific head information</summary>
+
+The shared layouts include a `head` slot for unusual page-specific tags:
+
+```astro
+<Fragment slot="head">
+    <meta name="category" content="events" />
+</Fragment>
+```
+
+Most pages do not need this. Use the existing title, description, canonical, social image, and robots options before adding tags by hand.
+
+</details>
+
+## Before you publish
+
+Check that:
+
+1. The filename creates the URL you want.
+2. The title and description explain the page clearly.
+3. The page has one main `#` or `<h1>` heading.
+4. Links do not end with a slash.
+5. The page is in the menu if visitors need it there.
+6. Images have useful alternative text.
