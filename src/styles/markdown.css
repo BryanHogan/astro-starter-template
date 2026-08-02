@@ -43,6 +43,52 @@
         border-radius: var(--border-radius-s);
     }
 
+    details {
+        color: var(--color-text);
+        border: var(--border-width-s) solid var(--color-border);
+        border-radius: var(--border-radius-m);
+    }
+
+    details[open] {
+        padding-block-end: var(--space-m);
+        padding-inline: var(--space-m);
+    }
+
+    summary {
+        padding-block: var(--space-s);
+        padding-inline: var(--space-m);
+        border-radius: var(--border-radius-m);
+        cursor: pointer;
+        transition: var(--transition-normal) background-color;
+
+        &::marker {
+            color: var(--color-link);
+        }
+
+        &:hover {
+            background-color: var(--color-surface);
+        }
+    }
+
+    details[open] > summary {
+        margin-inline: calc(var(--space-m) * -1);
+        border-block-end: var(--border-width-s) solid var(--color-border);
+        border-end-start-radius: 0;
+        border-end-end-radius: 0;
+    }
+
+    details > summary + * {
+        margin-block-start: var(--space-m);
+    }
+
+    details > :not(summary) + :not(summary) {
+        margin-block-start: var(--flow-space);
+    }
+
+    details > :not(summary) + :is(h1, h2, h3) {
+        margin-block-start: 1.75em;
+    }
+
     blockquote {
         padding-block: var(--space-s);
         padding-inline: var(--space-m);
