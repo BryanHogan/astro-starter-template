@@ -51,31 +51,35 @@ const isExternal = (link: { external?: boolean }) => link.external ?? false;
                 )}
             </div>
 
-            {SITE.footer.linkGroups.map((group, groupIndex) => {
-                const headingId = `footer-group-${groupIndex}`;
+            {SITE.footer.linkGroups.length > 0 && (
+                <div class="link-groups">
+                    {SITE.footer.linkGroups.map((group, groupIndex) => {
+                        const headingId = `footer-group-${groupIndex}`;
 
-                return (
-                    <nav class="link-group" aria-labelledby={headingId}>
-                        <h2 id={headingId}>{group.label}</h2>
-                        <ul role="list">
-                            {group.links.map((link) => (
-                                <li>
-                                    <a
-                                        href={link.href}
-                                        target={isExternal(link) ? "_blank" : undefined}
-                                        rel={isExternal(link) ? "noopener noreferrer" : undefined}
-                                    >
-                                        {link.label}
-                                        {isExternal(link) && (
-                                            <span class="visually-hidden"> (opens in a new tab)</span>
-                                        )}
-                                    </a>
-                                </li>
-                            ))}
-                        </ul>
-                    </nav>
-                );
-            })}
+                        return (
+                            <nav class="link-group" aria-labelledby={headingId}>
+                                <h2 id={headingId}>{group.label}</h2>
+                                <ul role="list">
+                                    {group.links.map((link) => (
+                                        <li>
+                                            <a
+                                                href={link.href}
+                                                target={isExternal(link) ? "_blank" : undefined}
+                                                rel={isExternal(link) ? "noopener noreferrer" : undefined}
+                                            >
+                                                {link.label}
+                                                {isExternal(link) && (
+                                                    <span class="visually-hidden"> (opens in a new tab)</span>
+                                                )}
+                                            </a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </nav>
+                        );
+                    })}
+                </div>
+            )}
         </div>
 
         <div class="footer-utility">
@@ -127,7 +131,14 @@ const isExternal = (link: { external?: boolean }) => link.external ?? false;
         text-align: center;
     }
 
+    .link-groups {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--space-l);
+    }
+
     .brand-container,
+    .link-groups,
     .link-group {
         min-width: 0;
     }
@@ -231,8 +242,16 @@ const isExternal = (link: { external?: boolean }) => link.external ?? false;
 
     @media (min-width: 48rem) {
         .footer-grid {
-            grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+            grid-template-columns: repeat(2, minmax(0, 1fr));
             text-align: left;
+        }
+
+        .brand-container:only-child {
+            grid-column: 1 / -1;
+        }
+
+        .link-groups {
+            grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
         }
 
         .brand-description {
