@@ -107,10 +107,15 @@ const isExternal = (link: { external?: boolean }) => link.external ?? false;
 <style>
     footer {
         --color-link: var(--color-text-subtle);
+
+        display: grid;
+        min-height: var(--footer-height);
+        align-content: end;
         border-top: var(--border-width-s) solid var(--color-border);
     }
 
     .footer-content {
+        width: 100%;
         margin-inline: auto;
         padding-block: var(--space-xl) var(--space-m);
     }
