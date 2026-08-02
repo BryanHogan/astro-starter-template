@@ -40,16 +40,14 @@ The project builds successfully. The remaining work is primarily release cleanup
 
 ## Documentation and maintenance
 
-- [ ] Finish the README introduction and remove the “still being worked on” notice.
-- [ ] Add detailed installation and first-run instructions.
-- [ ] Document how to configure every field in `src/config.ts`.
-- [ ] Document how to create Astro and MDX pages.
-- [ ] Document how to customize colors, typography, spacing, and themes.
-- [ ] Add component usage examples for Button, Hero, Icon, and SectionTitle.
-- [ ] Update the README feature list and roadmap to match the actual project state.
+- [x] Finish the README introduction and remove its temporary notice.
+- [x] Add detailed installation and first-run instructions.
+- [x] Document how to configure every field in `src/config.ts`.
+- [x] Document how to create Astro and MDX pages.
+- [x] Document how to customize colors, typography, spacing, and themes.
+- [x] Add component usage examples for Button, Hero, Icon, and SectionTitle.
+- [x] Update the README feature list and roadmap to match the actual project state.
 - [ ] Add a `LICENSE` file defining how the starter may be reused.
-
-- [ ] Add a small CI workflow that runs the project check and production build.
 - [x] Fix the undefined `--variable-font-size` reference in `markdown.css` by using an existing token or adding a documented monospace-size token.
 - [ ] Replace the header's hard-coded `z-index: 10` with the existing `--z-navbar` design token.
 
