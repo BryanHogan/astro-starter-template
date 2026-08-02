@@ -1,5 +1,228 @@
 ---
-title: How to configure config.ts
-description: How to configure the config.ts file of this project and what you need to be aware of.
+title: How to make this template yours - Configuring config.ts
+description: Learn what to change in src/config.ts before you publish your first website.
 pubDate: 2026-08-01
 ---
+
+`src/config.ts` holds the main details about your website. Change this file first so the site uses your name, URL, description, and social links.
+
+## Start with these fields
+
+If you want to get started quickly, change:
+
+1. `url`
+2. `name`
+3. `title`
+4. `description`
+5. `author`
+6. `ogImage` and `ogImageAlt`
+
+You can leave unused social links and analytics empty.
+
+## Complete example
+
+```ts
+export const SITE = {
+    url: "https://example.com",
+    name: "My First Website",
+    title: "My First Website",
+    description: "A simple website about my work and ideas.",
+    author: "Alex Example",
+    locale: "en-US",
+    themeColor: "#3171B2",
+    startYear: 2026,
+    ogImage: "/og-default.png",
+    ogImageAlt: "The My First Website logo on a blue background",
+    social: {
+        instagram: "",
+        threads: "",
+        mastodon: "",
+    },
+    analytics: {
+        umamiId: "",
+    },
+} as const;
+```
+
+Keep `as const` at the end of the file.
+
+## `url`
+
+```ts
+url: "https://example.com",
+```
+
+Use the final address of your website. Include `https://` and do not add a slash at the end.
+
+Use **`https://example.com`**, not `https://example.com/` or a page such as `https://example.com/about`.
+
+<details>
+
+<summary>Where is this used?</summary>
+
+The URL is used for page links shared with search engines, the sitemap, `robots.txt`, the RSS feed, social images, and structured data.
+
+</details>
+
+## `name`
+
+```ts
+name: "My First Website",
+```
+
+Use the short name of your website or brand. It appears in sharing information, the RSS feed, and the logo's accessible text.
+
+## `title`
+
+```ts
+title: "My First Website",
+```
+
+Use the main title you want for the website. You can include a short tagline if it helps explain the site.
+
+<details>
+
+<summary>Why do pages also have titles?</summary>
+
+ `SITE.title` keeps your main title in one place for you to reuse. Each page also supplies its own title.
+
+</details>
+
+## `description`
+
+```ts
+description: "A simple website about my work and ideas.",
+```
+
+Write one short sentence that explains the whole website. This is used in the RSS feed and website information for search engines.
+
+Each page and blog post should still have its own description.
+
+## `author`
+
+```ts
+author: "Alex Example",
+```
+
+Add the name of the person or organization behind the site. It appears in the footer and page information.
+
+<details>
+
+<summary>Using a company name</summary>
+
+The included structured data describes the author as a person. If the site belongs to a company, you can use the company name here and later change `Person` to `Organization` in `Head.astro`.
+
+</details>
+
+## `locale`
+
+```ts
+locale: "en-US",
+```
+
+Choose the language and region for the site. Common examples are `en-US`, `en-GB`, `de-DE`, and `ko-KR`.
+
+<details>
+
+<summary>What does the locale change?</summary>
+
+It sets the page language, sharing locale, RSS language, date formatting and more.
+
+</details>
+
+## `themeColor`
+
+```ts
+themeColor: "#3171B2",
+```
+
+Some browsers use this color around your website. A hexadecimal color such as `#3171B2` is a simple choice.
+
+Changing this value does not change the website colors. Edit the accent colors in `src/styles/var.css` too if you want them to match.
+
+## `startYear`
+
+```ts
+startYear: 2026,
+```
+
+Use the year you first published the site. The footer shows this together with the current year.
+
+Enter it as a number without quotation marks.
+
+## `ogImage`
+
+```ts
+ogImage: "/og-default.png",
+```
+
+This image is shown when someone shares your website. The example path points to `public/og-default.png`.
+
+Replace that file with your own 1200 × 630 PNG image. Keep the same filename and path for the easiest setup.
+
+<details>
+
+<summary>Using another image format or size</summary>
+
+`Head.astro` currently tells social platforms that the image is a 1200 × 630 PNG. If you use another format or size, update the image type, width, and height there too.
+
+</details>
+
+## `ogImageAlt`
+
+```ts
+ogImageAlt: "The My First Website logo on a blue background",
+```
+
+Briefly describe the sharing image for people who cannot see it (Such as blind users, slow internet, AI, etc). Describe what matters instead of writing "image of".
+
+## `social`
+
+```ts
+social: {
+    instagram: "https://instagram.com/example",
+    threads: "",
+    mastodon: "https://mastodon.social/@example",
+},
+```
+
+Add the full URL for each profile you use:
+
+- `instagram` is your Instagram profile.
+- `threads` is your Threads profile.
+- `mastodon` is your Mastodon profile, including its server name.
+
+Use an empty string (`""`) for a network you do not use. Empty links are automatically hidden from the footer.
+
+<details>
+
+<summary>Adding another social network</summary>
+
+Add the URL to `social`, check that its icon exists in `src/components/Icons.ts`, and add it to the `iconLinks` list in `Footer.astro`. Social URLs are also added to the site's structured data.
+
+</details>
+
+## Analytics (`analytics.umamiId`)
+
+This example uses Umami Analytics, but you can use any provider you want.
+
+```ts
+analytics: {
+    umamiId: "",
+},
+```
+
+Leave `umamiId` empty if you do not want analytics.
+
+The analytics script is only added when this value is not empty.
+
+## Before you publish
+
+Check that:
+
+1. `url` uses your real website address and has no ending slash.
+2. The name, title, description, and author are yours.
+3. The language and start year are correct.
+4. `public/og-default.png` is your image and has useful alternative text.
+5. Unused social links and analytics are empty.
+6. Your pages and posts also have their own titles and descriptions.
