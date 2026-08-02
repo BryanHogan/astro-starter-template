@@ -51,7 +51,9 @@ const socialImageURL = new URL(ogImage, Astro.site);
 const siteURL = Astro.site?.toString() ?? `${canonicalURL.origin}/`;
 
 // Link the configured social profiles to the person represented in JSON-LD.
-const socialProfileURLs = Object.values(SITE.social).filter((url) => url.length > 0);
+const socialProfileURLs = SITE.social
+    .map((profile) => profile.href)
+    .filter((href) => href.length > 0);
 
 // Page-level structured data.
 const jsonLd = {

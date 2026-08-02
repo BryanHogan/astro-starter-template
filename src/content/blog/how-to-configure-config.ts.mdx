@@ -16,6 +16,7 @@ If you want to get started quickly, change:
 4. `description`
 5. `author`
 6. `ogImage` and `ogImageAlt`
+7. The links in `footer`
 
 You can leave unused social links and analytics empty.
 
@@ -33,10 +34,29 @@ export const SITE = {
     startYear: 2026,
     ogImage: "/og-default.png",
     ogImageAlt: "The My First Website logo on a blue background",
-    social: {
-        instagram: "",
-        threads: "",
-        mastodon: "",
+    social: [
+        { icon: "instagram", label: "Instagram", href: "" },
+        { icon: "threads", label: "Threads", href: "" },
+        { icon: "mastodon", label: "Mastodon", href: "" },
+    ],
+    footer: {
+        linkGroups: [
+            {
+                label: "Explore",
+                links: [
+                    { label: "Home", href: "/" },
+                    { label: "About", href: "/about" },
+                ],
+            },
+        ],
+        utilityLinks: [
+            { label: "Privacy", href: "/privacy" },
+            {
+                label: "GitHub",
+                href: "https://github.com/example/example",
+                external: true,
+            },
+        ],
     },
     analytics: {
         umamiId: "",
@@ -179,28 +199,74 @@ Briefly describe the sharing image for people who cannot see it (Such as blind u
 ## `social`
 
 ```ts
-social: {
-    instagram: "https://instagram.com/example",
-    threads: "",
-    mastodon: "https://mastodon.social/@example",
-},
+social: [
+    {
+        icon: "instagram",
+        label: "Instagram",
+        href: "https://instagram.com/example",
+    },
+    { icon: "threads", label: "Threads", href: "" },
+    {
+        icon: "mastodon",
+        label: "Mastodon",
+        href: "https://mastodon.social/@example",
+    },
+],
 ```
 
-Add the full URL for each profile you use:
+Each social profile includes its icon name, accessible label, and full URL:
 
-- `instagram` is your Instagram profile.
-- `threads` is your Threads profile.
-- `mastodon` is your Mastodon profile, including its server name.
+- `icon` must match an icon in `src/components/Icons.ts`.
+- `label` is the social network's accessible name.
+- `href` is the full profile URL.
 
-Use an empty string (`""`) for a network you do not use. Empty links are automatically hidden from the footer.
+Use an empty `href` (`""`) for a network you do not use. Empty links are automatically hidden from the footer.
 
 <details>
 
 <summary>Adding another social network</summary>
 
-Add the URL to `social`, check that its icon exists in `src/components/Icons.ts`, and add it to the `iconLinks` list in `Footer.astro`. Social URLs are also added to the site's structured data.
+Add another object to `social` and check that its icon exists in `src/components/Icons.ts`. The footer and the site's structured data use the configured profiles automatically.
 
 </details>
+
+## `footer`
+
+The footer navigation is split into labeled link groups and a smaller utility row.
+
+```ts
+footer: {
+    linkGroups: [
+        {
+            label: "Explore",
+            links: [
+                { label: "Home", href: "/" },
+                { label: "About", href: "/about" },
+                { label: "Blog", href: "/blog" },
+            ],
+        },
+        {
+            label: "Resources",
+            links: [
+                { label: "RSS Feed", href: "/rss.xml" },
+                { label: "Sitemap", href: "/sitemap-index.xml" },
+            ],
+        },
+    ],
+    utilityLinks: [
+        { label: "Privacy", href: "/privacy" },
+        {
+            label: "GitHub",
+            href: "https://github.com/example/example",
+            external: true,
+        },
+    ],
+},
+```
+
+Add, remove, or reorder groups and links in these arrays. The footer grid adjusts automatically when you add more groups. Use a site-relative path such as `/about` for pages on your website. For a link to another website, use its full URL and add `external: true` so it opens safely in a new tab.
+
+The RSS feed belongs in a footer link group rather than in the social profile icons. Utility links are intended for smaller destinations such as privacy, terms, accessibility, or source code.
 
 ## Analytics (`analytics.umamiId`)
 
@@ -224,5 +290,6 @@ Check that:
 2. The name, title, description, and author are yours.
 3. The language and start year are correct.
 4. `public/og-default.png` is your image and has useful alternative text.
-5. Unused social links and analytics are empty.
-6. Your pages and posts also have their own titles and descriptions.
+5. Footer links point to your pages and external links use `external: true`.
+6. Unused social links and analytics are empty.
+7. Your pages and posts also have their own titles and descriptions.

@@ -26,11 +26,53 @@ export const SITE = {
     ogImage: "/og-default.png",
     ogImageAlt: "Astro Starter Template by Bryan Hogan",
 
-    /** Social profile URLs. Leave a value empty to hide that icon in the footer. */
-    social: {
-        instagram: "https://instagram.com/bryanhoganme",
-        threads: "https://www.threads.net/@bryanhoganme",
-        mastodon: "https://mastodon.social/@BryanHogan",
+    /** Social profiles. Leave `href` empty to hide a profile in the footer. */
+    social: [
+        {
+            icon: "instagram",
+            label: "Instagram",
+            href: "https://instagram.com/bryanhoganme",
+        },
+        {
+            icon: "threads",
+            label: "Threads",
+            href: "https://www.threads.net/@bryanhoganme",
+        },
+        {
+            icon: "mastodon",
+            label: "Mastodon",
+            href: "https://mastodon.social/@BryanHogan",
+        },
+    ],
+
+    /** Footer navigation. Add, remove, or reorder groups and links without editing the footer component. */
+    footer: {
+        linkGroups: [
+            {
+                label: "Explore",
+                links: [
+                    { label: "Home", href: "/" },
+                    { label: "About", href: "/about" },
+                    { label: "Blog", href: "/blog" },
+                    { label: "Contact", href: "/contact" },
+                ],
+            },
+            {
+                label: "Resources",
+                links: [
+                    { label: "RSS Feed", href: "/rss.xml" },
+                    { label: "Sitemap", href: "/sitemap-index.xml" },
+                ],
+            },
+        ],
+        utilityLinks: [
+            {
+                label: "GitHub Repository",
+                href: "https://github.com/BryanHogan/astro-starter-template",
+                external: true,
+            },
+            { label: "Privacy", href: "/privacy" },
+        ],
     },
 
     /** Analytics. Leave `umamiId` empty to disable the umami script entirely. */

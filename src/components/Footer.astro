@@ -2,82 +2,250 @@
 import Icon from "./Icon.astro";
 import { SITE } from "../config";
 
-// Social icons are optional; the local RSS feed is always available.
-const iconLinks = ([
-    { name: "instagram", label: "Instagram", url: SITE.social.instagram, external: true, type: undefined },
-    { name: "threads", label: "Threads", url: SITE.social.threads, external: true, type: undefined },
-    { name: "mastodon", label: "Mastodon", url: SITE.social.mastodon, external: true, type: undefined },
-    { name: "rss", label: "Subscribe via RSS", url: "/rss.xml", external: false, type: "application/rss+xml" },
-] as const).filter((link) => link.url);
+const socialLinks = SITE.social.filter((link) => link.href);
+
+const currentYear = new Date().getFullYear();
+const copyrightYears =
+    SITE.startYear === currentYear
+        ? `${currentYear}`
+        : `${SITE.startYear}-${currentYear}`;
+const isExternal = (link: { external?: boolean }) => link.external ?? false;
 ---
 
-<footer class="set-site-max-width">
-    <div class="flex-center flex-column">
-        <p class="text-align-center">A website by {SITE.author}.</p><p class="text-align-center">
-            © {SITE.startYear} - {new Date().getFullYear()}
-        </p>
+<footer>
+    <div class="footer-content set-site-max-width">
+        <div class="footer-grid">
+            <div class="brand-container">
+                <a class="brand-link" href="/">
+                    <img
+                        class="brand-logo"
+                        src="/favicon.svg"
+                        alt=""
+                        aria-hidden="true"
+                        width="32"
+                        height="32"
+                    />
+                    <span>{SITE.name}</span>
+                </a>
+                <p class="brand-description">{SITE.description}</p>
+
+                {socialLinks.length > 0 && (
+                    <nav class="social-navigation" aria-label="Social profiles">
+                        <ul role="list">
+                            {socialLinks.map((link) => (
+                                <li>
+                                    <a
+                                        href={link.href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        <span class="visually-hidden">
+                                            {link.label} (opens in a new tab)
+                                        </span>
+                                        <Icon name={link.icon} size="1.25rem" />
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    </nav>
+                )}
+            </div>
+
+            {SITE.footer.linkGroups.map((group, groupIndex) => {
+                const headingId = `footer-group-${groupIndex}`;
+
+                return (
+                    <nav class="link-group" aria-labelledby={headingId}>
+                        <h2 id={headingId}>{group.label}</h2>
+                        <ul role="list">
+                            {group.links.map((link) => (
+                                <li>
+                                    <a
+                                        href={link.href}
+                                        target={isExternal(link) ? "_blank" : undefined}
+                                        rel={isExternal(link) ? "noopener noreferrer" : undefined}
+                                    >
+                                        {link.label}
+                                        {isExternal(link) && (
+                                            <span class="visually-hidden"> (opens in a new tab)</span>
+                                        )}
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    </nav>
+                );
+            })}
+        </div>
+
+        <div class="footer-utility">
+            <p>&copy; {copyrightYears} {SITE.name}. A website by {SITE.author}.</p>
+            {SITE.footer.utilityLinks.length > 0 && (
+                <nav aria-label="Footer utility navigation">
+                    <ul role="list">
+                        {SITE.footer.utilityLinks.map((link) => (
+                            <li>
+                                <a
+                                    href={link.href}
+                                    target={isExternal(link) ? "_blank" : undefined}
+                                    rel={isExternal(link) ? "noopener noreferrer" : undefined}
+                                >
+                                    {link.label}
+                                    {isExternal(link) && (
+                                        <span class="visually-hidden"> (opens in a new tab)</span>
+                                    )}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </nav>
+            )}
+        </div>
     </div>
-    {iconLinks.length > 0 && (
-        <ul role="list" class="flex-center">
-            {iconLinks.map((link) => (
-                <li>
-                    <a
-                        href={link.url}
-                        type={link.type}
-                        target={link.external ? "_blank" : undefined}
-                        rel={link.external ? "noopener noreferrer" : undefined}
-                    >
-                        <span class="visually-hidden">
-                            {link.label}{link.external && " (opens in a new tab)"}
-                        </span>
-                        <Icon name={link.name} size="1.5rem" />
-                    </a>
-                </li>
-            ))}
-        </ul>
-    )}
-    <ul role="list" class="flex-center navigation-container">
-        <li><p><a href="/">Home</a></p></li>
-        <li><p><a href="/about">About</a></p></li>
-        <li><p><a href="/about#contact">Contact</a></p></li>
-        <li><p><a href="/sitemap-index.xml">Sitemap</a></p></li>
-    </ul>
 </footer>
 
 <style>
     footer {
-        display: grid;
-        grid-template-columns: 1fr;
-        min-height: var(--footer-height);
-        align-items: center;
-        margin-inline: auto;
-        border-top: 1px solid var(--color-border);
-        >* {
-            height: max-content;
-            margin-block: var(--space-s);
-        }
-    }
-    ul {
-        gap: var(--space-s);
-    }
-    .navigation-container {
-        max-width: 75%;
-        margin-inline: auto;
-    }
-    p, li, img, a {
-        color: var(--color-text-muted);
-        transition: color var(--transition-normal);
-    }
-    a:hover, a:focus-within {
-        color: var(--color-link-hover);
-    }
-    a:active {
-        color: var(--color-link-active);
+        --color-link: var(--color-text-subtle);
+        border-top: var(--border-width-s) solid var(--color-border);
     }
 
-    @media only screen and (min-width: 48rem) {
-        footer {
-            grid-template-columns: 1fr 1fr 1fr;
+    .footer-content {
+        margin-inline: auto;
+        padding-block: var(--space-xl) var(--space-m);
+    }
+
+    .footer-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--space-l);
+        text-align: center;
+    }
+
+    .brand-container,
+    .link-group {
+        min-width: 0;
+    }
+
+    .brand-link {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-s);
+        color: var(--color-text-subtle);
+        font-size: var(--font-size-l);
+        font-weight: var(--font-weight-bold);
+        text-decoration: none;
+    }
+
+    .brand-logo {
+        width: 2rem;
+        height: 2rem;
+        flex: 0 0 auto;
+    }
+
+    .brand-description {
+        max-width: 32rem;
+        margin: var(--space-s) auto 0;
+        color: var(--color-text-muted);
+        font-size: var(--font-size-s);
+    }
+
+    .social-navigation {
+        margin-top: var(--space-s);
+    }
+
+    .social-navigation ul {
+        display: flex;
+        justify-content: center;
+        gap: var(--space-s);
+    }
+
+    .social-navigation a {
+        display: grid;
+        width: 2.75rem;
+        height: 2.75rem;
+        place-items: center;
+        border-radius: 50%;
+        background-color: var(--color-surface);
+        transition:
+            color var(--transition-normal),
+            background-color var(--transition-normal);
+    }
+
+    .link-group h2 {
+        color: var(--color-text-muted);
+        font-size: var(--font-size-s);
+        font-weight: var(--font-weight-semi-bold);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+    }
+
+    .link-group ul {
+        display: grid;
+        gap: var(--space-xs);
+        margin-top: var(--space-s);
+    }
+
+    .link-group a,
+    .footer-utility a {
+        font-size: var(--font-size-s);
+        text-decoration: none;
+        transition: color var(--transition-normal);
+    }
+
+    .social-navigation a:hover,
+    .social-navigation a:focus-visible {
+        background-color: var(--color-surface-muted);
+    }
+
+    .footer-utility {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-s);
+        margin-top: var(--space-xl);
+        padding-top: var(--space-m);
+        border-top: var(--border-width-s) solid var(--color-border);
+        color: var(--color-text-muted);
+        font-size: var(--font-size-s);
+        text-align: center;
+    }
+
+    .footer-utility ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: var(--space-xs) var(--space-s);
+    }
+
+    .footer-utility li:not(:first-child)::before {
+        margin-right: var(--space-s);
+        color: var(--color-text-muted);
+        content: "\00b7";
+    }
+
+    @media (min-width: 48rem) {
+        .footer-grid {
+            grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+            text-align: left;
+        }
+
+        .brand-description {
+            margin-inline: 0;
+        }
+
+        .social-navigation ul {
+            justify-content: flex-start;
+        }
+
+        .footer-utility {
+            flex-direction: row;
+            justify-content: space-between;
+            text-align: left;
+        }
+
+        .footer-utility ul {
+            justify-content: flex-end;
         }
     }
 </style>
