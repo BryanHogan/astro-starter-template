@@ -1,0 +1,37 @@
+---
+title: Customizing the design
+description: Adjust the shared design tokens in var.css to change colors, typography, spacing, and more.
+pubDate: 2026-08-01
+---
+
+The shared design tokens live in `src/styles/var.css`. Change them to adjust colors, typography, spacing, borders, shadows, and layout widths across the website.
+
+You can always see the original version of the [`var.css` file on the GitHub repository](https://github.com/BryanHogan/astro-starter-template/blob/master/src/styles/var.css).
+
+## What you can change
+
+- `--color-accent-*` changes the accent used by links, buttons, and focus outlines.
+- `--color-background`, `--color-surface`, and `--color-text` control the main theme colors.
+- `--font-family` and `--font-mono` control the typefaces.
+- `--space-*` controls gaps, margins, and padding.
+
+For example, to change the accent from blue to purple, update each accent value:
+
+```css
+--color-accent-100: var(--color-purple-100);
+/* Continue through --color-accent-900. */
+```
+
+Keep related values together and check that text, links, and buttons remain easy to read. If you change the accent color, you may also want to update `themeColor` in `src/config.ts`.
+
+## Light sections
+
+The website is dark by default. Add `data-theme="light"` to any section that should use the light colors:
+
+```html
+<section data-theme="light">
+    <!-- Your content -->
+</section>
+```
+
+Edit the `[data-theme="light"]` values in `var.css` to customize that theme.
