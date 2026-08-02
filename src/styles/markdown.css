@@ -125,7 +125,6 @@
         color: var(--color-link);
         background-color: var(--color-surface);
         border-radius: var(--border-radius-s);
-        font-size: var(--font-size-code);
     }
 
     pre {
@@ -135,10 +134,11 @@
         overflow-x: auto;
         background-color: var(--color-surface);
         border-radius: var(--border-radius-s);
+        font-size: var(--font-size-code);
         tab-size: 2;
 
         code {
-            font-size: var(--font-size-code);
+            font-size: inherit;
         }
     }
 

@@ -19,16 +19,6 @@ code {
     font-family: var(--font-mono);
 }
 
-p,
-li,
-details,
-code,
-a,
-pre,
-img {
-    font-size: var(--font-size-base);
-}
-
 h1,
 h2,
 h3,
