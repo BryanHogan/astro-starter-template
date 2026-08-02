@@ -1,5 +1,7 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
+import Button from "../components/Button.astro";
+import { Content as AuthorBio } from "../content/author.md";
 import "../styles/markdown.css";
 import { SITE } from "../config";
 
@@ -26,6 +28,16 @@ const formattedPubDate = new Intl.DateTimeFormat(SITE.locale, {
     <main class="base-layout base-layout-content height-smart-fill-screen">
         <article class="blog-post">
             <header class="blog-post-header main-header-element">
+                <nav class="blog-post-navigation" aria-label="Blog navigation">
+                    <Button
+                        href="/blog"
+                        variant="outline"
+                        size="small"
+                        iconLeft="left-arrow"
+                    >
+                        Back to blog
+                    </Button>
+                </nav>
                 <time
                     class="blog-post-date"
                     datetime={pubDate.toISOString().slice(0, 10)}
@@ -38,6 +50,10 @@ const formattedPubDate = new Intl.DateTimeFormat(SITE.locale, {
             <div class="blog-post-body markdown-container">
                 <slot />
             </div>
+
+            <section class="blog-post-author markdown-container">
+                <AuthorBio />
+            </section>
         </article>
     </main>
 </BaseLayout>
@@ -53,6 +69,10 @@ const formattedPubDate = new Intl.DateTimeFormat(SITE.locale, {
         gap: var(--space-s);
     }
 
+    .blog-post-navigation {
+        margin-block-end: var(--space-m);
+    }
+
     .blog-post-date {
         color: var(--color-text-muted);
         font-size: var(--font-size-s);
@@ -65,5 +85,11 @@ const formattedPubDate = new Intl.DateTimeFormat(SITE.locale, {
 
     .blog-post-body {
         margin-block-start: var(--space-xl);
+    }
+
+    .blog-post-author {
+        padding-block-start: var(--space-l);
+        margin-block-start: var(--space-2xl);
+        border-block-start: var(--border-width-s) solid var(--color-border);
     }
 </style>
