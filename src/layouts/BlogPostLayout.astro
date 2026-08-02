@@ -1,17 +1,21 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
+import BlogPostNavigation from "../components/BlogPostNavigation.astro";
 import Button from "../components/Button.astro";
 import { Content as AuthorBio } from "../content/author.md";
 import "../styles/markdown.css";
 import { SITE } from "../config";
+import type { BlogPostNavigationItem } from "../types/blog";
 
 interface Props {
     title: string;
     description: string;
     pubDate: Date;
+    previousPost?: BlogPostNavigationItem;
+    nextPost?: BlogPostNavigationItem;
 }
 
-const { title, description, pubDate } = Astro.props;
+const { title, description, pubDate, previousPost, nextPost } = Astro.props;
 
 const formattedPubDate = new Intl.DateTimeFormat(SITE.locale, {
     dateStyle: "long",
@@ -54,6 +58,17 @@ const formattedPubDate = new Intl.DateTimeFormat(SITE.locale, {
             <section class="blog-post-author markdown-container">
                 <AuthorBio />
             </section>
+
+            {
+                (previousPost || nextPost) && (
+                    <div class="blog-post-adjacent-navigation">
+                        <BlogPostNavigation
+                            previousPost={previousPost}
+                            nextPost={nextPost}
+                        />
+                    </div>
+                )
+            }
         </article>
     </main>
 </BaseLayout>
@@ -91,5 +106,9 @@ const formattedPubDate = new Intl.DateTimeFormat(SITE.locale, {
         padding-block-start: var(--space-l);
         margin-block-start: var(--space-2xl);
         border-block-start: var(--border-width-s) solid var(--color-border);
+    }
+
+    .blog-post-adjacent-navigation {
+        margin-block-start: var(--space-xl);
     }
 </style>

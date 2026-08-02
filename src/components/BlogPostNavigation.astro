@@ -1,0 +1,120 @@
+---
+import type { BlogPostNavigationItem } from "../types/blog";
+
+interface Props {
+    previousPost?: BlogPostNavigationItem;
+    nextPost?: BlogPostNavigationItem;
+}
+
+const { previousPost, nextPost } = Astro.props;
+---
+
+{
+    (previousPost || nextPost) && (
+        <nav class="post-navigation" aria-label="Post navigation">
+            {previousPost && (
+                <a
+                    class="post-navigation-link post-navigation-previous"
+                    href={previousPost.href}
+                >
+                    <span class="post-navigation-label">Previous post</span>
+                    <span class="post-navigation-title">
+                        {previousPost.title}
+                    </span>
+                </a>
+            )}
+
+            {nextPost && (
+                <a
+                    class="post-navigation-link post-navigation-next"
+                    href={nextPost.href}
+                >
+                    <span class="post-navigation-label">Next post</span>
+                    <span class="post-navigation-title">{nextPost.title}</span>
+                </a>
+            )}
+        </nav>
+    )
+}
+
+<style>
+    .post-navigation {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        width: 100%;
+        overflow: hidden;
+        background-color: var(--color-surface);
+        border: var(--border-width-s) solid var(--color-border);
+        border-radius: var(--border-radius-m);
+        box-shadow: var(--box-shadow-s);
+    }
+
+    .post-navigation-link {
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+        gap: var(--space-s);
+        min-width: 0;
+        min-height: 8rem;
+        padding: var(--space-m);
+        color: var(--color-text);
+        text-decoration: none;
+        transition: background-color var(--transition-normal);
+    }
+
+    .post-navigation-link:hover,
+    .post-navigation-link:focus-within {
+        color: var(--color-text);
+        background-color: var(--color-surface-muted);
+    }
+
+    .post-navigation-link:focus-visible {
+        outline-offset: -3px;
+    }
+
+    .post-navigation-link + .post-navigation-link {
+        border-block-start: var(--border-width-s) solid var(--color-border);
+    }
+
+    .post-navigation-next {
+        text-align: end;
+    }
+
+    .post-navigation-label {
+        color: var(--color-accent-400);
+        font-size: var(--font-size-s);
+        font-weight: var(--font-weight-semi-bold);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+    }
+
+    .post-navigation-title {
+        overflow-wrap: anywhere;
+        color: var(--color-text);
+        font-size: var(--font-size-l);
+        font-weight: var(--font-weight-regular);
+        line-height: var(--font-line-height-heading);
+        text-decoration: underline;
+        text-underline-offset: 0.15em;
+        text-wrap: balance;
+    }
+
+    @media (min-width: 48rem) {
+        .post-navigation {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .post-navigation-link {
+            padding: var(--space-l);
+        }
+
+        .post-navigation-link:only-child {
+            grid-column: 1 / -1;
+        }
+
+        .post-navigation-link + .post-navigation-link {
+            border-block-start: 0;
+            border-inline-start: var(--border-width-s) solid var(--color-border);
+        }
+    }
+</style>

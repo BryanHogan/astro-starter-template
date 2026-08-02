@@ -1,25 +1,50 @@
 ---
 import type { GetStaticPaths } from "astro";
 import { getCollection, render, type CollectionEntry } from "astro:content";
+import { SITE } from "../../config";
 import BlogPostLayout from "../../layouts/BlogPostLayout.astro";
+import type { BlogPostNavigationItem } from "../../types/blog";
 
 interface Props {
     post: CollectionEntry<"blog">;
+    previousPost?: BlogPostNavigationItem;
+    nextPost?: BlogPostNavigationItem;
 }
 
 export const getStaticPaths = (async () => {
-    const posts = await getCollection("blog");
+    const titleCollator = new Intl.Collator(SITE.locale);
+    const posts = (await getCollection("blog")).sort((a, b) => {
+        const dateDifference =
+            b.data.pubDate.getTime() - a.data.pubDate.getTime();
 
-    return posts.map((post) => ({
+        return dateDifference || titleCollator.compare(a.data.title, b.data.title);
+    });
+
+    const toNavigationItem = (
+        post: CollectionEntry<"blog">,
+    ): BlogPostNavigationItem => ({
+        title: post.data.title,
+        href: `/blog/${post.id}`,
+    });
+
+    return posts.map((post, index) => ({
         params: { id: post.id },
-        props: { post },
+        props: {
+            post,
+            previousPost:
+                index > 0 ? toNavigationItem(posts[index - 1]) : undefined,
+            nextPost:
+                index < posts.length - 1
+                    ? toNavigationItem(posts[index + 1])
+                    : undefined,
+        },
     }));
 }) satisfies GetStaticPaths;
 
-const { post } = Astro.props;
+const { post, previousPost, nextPost } = Astro.props;
 const { Content } = await render(post);
 ---
 
-<BlogPostLayout {...post.data}>
+<BlogPostLayout {...post.data} {previousPost} {nextPost}>
     <Content />
 </BlogPostLayout>
