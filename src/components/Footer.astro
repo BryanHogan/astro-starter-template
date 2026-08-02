@@ -9,7 +9,8 @@ const copyrightYears =
     SITE.startYear === currentYear
         ? `${currentYear}`
         : `${SITE.startYear}-${currentYear}`;
-const isExternal = (link: { external?: boolean }) => link.external ?? false;
+const isExternal = (link: { readonly href: string; readonly external?: boolean }) =>
+    link.external ?? false;
 ---
 
 <footer>
@@ -252,6 +253,12 @@ const isExternal = (link: { external?: boolean }) => link.external ?? false;
 
         .link-groups {
             grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+        }
+
+        .link-group h2 {
+            display: flex;
+            min-height: 2rem;
+            align-items: center;
         }
 
         .brand-description {
