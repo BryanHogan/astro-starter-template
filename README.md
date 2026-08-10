@@ -217,11 +217,12 @@ public/                  Static assets copied as-is
 
 ## Roadmap
 
-- Add deployment guides for common static hosting providers.
+- Add deployment guides for common static hosting providers. Video set up guide.
+
 
 ## Resources and credits
 
-- [Using the Astro frame](https://astro.build/)
+- [Using the Astro framework](https://astro.build/)
 - [Built as described on Clean Web Dev Guide](https://webdev.bryanhogan.com/)
 - [Built by Bryan Hogan](https://bryanhogan.com/)
 - [Using the Flexoki color scheme](https://stephango.com/flexoki) with some adjustments.
