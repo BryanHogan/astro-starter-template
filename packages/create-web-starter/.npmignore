@@ -1,0 +1,1 @@
+# Intentionally present so npm does not inherit .gitignore and exclude template/.

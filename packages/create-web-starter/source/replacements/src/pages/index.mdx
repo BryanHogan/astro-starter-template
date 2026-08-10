@@ -1,0 +1,45 @@
+---
+layout: ../layouts/PageLayout.astro
+title: __SITE_NAME_JSON__
+description: __SITE_DESCRIPTION_JSON__
+---
+
+import Hero from "../components/Hero.astro";
+import Button from "../components/Button.astro";
+import Card from "../components/Card.astro";
+import CardGrid from "../components/CardGrid.astro";
+import SectionTitle from "../components/SectionTitle.astro";
+import { SITE } from "../config";
+
+<Hero
+    heading={SITE.name}
+    headingId="home-hero-title"
+    eyebrow="Welcome"
+    description={SITE.description}
+>
+    <Fragment slot="actions">
+        <Button href="/blog" size="large">Read the blog</Button>
+        <Button href="/about" variant="outline" size="large">About this site</Button>
+    </Fragment>
+</Hero>
+
+<SectionTitle
+    as="h2"
+    eyebrow="Start here"
+    title="Make this website your own"
+/>
+
+Edit `src/pages/index.mdx` to replace this homepage with your own content. Update shared site information, navigation, social links, and optional analytics in `src/config.ts`.
+
+<CardGrid columns={2} class="margin-top-l margin-bottom-2xl">
+<Card heading="h3" title="Write pages" icon="pencil">
+
+Add Markdown, MDX, or Astro files to `src/pages/` to create routes.
+
+</Card>
+<Card heading="h3" title="Publish posts" icon="rss">
+
+Add Markdown or MDX files to `src/content/blog/` to publish blog posts and update the RSS feed.
+
+</Card>
+</CardGrid>

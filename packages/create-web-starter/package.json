@@ -1,0 +1,46 @@
+{
+  "name": "@bryanhogan/create-web-starter",
+  "version": "0.1.0",
+  "description": "Create a configured Astro website with Bryan Web Starter.",
+  "type": "module",
+  "bin": {
+    "create-web-starter": "./bin/create.js"
+  },
+  "files": [
+    "bin",
+    "template",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build:template": "node ./scripts/build-template.js",
+    "prepack": "npm run build:template"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "dependencies": {
+    "@clack/prompts": "^1.7.0"
+  },
+  "keywords": [
+    "astro",
+    "starter",
+    "website",
+    "create"
+  ],
+  "author": "Bryan Hogan",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BryanHogan/astro-starter-template.git",
+    "directory": "packages/create-web-starter"
+  },
+  "homepage": "https://starter.bryanhogan.com",
+  "bugs": {
+    "url": "https://github.com/BryanHogan/astro-starter-template/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
+}
