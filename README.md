@@ -15,15 +15,13 @@ Write your content simply in Markdown or MDX, change the colors, text and other 
 - **Responsive and accessible defaults.** The layout works across screen sizes and includes clear focus styles and accessible labels.
 - **One settings file.** Change site details, social links, and optional analytics in `src/config.ts`.
 
+## Installation and first run
+
+*Planning on adding a video guide soon.*
+
 <details>
 
-<summary>See more technical features</summary>
-
-The starter uses Astro content collections for blog posts, scoped component styles, semantic CSS tokens, a three-column layout grid, canonical URLs, Open Graph and Twitter metadata, JSON-LD, Astro view transitions, and non-trailing-slash URLs.
-
-</details>
-
-## Installation and first run
+<summary>For now consider using this explanation:</summary>
 
 ### Prerequisites
 
@@ -31,7 +29,7 @@ Before you begin, install:
 
 - [Node.js](https://nodejs.org/) 22.12.0 or newer. Check with `node --version`.
 - npm, which is included with Node.js. Check with `npm --version`.
-- Git if you want to clone the repository. You can download the repository as a ZIP instead.
+- [Git](https://git-scm.com/)
 
 ### 1. Create the project
 
@@ -41,17 +39,55 @@ Run the guided setup:
 npm create @bryanhogan/web-starter@latest
 ```
 
-The setup asks where to create the project and collects the site name, description, author, and production URL. It can also add AI guidance files, install dependencies, and initialize Git.
+The command downloads and runs the project generator; you do not need to clone this repository first. It asks for:
 
-To accept the defaults and create a directory named `my-website`:
+1. The directory in which to create the project
+2. The site name, description, author, and production URL
+3. Whether to include `AGENTS.md` and `CLAUDE.md` for AI coding tools
+4. Whether to install dependencies with npm
+5. Whether to initialize a Git repository
+
+The three yes-or-no choices default to yes. The destination must be new or empty because the generator does not overwrite existing files. The blog and its example posts are always included.
+
+When setup finishes, follow the commands shown in the terminal to enter the project directory and start Astro. Your site will normally be available at `http://localhost:4321`.
+
+<details>
+
+<summary>Command-line options and non-interactive setup</summary>
+
+You can provide the destination directory in the command. For example, this creates `my-website` inside the current directory and accepts all default answers:
 
 ```bash
 npm create @bryanhogan/web-starter@latest my-website -- --yes
 ```
 
-### Alternative: clone the repository directly
+Options placed after `--` are passed to the generator:
 
-Cloning gives you the promotional starter site exactly as it appears in this repository:
+| Option | Effect |
+| --- | --- |
+| `--yes` | Skip the questions and use the defaults. |
+| `--no-ai` | Do not include `AGENTS.md` or `CLAUDE.md`. |
+| `--no-install` | Create the project without running `npm install`. |
+| `--no-git` | Create the project without running `git init`. |
+
+With `--yes`, the site name is derived from the directory name and the production URL is set to `https://example.com`. Replace the placeholder values in `src/config.ts` before publishing.
+
+When setup finishes, enter the project directory and start Astro:
+
+```bash
+cd my-website
+npm run dev
+```
+
+If you chose not to install dependencies during setup, run `npm install` before `npm run dev`.
+
+</details>
+
+<details>
+
+<summary>Alternative: clone the repository directly</summary>
+
+Cloning gives you the promotional site exactly as it appears in this repository. It does not ask setup questions or replace its content with the neutral starter content produced by the generator.
 
 ```bash
 git clone https://github.com/BryanHogan/astro-starter-template.git
@@ -61,9 +97,11 @@ npm install
 
 If you downloaded a ZIP, extract it, open a terminal in the extracted directory, and run `npm install`.
 
+</details>
+
 ### 2. Review your site details
 
-The guided setup writes the essential values to `src/config.ts`. Review the navigation, social links, optional analytics, and social image settings before publishing.
+The guided setup writes the essential values to `src/config.ts`. Analytics stays disabled and social profiles stay empty until you configure them. Review the navigation, social links, analytics, and social image settings before publishing.
 
 Also replace the example assets in `public/`, especially `favicon.svg` and `og-default.png`, when you are ready to use your own branding.
 
@@ -96,6 +134,8 @@ npm run preview
 ```
 
 The finished site is placed in `dist/`. The preview command lets you check it before publishing.
+
+</details>
 
 <details>
 <summary>
