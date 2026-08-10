@@ -33,34 +33,43 @@ Before you begin, install:
 - npm, which is included with Node.js. Check with `npm --version`.
 - Git if you want to clone the repository. You can download the repository as a ZIP instead.
 
-### 1. Get the project
+### 1. Create the project
 
-Clone the repository:
+Run the guided setup:
+
+```bash
+npm create @bryanhogan/web-starter@latest
+```
+
+The setup asks where to create the project and collects the site name, description, author, and production URL. It can also add AI guidance files, install dependencies, and initialize Git.
+
+To accept the defaults and create a directory named `my-website`:
+
+```bash
+npm create @bryanhogan/web-starter@latest my-website -- --yes
+```
+
+### Alternative: clone the repository directly
+
+Cloning gives you the promotional starter site exactly as it appears in this repository:
 
 ```bash
 git clone https://github.com/BryanHogan/astro-starter-template.git
 cd astro-starter-template
-```
-
-If you downloaded a ZIP, extract it and open a terminal in the extracted `astro-starter-template` directory.
-
-### 2. Install dependencies
-
-```bash
 npm install
 ```
 
-This downloads everything the project needs.
+If you downloaded a ZIP, extract it, open a terminal in the extracted directory, and run `npm install`.
 
-### 3. Add your site details
+### 2. Review your site details
 
-Open `src/config.ts` and replace the example details with your own. Start with the website URL, name, title, description, author, and social image.
+The guided setup writes the essential values to `src/config.ts`. Review the navigation, social links, optional analytics, and social image settings before publishing.
 
 Also replace the example assets in `public/`, especially `favicon.svg` and `og-default.png`, when you are ready to use your own branding.
 
 See [How to configure `config.ts`](https://starter.bryanhogan.com/blog/how-to-configure-config.ts) for every available field.
 
-### 4. Start the development server
+### 3. Start the development server
 
 ```bash
 npm run dev
@@ -72,14 +81,14 @@ Press <kbd>Ctrl</kbd> + <kbd>C</kbd> in the terminal to stop the server.
 
 If port 4321 is already in use, Astro selects another port; use the exact URL printed in the terminal.
 
-### 5. Create your content
+### 4. Create your content
 
 - Edit or replace the example pages in `src/pages/`.
 - Add blog posts to `src/content/blog/`.
 - Add processed images to `src/assets/images/` or static files to `public/`.
 - Update the header and footer navigation links in `src/config.ts` when your page structure changes.
 
-### 6. Build and preview the production site
+### 5. Build and preview the production site
 
 ```bash
 npm run build
