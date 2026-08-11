@@ -1,4 +1,5 @@
 import sharp from "sharp";
+import { resolve } from "node:path";
 
 interface SocialImageOptions {
     title: string;
@@ -27,12 +28,16 @@ const TEXT_WIDTH = IMAGE_WIDTH - HORIZONTAL_PADDING * 2;
 const TITLE_REGION_TOP = 88;
 const TITLE_REGION_HEIGHT = 348;
 const DOMAIN_TOP = 490;
+const FAVICON_SIZE = 48;
+const FOOTER_GAP = 16;
 
 // These match the neutral scale in src/styles/var.css.
 const BACKGROUND_COLOR = "#1C1B1A";
 const TITLE_COLOR = "#F2F0E5";
 const DOMAIN_COLOR = "#B7B5AC";
 
+// This matches --font-family in src/styles/var.css.
+const FONT_FAMILY = "ui-sans-serif, Helvetica Neue, Helvetica, Arial";
 const TITLE_FONT_SIZES = [88, 80, 72, 64, 56, 48, 40] as const;
 const DOMAIN_FONT_SIZE = 32;
 
@@ -53,10 +58,10 @@ const renderTextLayer = async ({
     const data = await sharp({
         text: {
             text: `<span foreground="${color}" weight="${fontWeight}">${escapePangoMarkup(text)}</span>`,
-            font: `sans ${fontSize}`,
+            font: `${FONT_FAMILY} ${fontSize}`,
             width,
             ...(height === undefined ? {} : { height }),
-            align: "center",
+            align: "left",
             wrap: "word-char",
             rgba: true,
             dpi: 72,
@@ -109,20 +114,25 @@ export const generateSocialImage = async ({
     title,
     siteUrl,
 }: SocialImageOptions): Promise<Buffer> => {
-    const [titleLayer, domainLayer] = await Promise.all([
+    const [titleLayer, domainLayer, faviconLayer] = await Promise.all([
         renderTitleLayer(title),
         renderTextLayer({
             text: new URL(siteUrl).hostname,
             color: DOMAIN_COLOR,
             fontSize: DOMAIN_FONT_SIZE,
             fontWeight: "normal",
-            width: TEXT_WIDTH,
+            width: TEXT_WIDTH - FAVICON_SIZE - FOOTER_GAP,
         }),
+        sharp(resolve("public/favicon.svg"))
+            .resize(FAVICON_SIZE, FAVICON_SIZE)
+            .png()
+            .toBuffer(),
     ]);
 
     const titleTop =
         TITLE_REGION_TOP +
         Math.max(0, Math.floor((TITLE_REGION_HEIGHT - titleLayer.height) / 2));
+    const footerHeight = Math.max(FAVICON_SIZE, domainLayer.height);
 
     return sharp({
         create: {
@@ -136,12 +146,17 @@ export const generateSocialImage = async ({
             {
                 input: titleLayer.data,
                 top: titleTop,
-                left: Math.floor((IMAGE_WIDTH - titleLayer.width) / 2),
+                left: HORIZONTAL_PADDING,
+            },
+            {
+                input: faviconLayer,
+                top: DOMAIN_TOP + Math.floor((footerHeight - FAVICON_SIZE) / 2),
+                left: HORIZONTAL_PADDING,
             },
             {
                 input: domainLayer.data,
-                top: DOMAIN_TOP,
-                left: Math.floor((IMAGE_WIDTH - domainLayer.width) / 2),
+                top: DOMAIN_TOP + Math.floor((footerHeight - domainLayer.height) / 2),
+                left: HORIZONTAL_PADDING + FAVICON_SIZE + FOOTER_GAP,
             },
         ])
         .png()
