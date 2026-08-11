@@ -396,11 +396,16 @@ function escapeMarkdown(value) {
 }
 
 async function runCommand(command, arguments_, cwd, quiet = false) {
-    const executable =
-        process.platform === "win32" && command === "npm" ? "npm.cmd" : command;
+    const isWindowsNpm = process.platform === "win32" && command === "npm";
+    const executable = isWindowsNpm
+        ? process.env.ComSpec ?? "cmd.exe"
+        : command;
+    const commandArguments = isWindowsNpm
+        ? ["/d", "/s", "/c", "npm.cmd", ...arguments_]
+        : arguments_;
 
     await new Promise((resolvePromise, rejectPromise) => {
-        const child = spawn(executable, arguments_, {
+        const child = spawn(executable, commandArguments, {
             cwd,
             stdio: quiet ? "ignore" : "inherit",
         });
