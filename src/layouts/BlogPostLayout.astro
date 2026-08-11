@@ -11,11 +11,12 @@ interface Props {
     title: string;
     description: string;
     pubDate: Date;
+    ogImage: string;
     previousPost?: BlogPostNavigationItem;
     nextPost?: BlogPostNavigationItem;
 }
 
-const { title, description, pubDate, previousPost, nextPost } = Astro.props;
+const { title, description, pubDate, ogImage, previousPost, nextPost } = Astro.props;
 
 const formattedPubDate = new Intl.DateTimeFormat(SITE.locale, {
     dateStyle: "long",
@@ -26,6 +27,8 @@ const formattedPubDate = new Intl.DateTimeFormat(SITE.locale, {
 <BaseLayout
     title={title}
     description={description}
+    ogImage={ogImage}
+    ogImageAlt={`${title} — ${SITE.name}`}
     ogType="article"
     articlePublished={pubDate}
 >

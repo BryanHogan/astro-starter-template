@@ -10,7 +10,7 @@ Write your content simply in Markdown or MDX, change the colors, text and other 
 - **A ready-to-use blog.** Add Markdown or MDX posts to `src/content/blog/`.
 - **Simple CSS.** Change shared colors, fonts, and spacing in one file.
 - **Useful components.** Buttons, heroes, cards, icons, navigation, and more are included.
-- **Search and sharing basics.** Page titles, descriptions, social images, and structured data are ready.
+- **Search and sharing basics.** Page titles, descriptions, structured data, and automatic blog social images are ready.
 - **Publishing basics.** The starter creates a sitemap, `robots.txt`, and an RSS feed.
 - **Responsive and accessible defaults.** The layout works across screen sizes and includes clear focus styles and accessible labels.
 - **One settings file.** Change site details, social links, and optional analytics in `src/config.ts`.
@@ -103,7 +103,7 @@ If you downloaded a ZIP, extract it, open a terminal in the extracted directory,
 
 The guided setup writes the essential values to `src/config.ts`. Analytics stays disabled and social profiles stay empty until you configure them. Review the navigation, social links, analytics, and social image settings before publishing.
 
-Also replace the example assets in `public/`, especially `favicon.svg` and `og-default.png`, when you are ready to use your own branding.
+Also replace the example assets in `public/`, especially `favicon.svg` and `og-default.png`, when you are ready to use your own branding. The default social image is used by regular pages; blog posts generate title-based images automatically during the build.
 
 See [How to configure `config.ts`](https://starter.bryanhogan.com/blog/how-to-configure-config.ts) for every available field.
 
@@ -134,6 +134,8 @@ npm run preview
 ```
 
 The finished site is placed in `dist/`. The preview command lets you check it before publishing.
+
+Each blog post also generates a 1200 × 630 social image at `dist/og/blog/<post-id>.png`. These files are build output rather than source assets, so they do not need to be added to `public/` or committed to Git.
 
 </details>
 

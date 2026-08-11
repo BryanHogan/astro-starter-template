@@ -188,7 +188,9 @@ Enter it as a number without quotation marks.
 ogImage: "/og-default.png",
 ```
 
-This image is shown when someone shares your website. The example path points to `public/og-default.png`.
+This is the default image shown when someone shares a regular page on your website. The example path points to `public/og-default.png`.
+
+Blog posts use a title-based image generated automatically at `/og/blog/<post-id>.png` during the build, so this default is only their fallback if you remove that blog-specific behavior.
 
 Replace that file with your own 1200 × 630 PNG image. Keep the same filename and path for the easiest setup.
 

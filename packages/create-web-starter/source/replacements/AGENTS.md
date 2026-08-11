@@ -28,7 +28,7 @@ This is a generated Astro website with MDX support, accessible components, a tok
 - `src/styles/` - Global stylesheets and design tokens
 - `src/assets/images/` - Images processed by Astro
 - `src/config.ts` - Site-wide configuration
-- `public/` - Static assets such as the favicon, social image, and other files served unchanged
+- `public/` - Static assets such as the favicon, default social image, and other files served unchanged
 
 ## Styling system
 
@@ -52,6 +52,7 @@ This is a generated Astro website with MDX support, accessible components, a tok
 ## SEO and accessibility
 
 - `Head.astro` provides canonical URLs, Open Graph and Twitter metadata, JSON-LD structured data, and article metadata.
+- Blog posts generate title-based social images at `/og/blog/<post-id>.png` during the build; regular pages use the configured default image.
 - Pages can add page-specific head elements through the `head` slot.
 - The site generates a sitemap and RSS feed and uses non-trailing-slash URLs.
 - Preserve visible focus styles, accessible names, semantic landmarks, and existing ARIA behavior when changing components.

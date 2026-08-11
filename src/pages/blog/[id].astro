@@ -43,8 +43,9 @@ export const getStaticPaths = (async () => {
 
 const { post, previousPost, nextPost } = Astro.props;
 const { Content } = await render(post);
+const ogImage = `/og/blog/${post.id}.png`;
 ---
 
-<BlogPostLayout {...post.data} {previousPost} {nextPost}>
+<BlogPostLayout {...post.data} {ogImage} {previousPost} {nextPost}>
     <Content />
 </BlogPostLayout>

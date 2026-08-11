@@ -11,7 +11,7 @@ npm install
 npm run dev
 ```
 
-Before publishing, review `src/config.ts` and replace the placeholder production URL if necessary. Add your navigation, social profiles, contact details, favicon, and social sharing image.
+Before publishing, review `src/config.ts` and replace the placeholder production URL if necessary. Add your navigation, social profiles, contact details, favicon, and default social sharing image. Blog posts generate title-based social images automatically during the build.
 
 ## Commands
 
@@ -29,6 +29,8 @@ Before publishing, review `src/config.ts` and replace the placeholder production
 - Add processed images to `src/assets/images/`.
 - Add static assets to `public/`.
 - Change site details and navigation in `src/config.ts`.
+
+Generated blog social images are written to `dist/og/blog/` during a production build. Keep `public/og-default.png` as the fallback image for regular pages.
 
 ## License
 
