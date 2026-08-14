@@ -174,7 +174,7 @@ You can use the entire project or take only the pieces you need, such as the sty
 The [Astro MDX integration](https://docs.astro.build/en/guides/integrations-guide/mdx/) lets you use Astro components inside Markdown-like pages.
 
 <details>
-<summary>To remove MDX support:<summary>
+<summary>To remove MDX support:</summary>
 
 1. Convert or remove every `.mdx` page and blog post.
 2. Run `npm uninstall @astrojs/mdx`.
