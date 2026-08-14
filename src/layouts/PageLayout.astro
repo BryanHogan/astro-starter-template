@@ -6,6 +6,7 @@ import "../styles/markdown.css";
 interface Props {
     title: string;
     description: string;
+    topSpacing?: boolean;
     canonical?: string;
     ogTitle?: string;
     ogDescription?: string;
@@ -21,12 +22,17 @@ interface Props {
 
 const { frontmatter, ...rest } = Astro.props as Props & { frontmatter?: Props };
 const props = { ...frontmatter, ...rest };
+const { topSpacing = true, ...baseLayoutProps } = props;
+const hasTopSpacing = topSpacing !== false;
 ---
 
-<BaseLayout {...props}>
+<BaseLayout {...baseLayoutProps}>
     <slot name="head" slot="head" />
     <main
-        class="base-layout base-layout-content markdown-container height-smart-fill-screen padding-bottom-2xl"
+        class:list={[
+            "base-layout base-layout-content markdown-container height-smart-fill-screen padding-bottom-2xl",
+            { "padding-top-xl": hasTopSpacing },
+        ]}
     >
         <slot />
     </main>

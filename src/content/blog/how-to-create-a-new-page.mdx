@@ -30,10 +30,7 @@ title: Services
 description: Learn about the services I offer.
 ---
 
-import TopSpacingElement from "../components/TopSpacingElement.astro";
 import Button from "../components/Button.astro";
-
-<TopSpacingElement />
 
 # Services
 
@@ -53,6 +50,7 @@ The beginning part between the `---` lines is called frontmatter:
 - `layout` adds the shared header, footer, page styles, and page information.
 - `title` is the title shown in the browser and search results.
 - `description` is a short summary of the page.
+- `topSpacing` is optional. Set it to `false` when the page's first component provides its own top spacing.
 
 Imports go below the frontmatter and before the component is used.
 

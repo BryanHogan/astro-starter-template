@@ -47,7 +47,7 @@ This is Bryan Hogan's Astro starter template, a lightweight, accessible foundati
 - Components use fixed `--space-*` tokens for spacing; `--flow-space` is only for prose flow (`.flow`, `.markdown-container`)
 - Use semantic color tokens (`--color-text`, `--color-accent-500`) in components, not raw scale values
 - Page structure uses the `.base-layout` grid with `.full-width` breakout, don't invent custom containers
-- `.astro` pages wrap content in `BaseLayout` directly; `.mdx` pages declare `layout: ../layouts/PageLayout.astro` in frontmatter with `title` and `description`
+- `.astro` pages wrap content in `BaseLayout` directly; `.mdx` pages declare `layout: ../layouts/PageLayout.astro` in frontmatter with `title` and `description`. `PageLayout` adds top spacing by default; set `topSpacing: false` when the first component provides its own spacing
 - Responsive breakpoint: `@media (min-width: 48rem)`
 - Components use scoped `<style>` blocks referencing tokens from `var.css`
 

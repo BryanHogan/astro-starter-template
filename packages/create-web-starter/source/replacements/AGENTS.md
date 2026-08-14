@@ -44,7 +44,7 @@ This is a generated Astro website with MDX support, accessible components, a tok
 
 - Treat `SITE` in `src/config.ts` as authoritative for all site-specific information; do not hardcode those values in components.
 - Wrap `.astro` pages directly in `BaseLayout.astro`.
-- Give `.mdx` pages frontmatter with `layout: ../layouts/PageLayout.astro`, a `title`, and a `description`.
+- Give `.mdx` pages frontmatter with `layout: ../layouts/PageLayout.astro`, a `title`, and a `description`. `PageLayout` adds top spacing by default; set `topSpacing: false` when the first component provides its own spacing.
 - Add blog posts to the configured content collection and follow its frontmatter schema in `src/content.config.ts`.
 - Put images that Astro should optimize in `src/assets/images/`. Put files that should be served unchanged in `public/`.
 - Update header and footer links in `src/config.ts` when the page structure changes.
