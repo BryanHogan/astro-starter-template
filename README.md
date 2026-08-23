@@ -4,16 +4,18 @@ This starter helps you make your first website.
 
 Write your content simply in Markdown or MDX, change the colors, text and other styling, then publish the finished site almost anywhere. You own the code and can change every part of it.
 
+> This project contains the boilerplate I use for every website I build. You can use everything or just parts of it.
+
 ## Features
 
-- **Astro and MDX pages.** Add a file to `src/pages/` to create a page.
-- **A ready-to-use blog.** Add Markdown or MDX posts to `src/content/blog/`.
-- **Simple CSS.** Change shared colors, fonts, and spacing in one file.
-- **Useful components.** Buttons, heroes, cards, icons, navigation, and more are included.
-- **Search and sharing basics.** Page titles, descriptions, structured data, and automatic blog social images are ready.
-- **Publishing basics.** The starter creates a sitemap, `robots.txt`, and an RSS feed.
-- **Responsive and accessible defaults.** The layout works across screen sizes and includes clear focus styles and accessible labels.
-- **One settings file.** Change site details, social links, and optional analytics in `src/config.ts`.
+- **Easily create pages:** You can create pages using simple markdown. Just add a `.mdx` file to `src/pages/`.
+- **A ready-to-use blog:** Add Markdown / MDX posts to `src/content/blog/`. They are automatically included in relevant lists.
+- **Simple CSS base:** Change shared colors, fonts, and spacing in one file.
+- **Useful components:** Buttons, heroes, cards, icons, navigation, and more are included.
+- **Search and sharing basics:** Page titles, descriptions, structured data, and automatic blog social images are ready.
+- **Publishing basics:** The starter creates a sitemap, `robots.txt`, and a RSS feed.
+- **Responsive and accessible defaults:** The layout works across all screen sizes and includes accessibility considerations.
+- **One settings file:** Change site details, social links, and everything you need in just one file: `src/config.ts`.
 
 ## Installation and first run
 
