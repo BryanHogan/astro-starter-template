@@ -56,7 +56,6 @@ const isExternal = (link: { readonly href: string; readonly external?: boolean }
                                             <a
                                                 href={link.href}
                                                 target={external ? "_blank" : undefined}
-                                                rel={external ? "noopener noreferrer" : undefined}
                                                 aria-current={isCurrent ? "page" : undefined}
                                             >
                                                 {link.label}

@@ -38,7 +38,6 @@ const isExternal = (link: { readonly href: string; readonly external?: boolean }
                                     <a
                                         href={link.href}
                                         target="_blank"
-                                        rel="noopener noreferrer"
                                     >
                                         <span class="visually-hidden">
                                             {link.label} (opens in a new tab)
@@ -66,7 +65,6 @@ const isExternal = (link: { readonly href: string; readonly external?: boolean }
                                             <a
                                                 href={link.href}
                                                 target={isExternal(link) ? "_blank" : undefined}
-                                                rel={isExternal(link) ? "noopener noreferrer" : undefined}
                                             >
                                                 {link.label}
                                                 {isExternal(link) && (
@@ -93,7 +91,6 @@ const isExternal = (link: { readonly href: string; readonly external?: boolean }
                                 <a
                                     href={link.href}
                                     target={isExternal(link) ? "_blank" : undefined}
-                                    rel={isExternal(link) ? "noopener noreferrer" : undefined}
                                 >
                                     {link.label}
                                     {isExternal(link) && (
