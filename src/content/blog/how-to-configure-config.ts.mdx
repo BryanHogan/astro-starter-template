@@ -12,11 +12,10 @@ If you want to get started quickly, change:
 
 1. `url`
 2. `name`
-3. `title`
-4. `description`
-5. `author`
-6. `ogImage` and `ogImageAlt`
-7. The links in `header` and `footer`
+3. `description`
+4. `author`
+5. `ogImage` and `ogImageAlt`
+6. The links in `header` and `footer`
 
 You can leave unused social links and analytics empty.
 
@@ -26,7 +25,6 @@ You can leave unused social links and analytics empty.
 export const SITE = {
     url: "https://example.com",
     name: "My First Website",
-    title: "My First Website",
     description: "A simple website about my work and ideas.",
     author: "Alex Example",
     locale: "en-US",
@@ -103,22 +101,6 @@ name: "My First Website",
 ```
 
 Use the short name of your website or brand. It appears in sharing information, the RSS feed, and the logo's accessible text.
-
-## `title`
-
-```ts
-title: "My First Website",
-```
-
-Use the main title you want for the website. You can include a short tagline if it helps explain the site.
-
-<details>
-
-<summary>Why do pages also have titles?</summary>
-
- `SITE.title` keeps your main title in one place for you to reuse. Each page also supplies its own title.
-
-</details>
 
 ## `description`
 

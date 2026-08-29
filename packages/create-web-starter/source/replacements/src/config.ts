@@ -5,7 +5,6 @@ export const SITE = {
 
     /** Brand and default metadata. */
     name: __SITE_NAME_JSON__,
-    title: __SITE_NAME_JSON__,
     description: __SITE_DESCRIPTION_JSON__,
 
     /** Person behind the site. */

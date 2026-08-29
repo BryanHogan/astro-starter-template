@@ -6,8 +6,7 @@ export const SITE = {
     /** Brand/site name — og:site_name, WebSite JSON-LD, footer. */
     name: "Astro Starter Template",
 
-    /** Default title/description — used as fallbacks and in site-wide JSON-LD. */
-    title: "Astro Starter Template",
+    /** Default site description — used in the RSS feed and site-wide JSON-LD. */
     description: "A lightweight, accessible Astro starter template with a simple color system, SEO-ready head, and sensible defaults.",
 
     /** Person behind the site — meta author + copyright, footer, JSON-LD author/publisher. */
