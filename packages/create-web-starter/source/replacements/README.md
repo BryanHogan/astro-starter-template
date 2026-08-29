@@ -30,6 +30,8 @@ Before publishing, review `src/config.ts` and replace the placeholder production
 - Add static assets to `public/`.
 - Change site details and navigation in `src/config.ts`.
 
+Blog posts require `title`, `description`, and `pubDate` in their frontmatter. You can also set `updateDate`, which defaults to `pubDate`, or set `draft: true` to keep a post available during development but exclude its page, listing entry, RSS entry, and social image from production builds.
+
 Generated blog social images are written to `dist/og/blog/` during a production build. Keep `public/og-default.png` as the fallback image for regular pages.
 
 ## License

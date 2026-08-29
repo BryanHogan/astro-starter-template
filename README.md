@@ -9,7 +9,7 @@ Write your content simply in Markdown or MDX, change the colors, text and other 
 ## Features
 
 - **Easily create pages:** You can create pages using simple markdown. Just add a `.mdx` file to `src/pages/`.
-- **A ready-to-use blog:** Add Markdown / MDX posts to `src/content/blog/`. They are automatically included in relevant lists.
+- **A ready-to-use blog:** Add Markdown / MDX posts to `src/content/blog/`. They are automatically included in relevant lists, support optional update dates, and can be kept out of production builds with `draft: true`.
 - **Simple CSS base:** Change shared colors, fonts, and spacing in one file.
 - **Useful components:** Buttons, heroes, cards, icons, navigation, and more are included.
 - **Search and sharing basics:** Page titles, descriptions, structured data, and automatic blog social images are ready.

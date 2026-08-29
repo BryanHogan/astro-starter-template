@@ -25,8 +25,9 @@ Available flags:
 - `--help`, `-h` displays usage information.
 - `--version`, `-v` displays the generator version.
 
-The generated website includes Astro, MDX pages, a blog, RSS, sitemap support,
-SEO metadata, accessible components, and a token-based CSS design system.
+The generated website includes Astro, MDX pages, a blog with optional update
+dates and production-safe drafts, RSS, sitemap support, SEO metadata,
+accessible components, and a token-based CSS design system.
 
 ## Requirements
 

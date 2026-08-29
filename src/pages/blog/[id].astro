@@ -1,9 +1,9 @@
 ---
 import type { GetStaticPaths } from "astro";
-import { getCollection, render, type CollectionEntry } from "astro:content";
-import { SITE } from "../../config";
+import { render, type CollectionEntry } from "astro:content";
 import BlogPostLayout from "../../layouts/BlogPostLayout.astro";
 import type { BlogPostNavigationItem } from "../../types/blog";
+import { getBlogPosts } from "../../utils/getBlogPosts";
 
 interface Props {
     post: CollectionEntry<"blog">;
@@ -12,13 +12,7 @@ interface Props {
 }
 
 export const getStaticPaths = (async () => {
-    const titleCollator = new Intl.Collator(SITE.locale);
-    const posts = (await getCollection("blog")).sort((a, b) => {
-        const dateDifference =
-            b.data.pubDate.getTime() - a.data.pubDate.getTime();
-
-        return dateDifference || titleCollator.compare(a.data.title, b.data.title);
-    });
+    const posts = await getBlogPosts();
 
     const toNavigationItem = (
         post: CollectionEntry<"blog">,

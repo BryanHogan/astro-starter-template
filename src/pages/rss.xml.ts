@@ -1,15 +1,9 @@
 import rss from "@astrojs/rss";
-import { getCollection } from "astro:content";
 import { SITE } from "../config";
+import { getBlogPosts } from "../utils/getBlogPosts";
 
 export async function GET() {
-    const titleCollator = new Intl.Collator(SITE.locale);
-    const posts = (await getCollection("blog")).sort((a, b) => {
-        const dateDifference =
-            b.data.pubDate.getTime() - a.data.pubDate.getTime();
-
-        return dateDifference || titleCollator.compare(a.data.title, b.data.title);
-    });
+    const posts = await getBlogPosts();
 
     return rss({
         title: `${SITE.name} Blog`,

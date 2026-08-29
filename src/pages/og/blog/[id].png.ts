@@ -1,6 +1,6 @@
 import type { APIRoute, GetStaticPaths } from "astro";
-import { getCollection } from "astro:content";
 import { SITE } from "../../../config";
+import { getBlogPosts } from "../../../utils/getBlogPosts";
 import { generateSocialImage } from "../../../utils/generateSocialImage";
 
 interface Props {
@@ -8,7 +8,7 @@ interface Props {
 }
 
 export const getStaticPaths = (async () => {
-    const posts = await getCollection("blog");
+    const posts = await getBlogPosts();
 
     return posts.map((post) => ({
         params: { id: post.id },

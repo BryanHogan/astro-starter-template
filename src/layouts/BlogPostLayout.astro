@@ -11,17 +11,29 @@ interface Props {
     title: string;
     description: string;
     pubDate: Date;
+    updateDate: Date;
     ogImage: string;
     previousPost?: BlogPostNavigationItem;
     nextPost?: BlogPostNavigationItem;
 }
 
-const { title, description, pubDate, ogImage, previousPost, nextPost } = Astro.props;
+const {
+    title,
+    description,
+    pubDate,
+    updateDate,
+    ogImage,
+    previousPost,
+    nextPost,
+} = Astro.props;
 
-const formattedPubDate = new Intl.DateTimeFormat(SITE.locale, {
+const dateFormatter = new Intl.DateTimeFormat(SITE.locale, {
     dateStyle: "long",
     timeZone: "UTC",
-}).format(pubDate);
+});
+const formattedPubDate = dateFormatter.format(pubDate);
+const formattedUpdateDate = dateFormatter.format(updateDate);
+const wasUpdated = updateDate.getTime() !== pubDate.getTime();
 ---
 
 <BaseLayout
@@ -31,6 +43,7 @@ const formattedPubDate = new Intl.DateTimeFormat(SITE.locale, {
     ogImageAlt={`${title} — ${SITE.name}`}
     ogType="article"
     articlePublished={pubDate}
+    articleModified={updateDate}
 >
     <main class="base-layout base-layout-content height-smart-fill-screen">
         <article class="blog-post">
@@ -47,9 +60,9 @@ const formattedPubDate = new Intl.DateTimeFormat(SITE.locale, {
                 </nav>
                 <time
                     class="blog-post-date"
-                    datetime={pubDate.toISOString().slice(0, 10)}
+                    datetime={updateDate.toISOString().slice(0, 10)}
                 >
-                    {formattedPubDate}
+                    {wasUpdated ? `Updated ${formattedUpdateDate}` : formattedPubDate}
                 </time>
                 <h1>{title}</h1>
             </header>

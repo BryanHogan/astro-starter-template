@@ -76,6 +76,15 @@ The post will appear at `/blog/my-first-post`. Start blog post sections with `##
 
 Keep blog post files directly inside `src/content/blog/`.
 
+Blog posts also support two optional frontmatter fields:
+
+```yaml
+updateDate: 2026-08-15
+draft: true
+```
+
+`updateDate` records when the post was last changed and defaults to `pubDate`. Set `draft` to `true` to preview a post during development without including its page, listing entry, RSS entry, or social image in a production build.
+
 <details>
 
 <summary>Add page-specific head information</summary>

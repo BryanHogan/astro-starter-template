@@ -1,6 +1,6 @@
 ---
-import { getCollection } from "astro:content";
 import { SITE } from "../config";
+import { getBlogPosts } from "../utils/getBlogPosts";
 
 interface Props {
     /** Maximum number of posts to display. Omit to show every post. */
@@ -27,21 +27,13 @@ if (!headingLevels.includes(Heading)) {
     throw new Error("BlogPostsList `headingLevel` must be h2, h3, or h4.");
 }
 
-const titleCollator = new Intl.Collator(SITE.locale);
 const dateFormatter = new Intl.DateTimeFormat(SITE.locale, {
     month: "long",
     year: "numeric",
     timeZone: "UTC",
 });
 
-const posts = (await getCollection("blog"))
-    .sort((a, b) => {
-        const dateDifference =
-            b.data.pubDate.getTime() - a.data.pubDate.getTime();
-
-        return dateDifference || titleCollator.compare(a.data.title, b.data.title);
-    })
-    .slice(0, limit);
+const posts = (await getBlogPosts()).slice(0, limit);
 ---
 
 {
