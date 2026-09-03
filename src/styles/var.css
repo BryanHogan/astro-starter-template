@@ -126,6 +126,7 @@
     --color-text-subtle: var(--color-neutral-300);
     --color-text-muted: var(--color-neutral-400);
     --color-border: var(--color-neutral-700);
+    --color-eyebrow: var(--color-accent-200);
     --color-link: var(--color-accent-300);
     --color-link-hover: var(--color-accent-200);
     --color-link-active: var(--color-accent-100);
@@ -229,6 +230,7 @@
     --color-text-subtle: var(--color-neutral-700);
     --color-text-muted: var(--color-neutral-600);
     --color-border: var(--color-neutral-300);
+    --color-eyebrow: var(--color-accent-700);
     --color-link: var(--color-accent-700);
     --color-link-hover: var(--color-accent-800);
     --color-link-active: var(--color-accent-900);

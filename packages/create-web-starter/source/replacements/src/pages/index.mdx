@@ -10,6 +10,8 @@ import Button from "../components/Button.astro";
 import Card from "../components/Card.astro";
 import CardGrid from "../components/CardGrid.astro";
 import SectionTitle from "../components/SectionTitle.astro";
+import { Image } from "astro:assets";
+import heroImage from "../assets/images/Seoul-Image-900-900.png";
 import { SITE } from "../config";
 
 <Hero
@@ -22,6 +24,13 @@ import { SITE } from "../config";
         <Button href="/blog" size="large">Read the blog</Button>
         <Button href="/about" variant="outline" size="large">About this site</Button>
     </Fragment>
+    <Image
+        slot="media"
+        src={heroImage}
+        alt="Traffic passing Gwanghwamun Square in Seoul with Bugaksan mountain in the background."
+        loading="eager"
+        fetchpriority="high"
+    />
 </Hero>
 
 <SectionTitle
@@ -32,7 +41,7 @@ import { SITE } from "../config";
 
 Edit `src/pages/index.mdx` to replace this homepage with your own content. Update shared site information, navigation, social links, and optional analytics in `src/config.ts`.
 
-<CardGrid columns={2} class="margin-top-l margin-bottom-2xl">
+<CardGrid columns={2}>
 <Card heading="h3" title="Write pages" icon="pencil">
 
 Add Markdown, MDX, or Astro files to `src/pages/` to create routes.
