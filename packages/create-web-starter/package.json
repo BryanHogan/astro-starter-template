@@ -1,6 +1,6 @@
 {
   "name": "@bryanhogan/create-web-starter",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Create a configured Astro website with Bryan Web Starter.",
   "type": "module",
   "bin": {
