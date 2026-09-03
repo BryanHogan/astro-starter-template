@@ -11,7 +11,7 @@ npm install
 npm run dev
 ```
 
-Before publishing, review `src/config.ts` and replace the placeholder production URL if necessary. Add your navigation, social profiles, contact details, favicon, and default social sharing image. Blog posts generate title-based social images automatically during the build.
+Before publishing, review `src/config.ts` and replace the placeholder production URL if you left the setup answer blank. Add your navigation, social profiles, contact details, favicon, and default social sharing image. Blog posts generate title-based social images automatically during the build. `AGENTS.md` and `CLAUDE.md` are included for AI coding tools.
 
 ## Commands
 

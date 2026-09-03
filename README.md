@@ -44,12 +44,11 @@ npm create @bryanhogan/web-starter@latest
 The command downloads and runs the project generator; you do not need to clone this repository first. It asks for:
 
 1. The directory in which to create the project
-2. The site name, description, author, and production URL
-3. Whether to include `AGENTS.md` and `CLAUDE.md` for AI coding tools
-4. Whether to install dependencies with npm
-5. Whether to initialize a Git repository
+2. The site name, description, author, and optional production URL
+3. Whether to install dependencies with npm
+4. Whether to initialize a Git repository
 
-The three yes-or-no choices default to yes. The destination must be new or empty because the generator does not overwrite existing files. The blog and its example posts are always included.
+The two yes-or-no choices default to yes. The destination must be new or empty because the generator does not overwrite existing files. The blog, its example posts, `AGENTS.md`, and `CLAUDE.md` are always included. If the production URL is left blank, the generator uses `https://example.com` as a placeholder.
 
 When setup finishes, follow the commands shown in the terminal to enter the project directory and start Astro. Your site will normally be available at `http://localhost:4321`.
 
@@ -68,7 +67,6 @@ Options placed after `--` are passed to the generator:
 | Option | Effect |
 | --- | --- |
 | `--yes` | Skip the questions and use the defaults. |
-| `--no-ai` | Do not include `AGENTS.md` or `CLAUDE.md`. |
 | `--no-install` | Create the project without running `npm install`. |
 | `--no-git` | Create the project without running `git init`. |
 

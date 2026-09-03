@@ -98,7 +98,6 @@ async function main() {
               description: "A website built with Bryan Web Starter.",
               author: "Your Name",
               siteUrl: "https://example.com",
-              includeAi: !parsedArguments.values["no-ai"],
               installDependencies: !parsedArguments.values["no-install"],
               initializeGit: !parsedArguments.values["no-git"],
           }
@@ -119,16 +118,10 @@ async function main() {
                   validate: validateRequired,
               }),
               siteUrl: await askText({
-                  message: "What is the production URL?",
+                  message: "What is the production URL? (optional)",
                   placeholder: "https://example.com",
-                  defaultValue: "https://example.com",
                   validate: validateSiteUrl,
               }),
-              includeAi: parsedArguments.values["no-ai"]
-                  ? false
-                  : await askConfirm(
-                        "Include AGENTS.md and CLAUDE.md for AI coding tools?",
-                    ),
               installDependencies: parsedArguments.values["no-install"]
                   ? false
                   : await askConfirm("Install dependencies?"),
@@ -154,13 +147,6 @@ async function main() {
         join(targetDirectory, "gitignore"),
         join(targetDirectory, ".gitignore"),
     );
-
-    if (!answers.includeAi) {
-        await Promise.all([
-            rm(join(targetDirectory, "AGENTS.md"), { force: true }),
-            rm(join(targetDirectory, "CLAUDE.md"), { force: true }),
-        ]);
-    }
 
     generationStage = "configure";
     await configureProject(targetDirectory, answers);
@@ -215,7 +201,6 @@ function getArguments() {
                 help: { type: "boolean", short: "h" },
                 version: { type: "boolean", short: "v" },
                 yes: { type: "boolean", short: "y" },
-                "no-ai": { type: "boolean" },
                 "no-install": { type: "boolean" },
                 "no-git": { type: "boolean" },
             },
@@ -236,7 +221,6 @@ Usage:
 
 Options:
   -y, --yes      Accept defaults and skip prompts
-      --no-ai    Do not add AGENTS.md or CLAUDE.md
       --no-install  Do not install dependencies
       --no-git   Do not initialize Git
   -h, --help     Show this help
@@ -281,10 +265,16 @@ function validateSiteUrl(value) {
 }
 
 function normalizeSiteUrl(value) {
+    const normalizedValue = value?.trim() ?? "";
+
+    if (!normalizedValue) {
+        return "https://example.com";
+    }
+
     let url;
 
     try {
-        url = new URL(value.trim());
+        url = new URL(normalizedValue);
     } catch {
         throw new Error("Enter a complete URL such as https://example.com.");
     }

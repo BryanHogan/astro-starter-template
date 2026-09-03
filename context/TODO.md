@@ -11,3 +11,4 @@ Other stuff:
 - [ ] Add a skip-to-content link in `BaseLayout.astro` and a stable ID on the main content area.
 - [ ] Add favicon fallbacks and an Apple touch icon; optionally add a web app manifest.
 - [ ] Implement blog search for `?search=...`, or remove the unsupported `SearchAction` structured data from `Head.astro`.
+- [ ] Remove Astro version pin once fix has been implemented.

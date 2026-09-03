@@ -7,8 +7,10 @@ npm create @bryanhogan/web-starter@latest
 ```
 
 The interactive setup asks for the project directory, site name, description,
-author, and production URL. It can also install dependencies, initialize Git,
-and add `AGENTS.md` and `CLAUDE.md` for AI coding tools.
+author, and an optional production URL. Leaving the URL blank uses
+`https://example.com` as a placeholder. The generator can also install
+dependencies and initialize Git. It always includes `AGENTS.md` and
+`CLAUDE.md` for AI coding tools.
 
 ## Non-interactive usage
 
@@ -19,7 +21,6 @@ npm create @bryanhogan/web-starter@latest my-website -- --yes
 Available flags:
 
 - `--yes`, `-y` accepts the defaults and skips all prompts.
-- `--no-ai` omits `AGENTS.md` and `CLAUDE.md`.
 - `--no-install` skips `npm install`.
 - `--no-git` skips Git initialization.
 - `--help`, `-h` displays usage information.
