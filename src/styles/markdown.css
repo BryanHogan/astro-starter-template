@@ -57,6 +57,7 @@
     summary {
         padding-block: var(--space-s);
         padding-inline: var(--space-m);
+        color: var(--color-text-strong);
         border-radius: var(--border-radius-m);
         cursor: pointer;
         transition: var(--transition-normal) background-color;
@@ -140,6 +141,7 @@
         th {
             padding-block: var(--space-s);
             padding-inline: var(--space-m);
+            color: var(--color-text-strong);
             font-weight: var(--font-weight-semi-bold);
             text-align: start;
         }

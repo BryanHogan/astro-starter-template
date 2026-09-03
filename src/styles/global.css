@@ -25,6 +25,7 @@ h3,
 h4,
 h5,
 h6 {
+    color: var(--color-text-strong);
     line-height: var(--font-line-height-heading);
     font-weight: var(--font-weight-bold);
 }
