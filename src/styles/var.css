@@ -127,7 +127,7 @@
     --color-text-subtle: var(--color-neutral-300);
     --color-text-muted: var(--color-neutral-400);
     --color-border: var(--color-neutral-700);
-    --color-eyebrow: var(--color-accent-200);
+    --color-accent-text: var(--color-accent-200);
     --color-link: var(--color-accent-300);
     --color-link-hover: var(--color-accent-200);
     --color-link-active: var(--color-accent-100);
@@ -230,9 +230,13 @@
     --color-text-strong: var(--color-neutral-900);
     --color-text: var(--color-neutral-800);
     --color-text-subtle: var(--color-neutral-700);
-    --color-text-muted: var(--color-neutral-600);
+    --color-text-muted: color-mix(
+        in srgb,
+        var(--color-neutral-600) 60%,
+        var(--color-neutral-700)
+    );
     --color-border: var(--color-neutral-300);
-    --color-eyebrow: var(--color-accent-700);
+    --color-accent-text: var(--color-accent-700);
     --color-link: var(--color-accent-700);
     --color-link-hover: var(--color-accent-800);
     --color-link-active: var(--color-accent-900);
