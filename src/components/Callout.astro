@@ -1,0 +1,143 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import Icon from "./Icon.astro";
+import type { IconName } from "./Icons";
+
+type CalloutVariant = "info" | "success" | "warning" | "danger";
+
+type Props = Omit<
+    HTMLAttributes<"div">,
+    "class:list" | "title"
+> & {
+    variant?: CalloutVariant;
+    title?: string;
+};
+
+const {
+    variant = "info",
+    title,
+    class: className,
+    ...rest
+} = Astro.props;
+
+const calloutVariants: Record<
+    CalloutVariant,
+    { defaultTitle: string; icon: IconName }
+> = {
+    info: { defaultTitle: "Information", icon: "information" },
+    success: {
+        defaultTitle: "Success",
+        icon: "approve-check-circle",
+    },
+    warning: { defaultTitle: "Warning", icon: "warning" },
+    danger: { defaultTitle: "Danger", icon: "error" },
+};
+
+if (
+    typeof variant !== "string" ||
+    !Object.hasOwn(calloutVariants, variant)
+) {
+    throw new Error(
+        "Callout `variant` must be info, success, warning, or danger.",
+    );
+}
+
+if (title !== undefined && (typeof title !== "string" || !title.trim())) {
+    throw new Error(
+        "Callout `title` must be a non-empty string when provided.",
+    );
+}
+
+const callout = calloutVariants[variant];
+const titleText = title?.trim() ?? callout.defaultTitle;
+---
+
+<div
+    {...rest}
+    class:list={["callout", `callout--${variant}`, className]}
+>
+    <div class="callout__heading">
+        <span class="callout__icon" aria-hidden="true">
+            <Icon name={callout.icon} size="var(--icon-size-l)" />
+        </span>
+        <strong class="callout__title">{titleText}</strong>
+    </div>
+
+    <div class="callout__content">
+        <slot />
+    </div>
+</div>
+
+<style>
+    .callout {
+        --callout-accent: light-dark(
+            var(--color-blue-700),
+            var(--color-blue-300)
+        );
+
+        padding: var(--space-m);
+        color: var(--color-text);
+        background-color: var(--color-surface);
+        border-inline-start: var(--border-width-l) solid
+            var(--callout-accent);
+        border-start-end-radius: var(--border-radius-m);
+        border-end-end-radius: var(--border-radius-m);
+    }
+
+    .callout--success {
+        --callout-accent: light-dark(
+            var(--color-green-700),
+            var(--color-green-300)
+        );
+    }
+
+    .callout--warning {
+        --callout-accent: light-dark(
+            var(--color-yellow-700),
+            var(--color-yellow-300)
+        );
+    }
+
+    .callout--danger {
+        --callout-accent: light-dark(
+            var(--color-red-700),
+            var(--color-red-300)
+        );
+    }
+
+    .callout__heading {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr);
+        gap: var(--space-s);
+        align-items: center;
+    }
+
+    .callout__icon {
+        display: inline-flex;
+        flex: 0 0 auto;
+        align-items: center;
+        justify-content: center;
+        color: var(--callout-accent);
+    }
+
+    .callout__title {
+        min-width: 0;
+        color: var(--color-text-strong);
+        font-weight: var(--font-weight-semi-bold);
+        line-height: var(--font-line-height-heading);
+    }
+
+    .callout__content {
+        min-width: 0;
+        margin-block-start: var(--space-s);
+        color: var(--color-text);
+    }
+
+    .callout__content :global(:where(p, li)) {
+        color: var(--color-text);
+    }
+
+    .callout__content > :global(* + *) {
+        margin-block-start: var(--space-s);
+    }
+</style>
