@@ -1,6 +1,6 @@
 ---
 title: Component showcase
-description: Simple examples of the Button, Card, CardGrid, Hero, Icon, and SectionTitle components.
+description: Examples and options for the reusable components included with the Astro Starter Template.
 pubDate: 2026-08-01
 ---
 
@@ -11,8 +11,13 @@ The example import paths below are for files directly inside `src/pages/`. Chang
 import Button from "../../components/Button.astro";
 import Card from "../../components/Card.astro";
 import CardGrid from "../../components/CardGrid.astro";
+import Callout from "../../components/Callout.astro";
+import DescriptionList from "../../components/DescriptionList.astro";
+import Figure from "../../components/Figure.astro";
 import Icon from "../../components/Icon.astro";
 import SectionTitle from "../../components/SectionTitle.astro";
+import { Image } from "astro:assets";
+import showcaseImage from "../../assets/images/Seoul-Image-900-900.png";
 
 ## Button
 
@@ -73,6 +78,104 @@ The available button types are `button`, `submit`, and `reset`. You can also pas
 An explicit `size` keeps the button at its natural width. Without one, a parent layout may stretch it.
 
 </details>
+
+## Callout
+
+Use Callout to give a note, result, warning, or error more context than the surrounding prose.
+
+```mdx
+import Callout from "../components/Callout.astro";
+
+<Callout variant="warning" title="Check before publishing">
+    Replace the example site URL and social image with your own.
+</Callout>
+```
+
+Live example:
+
+<Callout variant="warning" title="Check before publishing">
+
+Replace the example site URL and social image with your own.
+
+</Callout>
+
+| Prop | Choices | Default |
+| --- | --- | --- |
+| `variant` | `info`, `success`, `warning`, `danger` | `info` |
+| `title` | Any non-empty title | The selected variant's name |
+| `class` | An extra CSS class | No extra class |
+
+Place the callout content inside the component. It can contain paragraphs, lists, links, and other simple prose.
+
+## DescriptionList
+
+Use DescriptionList for a compact set of labels and explanations.
+
+```mdx
+import DescriptionList from "../components/DescriptionList.astro";
+
+<DescriptionList
+    eyebrow="Project details"
+    items={[
+        {
+            label: "Framework",
+            description: "Astro with optional MDX content.",
+        },
+        {
+            label: "Styling",
+            description: "Design tokens and scoped component styles.",
+        },
+    ]}
+/>
+```
+
+Live example:
+
+<DescriptionList
+    eyebrow="Project details"
+    items={[
+        {
+            label: "Framework",
+            description: "Astro with optional MDX content.",
+        },
+        {
+            label: "Styling",
+            description: "Design tokens and scoped component styles.",
+        },
+    ]}
+/>
+
+Each item requires a non-empty `label` and `description`. Add an `href` to make an individual row a link. The optional `eyebrow` labels the whole group.
+
+## Figure
+
+Use Figure when an image, illustration, or video needs a visible caption and optional credit.
+
+```mdx
+import Figure from "../components/Figure.astro";
+import { Image } from "astro:assets";
+import exampleImage from "../assets/images/example.png";
+
+<Figure
+    caption="Traffic moves through Gwanghwamun Square in Seoul."
+    credit="Bryan Hogan"
+    creditHref="https://bryanhogan.com"
+>
+    <Image src={exampleImage} alt="" loading="lazy" />
+</Figure>
+```
+
+Live example:
+
+<Figure
+    caption="Traffic moves through Gwanghwamun Square in Seoul beneath Bugaksan mountain."
+    credit="Bryan Hogan"
+    creditHref="https://bryanhogan.com"
+>
+    <Image src={showcaseImage} alt="" loading="lazy" />
+</Figure>
+
+`caption` and the default media slot are required. `credit` is optional, and `creditHref` can link that credit to its source. When the caption already describes the image, use an empty `alt` value to avoid repeating the same text to screen-reader users.
 
 ## Cards and card grids
 
