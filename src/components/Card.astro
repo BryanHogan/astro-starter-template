@@ -210,7 +210,7 @@ const hasActions = Astro.slots.has("actions");
     .card-body {
         flex: 1;
         min-width: 0;
-        color: var(--color-text-subtle);
+        color: var(--color-text);
     }
 
     .card:not(.card-with-media) .card-content {
@@ -222,7 +222,7 @@ const hasActions = Astro.slots.has("actions");
     }
 
     .card-body :global(:where(p, li)) {
-        color: var(--color-text-subtle);
+        color: var(--color-text);
     }
 
     .card-body > :global(* + *) {
