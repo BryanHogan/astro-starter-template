@@ -38,6 +38,26 @@
   --layout-width: var(--content-max-width);
 }
 
+.util-layout-content {
+  width: 100%;
+  max-width: var(--content-max-width);
+  margin-inline: auto;
+}
+
+.util-layout-wide {
+  width: 100%;
+  max-width: min(var(--site-max-width), 100% - (var(--side-gap-padding) * 2));
+  margin-inline: auto;
+}
+
+.util-layout-full {
+  width: 100%;
+}
+
+.base-layout > :is(.util-layout-wide, .util-layout-full) {
+  grid-column: 1 / -1;
+}
+
 .main-header-element {
     padding-top: max(8svh, var(--navbar-height) + 2rem);
 }
