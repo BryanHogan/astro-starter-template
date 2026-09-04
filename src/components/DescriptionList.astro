@@ -1,0 +1,224 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import Icon from "./Icon.astro";
+
+interface DescriptionListItem {
+    label: string;
+    description: string;
+    href?: string;
+}
+
+type Props = Omit<HTMLAttributes<"div">, "class:list"> & {
+    eyebrow?: string;
+    items: DescriptionListItem[];
+};
+
+const {
+    eyebrow,
+    items,
+    class: className,
+    ...rest
+} = Astro.props;
+
+if (eyebrow !== undefined && (typeof eyebrow !== "string" || !eyebrow.trim())) {
+    throw new Error(
+        "DescriptionList `eyebrow` must be a non-empty string when provided.",
+    );
+}
+
+if (!Array.isArray(items) || items.length === 0) {
+    throw new Error("DescriptionList requires at least one item.");
+}
+
+const normalizedItems = items.map((item, index) => {
+    if (typeof item?.label !== "string" || !item.label.trim()) {
+        throw new Error(
+            `DescriptionList item ${index + 1} requires a non-empty \`label\`.`,
+        );
+    }
+
+    if (
+        typeof item.description !== "string" ||
+        !item.description.trim()
+    ) {
+        throw new Error(
+            `DescriptionList item ${index + 1} requires a non-empty \`description\`.`,
+        );
+    }
+
+    if (
+        item.href !== undefined &&
+        (typeof item.href !== "string" || !item.href.trim())
+    ) {
+        throw new Error(
+            `DescriptionList item ${index + 1} \`href\` must be a non-empty string when provided.`,
+        );
+    }
+
+    return {
+        label: item.label.trim(),
+        description: item.description.trim(),
+        href: item.href?.trim(),
+    };
+});
+---
+
+<div {...rest} class:list={["description-list", className]}>
+    {eyebrow && <p class="eyebrow">{eyebrow.trim()}</p>}
+
+    <ul class="description-list__items">
+        {
+            normalizedItems.map((item) => (
+                <li class="description-list__item">
+                    {item.href ? (
+                        <a
+                            class="description-list__row description-list__row--link"
+                            href={item.href}
+                        >
+                            <span class="description-list__content">
+                                <strong class="description-list__label">
+                                    {item.label}
+                                </strong>
+                                <span class="description-list__description">
+                                    {item.description}
+                                </span>
+                            </span>
+                            <span
+                                class="description-list__icon"
+                                aria-hidden="true"
+                            >
+                                <Icon
+                                    name="right-caret"
+                                    size="var(--icon-size-m)"
+                                />
+                            </span>
+                        </a>
+                    ) : (
+                        <div class="description-list__row">
+                            <span class="description-list__content">
+                                <strong class="description-list__label">
+                                    {item.label}
+                                </strong>
+                                <span class="description-list__description">
+                                    {item.description}
+                                </span>
+                            </span>
+                        </div>
+                    )}
+                </li>
+            ))
+        }
+    </ul>
+</div>
+
+<style>
+    .description-list {
+        width: 100%;
+    }
+
+    .description-list__items {
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+        background-color: var(--color-surface);
+        border: var(--border-width-s) solid var(--color-border);
+        border-radius: var(--border-radius-m);
+        box-shadow: var(--box-shadow-s);
+        list-style: none;
+    }
+
+    .description-list__item {
+        margin: 0;
+    }
+
+    .description-list__item + .description-list__item {
+        border-block-start: var(--border-width-s) solid var(--color-border);
+    }
+
+    .description-list__row {
+        display: grid;
+        width: 100%;
+        min-width: 0;
+        padding: var(--space-m);
+    }
+
+    .description-list__content {
+        display: grid;
+        min-width: 0;
+        gap: var(--space-2xs);
+    }
+
+    .description-list__label,
+    .description-list__description {
+        min-width: 0;
+        overflow-wrap: anywhere;
+        font-size: var(--font-size-base);
+    }
+
+    .description-list__label {
+        color: var(--color-text-strong);
+        font-weight: var(--font-weight-semi-bold);
+        line-height: var(--font-line-height-heading);
+    }
+
+    .description-list__description {
+        color: var(--color-text);
+    }
+
+    .description-list__row--link {
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: var(--space-m);
+        align-items: center;
+        color: var(--color-text);
+        text-decoration: none;
+        transition:
+            var(--transition-normal) background-color,
+            var(--transition-normal) color;
+    }
+
+    .description-list .description-list__row--link::after {
+        content: none;
+    }
+
+    .description-list__row--link:hover,
+    .description-list__row--link:focus-visible {
+        color: var(--color-text);
+        background-color: var(--color-surface-muted);
+    }
+
+    .description-list__row--link:focus-visible {
+        outline-offset: calc(var(--border-width-m) * -1);
+    }
+
+    .description-list__row--link:active {
+        color: var(--color-text);
+    }
+
+    .description-list__icon {
+        display: inline-flex;
+        flex: 0 0 auto;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-text-strong);
+    }
+
+    @media (min-width: 48rem) {
+        .description-list__row {
+            grid-template-columns: 12rem minmax(0, 1fr);
+            gap: var(--space-l);
+            align-items: start;
+        }
+
+        .description-list__row--link {
+            grid-template-columns: 12rem minmax(0, 1fr) auto;
+        }
+
+        .description-list__content {
+            display: contents;
+        }
+
+        .description-list__icon {
+            align-self: center;
+        }
+    }
+</style>
