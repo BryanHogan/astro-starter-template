@@ -1,0 +1,120 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+type Props = Omit<HTMLAttributes<"figure">, "class:list"> & {
+    caption: string;
+    credit?: string;
+    creditHref?: string;
+};
+
+const {
+    caption,
+    credit,
+    creditHref,
+    class: className,
+    ...rest
+} = Astro.props;
+
+if (typeof caption !== "string" || !caption.trim()) {
+    throw new Error("Figure requires a non-empty `caption` prop.");
+}
+
+if (credit !== undefined && (typeof credit !== "string" || !credit.trim())) {
+    throw new Error(
+        "Figure `credit` must be a non-empty string when provided.",
+    );
+}
+
+if (
+    creditHref !== undefined &&
+    (typeof creditHref !== "string" || !creditHref.trim())
+) {
+    throw new Error(
+        "Figure `creditHref` must be a non-empty string when provided.",
+    );
+}
+
+if (creditHref !== undefined && credit === undefined) {
+    throw new Error("Figure `creditHref` requires a `credit` prop.");
+}
+
+if (!Astro.slots.has("default")) {
+    throw new Error("Figure requires media in its default slot.");
+}
+
+const captionText = caption.trim();
+const creditText = credit?.trim();
+const creditUrl = creditHref?.trim();
+---
+
+<figure
+    {...rest}
+    class:list={["figure", className]}
+>
+    <div class="figure__media">
+        <slot />
+    </div>
+
+    <figcaption class="figure__caption">
+        <span>{captionText}</span>
+        {
+            creditText && (
+                <span class="figure__credit">
+                    Credit: {creditUrl ? (
+                        <a href={creditUrl}>{creditText}</a>
+                    ) : (
+                        creditText
+                    )}
+                </span>
+            )
+        }
+    </figcaption>
+</figure>
+
+<style>
+    .figure {
+        width: 100%;
+        min-width: 0;
+        margin-block: 0;
+    }
+
+    .figure__media {
+        width: 100%;
+        min-width: 0;
+        overflow: hidden;
+        background-color: var(--color-surface);
+        border-radius: var(--border-radius-m);
+    }
+
+    .figure__media :global(> *) {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .figure__media :global(:is(img, picture, video)) {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        border-radius: 0;
+    }
+
+    .figure__media :global(:is(img, video)) {
+        height: auto;
+    }
+
+    .figure__caption {
+        display: grid;
+        gap: var(--space-2xs);
+        margin-block-start: var(--space-xs);
+        padding-inline: var(--space-2xs);
+        color: var(--color-text-muted);
+        font-size: var(--font-size-s);
+        line-height: var(--font-line-height);
+        text-align: start;
+    }
+
+    .figure__credit {
+        color: var(--color-text-muted);
+    }
+</style>
