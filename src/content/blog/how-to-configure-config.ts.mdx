@@ -4,18 +4,43 @@ description: Learn what to change in src/config.ts before you publish your first
 pubDate: 2026-08-01
 ---
 
+import DescriptionList from "../../components/DescriptionList.astro";
+import Figure from "../../components/Figure.astro";
+
 `src/config.ts` holds the main details about your website. Change this file first so the site uses your name, URL, description, and social links.
 
 ## Start with these fields
 
-If you want to get started quickly, change:
+If you want to get started quickly, change these settings first:
 
-1. `url`
-2. `name`
-3. `description`
-4. `author`
-5. `ogImage` and `ogImageAlt`
-6. The links in `header` and `footer`
+<DescriptionList
+    items={[
+        {
+            label: "Production URL",
+            description: "Set the canonical origin used for metadata, the sitemap, the RSS feed, and generated URLs.",
+        },
+        {
+            label: "Site name",
+            description: "Set the brand name used in metadata, the footer, the RSS feed, and accessible labels.",
+        },
+        {
+            label: "Description",
+            description: "Write the site-wide summary used by the RSS feed and structured data.",
+        },
+        {
+            label: "Author",
+            description: "Add the person or organization shown in the footer and page information.",
+        },
+        {
+            label: "Sharing image",
+            description: "Replace the default social image and describe it with useful alternative text.",
+        },
+        {
+            label: "Navigation",
+            description: "Choose the internal and external links shown in the header and footer.",
+        },
+    ]}
+/>
 
 You can leave unused social links and analytics empty.
 
@@ -175,6 +200,20 @@ This is the default image shown when someone shares a regular page on your websi
 Blog posts use a title-based image generated automatically at `/og/blog/<post-id>.png` during the build, so this default is only their fallback if you remove that blog-specific behavior.
 
 Replace that file with your own 1200 × 630 PNG image. Keep the same filename and path for the easiest setup.
+
+<Figure
+    caption="The default 1200 × 630 social sharing image included with the starter."
+    credit="Bryan Hogan"
+    creditHref="https://bryanhogan.com"
+>
+    <img
+        src="/og-default.png"
+        alt="Astro Starter Template. Build an Astro page quickly. Built by Bryan Hogan."
+        width="1200"
+        height="630"
+        loading="lazy"
+    />
+</Figure>
 
 <details>
 

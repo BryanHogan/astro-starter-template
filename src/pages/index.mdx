@@ -9,9 +9,6 @@ import Hero from "../components/Hero.astro";
 import Button from "../components/Button.astro";
 import Card from "../components/Card.astro";
 import CardGrid from "../components/CardGrid.astro";
-import Callout from "../components/Callout.astro";
-import DescriptionList from "../components/DescriptionList.astro";
-import Figure from "../components/Figure.astro";
 import SectionTitle from "../components/SectionTitle.astro";
 import Steps from "../components/Steps.astro";
 import { Image } from "astro:assets";
@@ -177,74 +174,3 @@ Help support the time spent maintaining the template and making it better.
 
 </Card>
 </CardGrid>
-
-<DescriptionList
-    class="margin-top-2xl"
-    eyebrow="At a glance"
-    items={[
-        {
-            label: "Built on Astro",
-            description: "Generate fast static pages with Astro components and optional MDX content.",
-        },
-        {
-            label: "Write in Markdown",
-            description: "Create content with familiar Markdown syntax and import components whenever a page needs more.",
-        },
-        {
-            label: "Designed with tokens",
-            description: "Adjust semantic colors, spacing, typography, borders, and layout widths from one central system.",
-        },
-        {
-            label: "Ready for discovery",
-            description: "Canonical URLs, social metadata, structured data, a sitemap, and an RSS feed are included.",
-        },
-        {
-            label: "Ready to make it yours?",
-            description: "Jump to the three-step setup guide and create your site.",
-            href: "#get-started",
-        },
-    ]}
-/>
-
-<SectionTitle
-    as="h2"
-    class="margin-top-2xl"
-    eyebrow="Content components"
-    title="Give important content more context"
-/>
-
-<Callout
-    class="margin-top-l"
-    variant="info"
-    title="A useful default"
->
-
-Start with the included components and design tokens, then add only what your site actually needs.
-
-</Callout>
-
-<Figure
-    class="margin-top-l"
-    caption="Traffic moves through Gwanghwamun Square in Seoul beneath Bugaksan mountain."
->
-    <Image
-        src={heroImage}
-        alt=""
-        loading="lazy"
-    />
-</Figure>
-
-<Figure
-    class="site-width margin-top-l"
-    caption="The default social sharing image included with the starter."
-    credit="Bryan Hogan"
-    creditHref="https://bryanhogan.com"
->
-    <img
-        src="/og-default.png"
-        alt="Astro Starter Template. Build an Astro page quickly. Built by Bryan Hogan."
-        width="1200"
-        height="630"
-        loading="lazy"
-    />
-</Figure>
