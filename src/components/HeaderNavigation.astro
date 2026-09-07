@@ -25,6 +25,7 @@ const isExternal = (link: { readonly href: string; readonly external?: boolean }
             {navigationLinks.length > 0 && (
                 <Fragment>
                     <button
+                        type="button"
                         aria-label="Navigation menu"
                         aria-controls="primary-navigation"
                         aria-expanded="false"
@@ -41,7 +42,7 @@ const isExternal = (link: { readonly href: string; readonly external?: boolean }
                             class="close-icon"
                         />
                     </button>
-                    <nav id="primary-navigation" class="primary-navigation">
+                    <nav id="primary-navigation" class="primary-navigation" aria-label="Primary">
                         <ul role="list">
                             {
                                 navigationLinks.map((link) => {
@@ -147,7 +148,7 @@ const isExternal = (link: { readonly href: string; readonly external?: boolean }
     }
 
     @media only screen and (max-width: 47.999rem) {
-        .primary-navigation ul {
+        .primary-navigation {
             display: none;
         }
         .menu-toggle-button {
@@ -178,6 +179,8 @@ const isExternal = (link: { readonly href: string; readonly external?: boolean }
             right: 0;
             bottom: 0;
             width: 80%;
+            overflow-y: auto;
+            padding-block-end: var(--space-l);
             margin-left: auto;
             box-shadow: 0 0 0 100vmax hsl(0 0 0 / 0.7);
             background-color: var(--color-background);
@@ -193,48 +196,83 @@ const isExternal = (link: { readonly href: string; readonly external?: boolean }
 </style>
 
 <script>
-    function handleNavigationClick(event: MouseEvent) {
-        const navigationToggle = document.querySelector(
+    const desktopNavigation = window.matchMedia("(min-width: 48rem)");
+
+    // Query the current page so delegated handlers also work after Astro navigation.
+    function getNavigation() {
+        const toggle = document.querySelector<HTMLButtonElement>(
             '[aria-controls="primary-navigation"]',
-        ) as HTMLButtonElement | null;
-        const navigation = document.querySelector(
+        );
+        const navigation = document.querySelector<HTMLElement>(
             "#primary-navigation",
-        ) as HTMLElement | null;
-        const eventTarget = event.target;
+        );
 
-        if (
-            !navigationToggle ||
-            !navigation ||
-            !(eventTarget instanceof Node)
-        )
-            return;
+        return toggle && navigation ? { toggle, navigation } : null;
+    }
 
-        if (navigationToggle.contains(eventTarget)) {
-            const navigationOpened =
-                navigationToggle.getAttribute("aria-expanded");
-            navigationToggle.setAttribute(
-                "aria-expanded",
-                navigationOpened === "false" ? "true" : "false",
-            );
-            return;
+    function closeNavigation(restoreFocus = false) {
+        const menu = getNavigation();
+        if (!menu) return;
+
+        const shouldRestoreFocus =
+            !desktopNavigation.matches &&
+            (restoreFocus || menu.navigation.contains(document.activeElement));
+
+        menu.toggle.setAttribute("aria-expanded", "false");
+        if (shouldRestoreFocus) {
+            menu.toggle.focus();
         }
+    }
 
-        if (navigation.contains(eventTarget)) {
-            const targetElement =
-                eventTarget instanceof Element
-                    ? eventTarget
-                    : eventTarget.parentElement;
+    document.addEventListener("click", (event) => {
+        const menu = getNavigation();
+        const target = event.target;
+        if (!menu || !(target instanceof Element)) return;
 
-            if (targetElement?.closest("a")) {
-                navigationToggle.setAttribute("aria-expanded", "false");
+        if (menu.toggle.contains(target)) {
+            if (menu.toggle.getAttribute("aria-expanded") === "true") {
+                closeNavigation(true);
+            } else {
+                menu.toggle.setAttribute("aria-expanded", "true");
+                menu.toggle.focus();
             }
             return;
         }
 
-        if (!navigation.contains(eventTarget)) {
-            navigationToggle.setAttribute("aria-expanded", "false");
+        if (!menu.navigation.contains(target) || target.closest("a[href]")) {
+            closeNavigation();
         }
-    }
+    });
 
-    document.addEventListener("click", handleNavigationClick);
+    document.addEventListener("focusin", (event) => {
+        const menu = getNavigation();
+        const target = event.target;
+        if (!menu || !(target instanceof Node)) return;
+
+        // This is a disclosure: leaving it reveals the newly focused page content.
+        if (!menu.toggle.contains(target) && !menu.navigation.contains(target)) {
+            closeNavigation();
+        }
+    });
+
+    document.addEventListener("keydown", (event) => {
+        if (
+            event.key === "Escape" &&
+            !desktopNavigation.matches &&
+            getNavigation()?.toggle.getAttribute("aria-expanded") === "true"
+        ) {
+            event.preventDefault();
+            closeNavigation(true);
+        }
+    });
+
+    desktopNavigation.addEventListener("change", () => {
+        const menu = getNavigation();
+        if (!menu) return;
+
+        if (desktopNavigation.matches && document.activeElement === menu.toggle) {
+            menu.navigation.querySelector<HTMLAnchorElement>("a[href]")?.focus();
+        }
+        closeNavigation();
+    });
 </script>

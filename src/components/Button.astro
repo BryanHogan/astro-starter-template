@@ -5,6 +5,8 @@ import type { IconName } from "./Icons";
 interface Props {
     /** Link mode: renders an <a> with this href. Omit for action mode: renders a <button>. */
     href?: string;
+    /** Disabled links keep their accessible role and tab stop, but omit href. */
+    disabled?: boolean;
     /** Action mode only. */
     type?: "button" | "submit" | "reset";
     variant?: "primary" | "secondary" | "outline" | "ghost" | "danger";
@@ -18,6 +20,8 @@ interface Props {
 
 const {
     href,
+    disabled = false,
+    "aria-disabled": ariaDisabled,
     type = "button",
     variant = "primary",
     size,
@@ -28,12 +32,14 @@ const {
 } = Astro.props;
 
 const Tag = href ? "a" : "button";
+const isDisabled = disabled || ariaDisabled === true || ariaDisabled === "true";
 // This distinction is intentional: an omitted size may stretch with its parent layout,
 // while an explicit size opts into an intrinsic-width button.
 const visualSize = size ?? "medium";
 ---
 
 <Tag
+    {...rest}
     class:list={[
         "button",
         variant,
@@ -41,9 +47,12 @@ const visualSize = size ?? "medium";
         { "explicit-size": size !== undefined },
         className,
     ]}
-    href={href}
+    href={isDisabled ? undefined : href}
     type={href ? undefined : type}
-    {...rest}
+    disabled={!href && isDisabled ? true : undefined}
+    aria-disabled={isDisabled ? "true" : ariaDisabled}
+    role={href && isDisabled ? "link" : rest.role}
+    tabindex={href && isDisabled ? (rest.tabindex ?? 0) : rest.tabindex}
 >
     {iconLeft && <Icon name={iconLeft} size="1em" />}
     <slot />
@@ -70,7 +79,6 @@ const visualSize = size ?? "medium";
         &[aria-disabled="true"] {
             opacity: var(--opacity-strong);
             cursor: not-allowed;
-            pointer-events: none;
         }
     }
 
@@ -96,66 +104,60 @@ const visualSize = size ?? "medium";
         gap: var(--space-xs);
     }
 
-    /* Each variant sets color on hover/active too, so the global
-       a:hover / a:active link colors don't bleed into link-mode buttons. */
-    .primary {
+    /* Keep variant colors above prose link styles, including when disabled. */
+    .button.primary {
         background-color: var(--color-accent-300);
         color: var(--color-black);
-        &:hover,
-        &:focus-within {
+        &:not(:disabled, [aria-disabled="true"]):is(:hover, :focus-within) {
             background-color: var(--color-accent-200);
             color: var(--color-black);
         }
-        &:active {
+        &:not(:disabled, [aria-disabled="true"]):active {
             background-color: var(--color-accent-100);
             color: var(--color-black);
         }
     }
-    .secondary {
+    .button.secondary {
         background-color: var(--color-surface);
         color: var(--color-text-strong);
-        &:hover,
-        &:focus-within {
+        &:not(:disabled, [aria-disabled="true"]):is(:hover, :focus-within) {
             background-color: var(--color-surface-muted);
             color: var(--color-text-strong);
         }
-        &:active {
+        &:not(:disabled, [aria-disabled="true"]):active {
             color: var(--color-text-strong);
         }
     }
-    .outline {
+    .button.outline {
         border-color: var(--color-border);
         color: var(--color-text-strong);
-        &:hover,
-        &:focus-within {
+        &:not(:disabled, [aria-disabled="true"]):is(:hover, :focus-within) {
             border-color: var(--color-accent-300);
             background-color: var(--color-surface);
             color: var(--color-text-strong);
         }
-        &:active {
+        &:not(:disabled, [aria-disabled="true"]):active {
             color: var(--color-text-strong);
         }
     }
-    .ghost {
+    .button.ghost {
         color: var(--color-text-strong);
-        &:hover,
-        &:focus-within {
+        &:not(:disabled, [aria-disabled="true"]):is(:hover, :focus-within) {
             background-color: var(--color-surface);
             color: var(--color-text-strong);
         }
-        &:active {
+        &:not(:disabled, [aria-disabled="true"]):active {
             color: var(--color-text-strong);
         }
     }
-    .danger {
+    .button.danger {
         background-color: var(--color-red-600);
         color: var(--color-white);
-        &:hover,
-        &:focus-within {
+        &:not(:disabled, [aria-disabled="true"]):is(:hover, :focus-within) {
             background-color: var(--color-red-500);
             color: var(--color-white);
         }
-        &:active {
+        &:not(:disabled, [aria-disabled="true"]):active {
             background-color: var(--color-red-400);
             color: var(--color-white);
         }

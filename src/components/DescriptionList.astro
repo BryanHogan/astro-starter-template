@@ -66,7 +66,7 @@ const normalizedItems = items.map((item, index) => {
 <div {...rest} class:list={["description-list", className]}>
     {eyebrow && <p class="eyebrow">{eyebrow.trim()}</p>}
 
-    <ul class="description-list__items">
+    <ul class="description-list__items" role="list">
         {
             normalizedItems.map((item) => (
                 <li class="description-list__item">
