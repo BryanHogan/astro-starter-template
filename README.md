@@ -1,19 +1,19 @@
 # Astro Starter Template by Bryan Hogan
 
-This starter helps you make your first website.
+A free Astro starter template for good, fast and accessible websites you fully control.
 
-Write your content simply in Markdown or MDX, change the colors, text and other styling, then publish the finished site almost anywhere. You own the code and can change every part of it.
+Write your content simply in Markdown or MDX, change the colors, text and other styling, then publish the finished site anywhere. You own the code and can change every part of it.
 
 > This project contains the boilerplate I use for every website I build. You can use everything or just parts of it.
 
 ## Features
 
-- **Easily create pages:** You can create pages using simple markdown. Just add a `.mdx` file to `src/pages/`.
-- **A ready-to-use blog:** Add Markdown / MDX posts to `src/content/blog/`. They are automatically included in relevant lists, support optional update dates, and can be kept out of production builds with `draft: true`.
+- **Easily create pages:** You can create pages using simple Markdown. Just add a `.mdx` file to `src/pages/`.
+- **A ready-to-use blog:** Add Markdown or MDX posts to `src/content/blog/`. They are automatically included in relevant lists.
 - **Simple CSS base:** Change shared colors, fonts, and spacing in one file.
 - **Useful components:** Buttons, heroes, cards, icons, navigation, and more are included.
 - **Search and sharing basics:** Page titles, descriptions, structured data, and automatic blog social images are ready.
-- **Publishing basics:** The starter creates a sitemap, `robots.txt`, and a RSS feed.
+- **Publishing basics:** The starter creates a sitemap, `robots.txt`, and an RSS feed.
 - **Responsive and accessible defaults:** The layout works across all screen sizes and includes accessibility considerations.
 - **One settings file:** Change site details, social links, and everything you need in just one file: `src/config.ts`.
 
