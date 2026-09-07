@@ -1,14 +1,31 @@
 ---
 title: 'Markdown Style Guide'
-description: 'Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro.'
+description: 'How to write Markdown in this template, with syntax examples and their output.'
 pubDate: 2026-07-11
 ---
 
+This post shows how to write Markdown and what it looks like with this template's styles.
+
 ## Headings
 
-The post layout renders the title as `<h1>`, so post content should begin with `<h2>`.
+Start a line with `#` followed by a space to create a heading. Use `##` for a second-level heading, `###` for a third-level heading, and so on, up to six levels.
 
-The following HTML `<h1>`—`<h6>` elements represent six levels of section headings. `<h1>` is the highest section level while `<h6>` is the lowest.
+The template already uses the post title as `<h1>`, so start headings inside your post with `##`. This example shows all six levels.
+
+### Syntax
+
+```markdown
+# H1
+## H2
+### H3
+#### H4
+##### H5
+###### H6
+```
+
+### Output
+
+# H1
 
 ## H2
 
@@ -20,18 +37,60 @@ The following HTML `<h1>`—`<h6>` elements represent six levels of section head
 
 ###### H6
 
-## Paragraph
+## Paragraphs
 
-Xerum, quo qui aut unt expliquam qui dolut labo. Aque venitatiusda cum, voluptionse latur sitiae dolessi aut.
-
-Itatur? Quiatae cullecum rem ent aut odis in re eossequodi nonsequ idebis ne sapicia is sinveli squiatum, core et que aut hariosam ex eat.
-
-## Images
+Leave a blank line between paragraphs.
 
 ### Syntax
 
 ```markdown
-![Alt text](./full/or/relative/path/of/image)
+A paragraph can be a single sentence or a few sentences about the same thing.
+
+A blank line starts the next paragraph. You don't need any special symbols.
+```
+
+### Output
+
+A paragraph can be a single sentence or a few sentences about the same thing.
+
+A blank line starts the next paragraph. You don't need any special symbols.
+
+## Text formatting
+
+Use `**` around text for bold, `_` for italics, and backticks for inline code.
+
+### Syntax
+
+```markdown
+This is **bold**, this is _italic_, and this is a file name: `config.ts`.
+```
+
+### Output
+
+This is **bold**, this is _italic_, and this is a file name: `config.ts`.
+
+## Links
+
+Put the link text in square brackets and the destination in parentheses. A path starting with `/` links to a page on your own site.
+
+### Syntax
+
+```markdown
+Read the [about page](/about).
+```
+
+### Output
+
+Read the [about page](/about).
+
+## Images
+
+Images use the same syntax as links, with a `!` at the start. The text in square brackets is the alt text, a description for people who can't see the image. The path below is relative to this post's file.
+
+### Syntax
+
+```markdown
+![Traffic passing Gwanghwamun Square in Seoul](../../assets/images/Seoul-Image-900-900.png)
 ```
 
 ### Output
@@ -40,39 +99,43 @@ Itatur? Quiatae cullecum rem ent aut odis in re eossequodi nonsequ idebis ne sap
 
 ## Blockquotes
 
-The blockquote element represents content that is quoted from another source, optionally with a citation which must be within a `footer` or `cite` element, and optionally with in-line changes such as annotations and abbreviations.
+Start a line with `>` followed by a space to make it a blockquote. You can use Markdown formatting inside it too.
 
 ### Blockquote without attribution
 
 #### Syntax
 
 ```markdown
-> Tiam, ad mint andaepu dandae nostion secatur sequo quae.  
-> **Note** that you can use _Markdown syntax_ within a blockquote.
+> This is a blockquote with **bold text** inside it.
 ```
 
 #### Output
 
-> Tiam, ad mint andaepu dandae nostion secatur sequo quae.  
-> **Note** that you can use _Markdown syntax_ within a blockquote.
+> This is a blockquote with **bold text** inside it.
 
 ### Blockquote with attribution
+
+For a quote from someone else, include their name and a source. Here, `<br />` puts the name on a new line. `[^1]` links to a footnote, with the source defined on the line starting with `[^1]:`.
 
 #### Syntax
 
 ```markdown
 > Don't communicate by sharing memory, share memory by communicating.<br />
-> — <cite>Rob Pike[^1]</cite>
+> Rob Pike[^1]
+
+[^1]: From Rob Pike's [talk](https://www.youtube.com/watch?v=PAAkCSZUG1c) at Gopherfest, November 18, 2015.
 ```
 
 #### Output
 
 > Don't communicate by sharing memory, share memory by communicating.<br />
-> — <cite>Rob Pike[^1]</cite>
+> Rob Pike[^1]
 
-[^1]: The above quote is excerpted from Rob Pike's [talk](https://www.youtube.com/watch?v=PAAkCSZUG1c) during Gopherfest, November 18, 2015.
+[^1]: From Rob Pike's [talk](https://www.youtube.com/watch?v=PAAkCSZUG1c) at Gopherfest, November 18, 2015.
 
 ## Tables
+
+Separate columns with `|` and add a row of dashes below the column names.
 
 ### Syntax
 
@@ -88,45 +151,33 @@ The blockquote element represents content that is quoted from another source, op
 | --------- | -------- | ------ |
 | _italics_ | **bold** | `code` |
 
-## Code Blocks
+## Code blocks
+
+Wrap code in three backticks on separate lines. Add a language name after the opening backticks for syntax highlighting, e.g. `html` or `javascript`.
 
 ### Syntax
 
-we can use 3 backticks ``` in new line and write snippet and close with 3 backticks on new line and to highlight language specific syntax, write one word of language name after first 3 backticks, for eg. html, javascript, css, markdown, typescript, txt, bash
-
 ````markdown
 ```html
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Example HTML5 Document</title>
-  </head>
-  <body>
-    <p>Test</p>
-  </body>
-</html>
+<article>
+  <p>A short post.</p>
+</article>
 ```
 ````
 
 ### Output
 
 ```html
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Example HTML5 Document</title>
-  </head>
-  <body>
-    <p>Test</p>
-  </body>
-</html>
+<article>
+  <p>A short post.</p>
+</article>
 ```
 
-## List Types
+## Lists
 
-### Ordered List
+### Ordered list
+
+Start each item with a number, a period, and a space.
 
 #### Syntax
 
@@ -142,7 +193,9 @@ we can use 3 backticks ``` in new line and write snippet and close with 3 backti
 2. Second item
 3. Third item
 
-### Unordered List
+### Unordered list
+
+Use `-` followed by a space for a bullet point.
 
 #### Syntax
 
@@ -160,6 +213,8 @@ we can use 3 backticks ``` in new line and write snippet and close with 3 backti
 
 ### Nested list
 
+Indent items to put them inside another list item. This example uses two spaces before each nested bullet.
+
 #### Syntax
 
 ```markdown
@@ -182,7 +237,9 @@ we can use 3 backticks ``` in new line and write snippet and close with 3 backti
   - Milk
   - Cheese
 
-## Other Elements — abbr, sub, sup, kbd, mark
+## Inline HTML
+
+You can also use HTML tags in your posts. `<abbr>` gives an abbreviation a full name, `<sub>` and `<sup>` place text below or above the baseline, `<kbd>` marks keyboard input, and `<mark>` highlights text.
 
 ### Syntax
 
@@ -193,9 +250,9 @@ H<sub>2</sub>O
 
 X<sup>n</sup> + Y<sup>n</sup> = Z<sup>n</sup>
 
-Press <kbd>CTRL</kbd> + <kbd>ALT</kbd> + <kbd>Delete</kbd> to end the session.
+Press <kbd>Ctrl</kbd> + <kbd>C</kbd> to copy the selected text.
 
-Most <mark>salamanders</mark> are nocturnal, and hunt for insects, worms, and other small creatures.
+The <mark>highlighted words</mark> stand out from the rest of this sentence.
 ```
 
 ### Output
@@ -206,6 +263,6 @@ H<sub>2</sub>O
 
 X<sup>n</sup> + Y<sup>n</sup> = Z<sup>n</sup>
 
-Press <kbd>CTRL</kbd> + <kbd>ALT</kbd> + <kbd>Delete</kbd> to end the session.
+Press <kbd>Ctrl</kbd> + <kbd>C</kbd> to copy the selected text.
 
-Most <mark>salamanders</mark> are nocturnal, and hunt for insects, worms, and other small creatures.
+The <mark>highlighted words</mark> stand out from the rest of this sentence.
