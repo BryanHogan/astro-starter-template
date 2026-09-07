@@ -43,7 +43,7 @@ ul[role="list"] {
 }
 
 :has(:target) {
-    scroll-padding-top: var(--navbar-height)
+    scroll-padding-top: calc(var(--navbar-height) + var(--space-xs));
 }
 
 @media (prefers-reduced-motion: no-preference) {
