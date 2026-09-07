@@ -45,7 +45,11 @@ const wasUpdated = updateDate.getTime() !== pubDate.getTime();
     articlePublished={pubDate}
     articleModified={updateDate}
 >
-    <main class="base-layout base-layout-content height-smart-fill-screen">
+    <main
+        id="main-content"
+        tabindex="-1"
+        class="base-layout base-layout-content height-smart-fill-screen"
+    >
         <article class="blog-post">
             <header class="blog-post-header main-header-element">
                 <nav class="blog-post-navigation" aria-label="Blog navigation">

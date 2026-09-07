@@ -34,8 +34,31 @@ interface Props {
         </Head>
     </head>
     <body>
+        <a class="skip-link" href="#main-content">Skip to main content</a>
         <HeaderNavigation />
         <slot />
         <Footer />
     </body>
 </html>
+
+<style>
+    .skip-link {
+        position: fixed;
+        inset-block-start: var(--space-xs);
+        inset-inline-start: var(--space-xs);
+        z-index: var(--z-modal);
+        padding: var(--space-s) var(--space-m);
+        color: var(--color-text-strong);
+        background-color: var(--color-background);
+        border-radius: var(--border-radius-s);
+    }
+
+    .skip-link:not(:focus) {
+        clip-path: inset(50%);
+        inline-size: 1px;
+        block-size: 1px;
+        padding: 0;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+</style>

@@ -29,6 +29,8 @@ const hasTopSpacing = topSpacing !== false;
 <BaseLayout {...baseLayoutProps}>
     <slot name="head" slot="head" />
     <main
+        id="main-content"
+        tabindex="-1"
         class:list={[
             "base-layout base-layout-content markdown-container height-smart-fill-screen padding-bottom-2xl",
             { "padding-top-xl": hasTopSpacing },
