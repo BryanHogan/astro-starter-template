@@ -54,6 +54,37 @@ The beginning part between the `---` lines is called frontmatter:
 
 Imports go below the frontmatter and before the component is used.
 
+## Create an Astro page
+
+This template allows you to create all your pages using Markdown / `.mdx`.
+
+<details>
+
+<summary>If, for some reason, you do want to create pages using `.astro` files you can:</summary>
+
+For a custom `.astro` page, wrap the content in `BaseLayout` and provide one main element with `id="main-content"` and `tabindex="-1"`:
+
+```astro
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Services" description="Learn about the services I offer.">
+    <main
+        id="main-content"
+        tabindex="-1"
+        class="base-layout base-layout-content height-smart-fill-screen padding-top-xl padding-bottom-2xl"
+    >
+        <h1>Services</h1>
+        <p>I help people create simple and useful websites.</p>
+    </main>
+</BaseLayout>
+```
+
+The shared skip link targets `#main-content`. The negative tabindex lets the main element receive focus without adding it to the normal Tab order. MDX pages using `PageLayout` and blog posts using `BlogPostLayout` already receive this main element from their layouts; do not add another one.
+
+</details>
+
 ## Create a blog post
 
 Regular pages go in `src/pages/`. Blog posts go in `src/content/blog/`.
