@@ -13,13 +13,14 @@ import SectionTitle from "../components/SectionTitle.astro";
 import Steps from "../components/Steps.astro";
 import { Image } from "astro:assets";
 import heroImage from "../assets/images/Seoul-Image-900-900.png";
+import Icon from "../components/Icon.astro";
 
 <Hero
     heading="The simplest way to build"
     headingHighlight="your high-quality website."
     headingId="home-hero-title"
     eyebrow="Fast, accessible and SEO optimized"
-    description="A free Astro starter template with everything you need to create an excellent website, write it in Markdown, and make it completely yours."
+    description="A free Astro starter template with everything you need to create a great website. Semantically correct, accessible, well designed, scalable , performant and without bloat."
 >
     <Fragment slot="actions">
         <Button href="#get-started" size="large" iconRight="down-caret">Create your site</Button>
@@ -46,11 +47,11 @@ import heroImage from "../assets/images/Seoul-Image-900-900.png";
     title="A simple way to make your website"
 />
 
-This is a starting point for creating a website you fully control. You write in Markdown, the pages are fast and performant, accessibility is built in, and the whole project is free.
+This Starter Template provides the complete base for creating a good website which you fully control. You write in Markdown, the resulting pages are performant, accessible and designed following actually modern design principles. The whole project is free and without any unnecessary dependencies.
 
-Clone the project, add your details to `src/config.ts`, write your content, and host the generated static site. The setup is simple, and static hosting can be free.
+The setup is simple. Clone the project, add your details to [`src/config.ts`](/blog/customizing-the-design), write your content, and host the generated static site.
 
-Use it as it is, change every part of it, or take only what you need. Make the website you want and, more importantly, one you love using.
+You can use the whole project as one complete package, or take only specific things you need for your own web projects.
 
 </section>
 
@@ -58,7 +59,7 @@ Use it as it is, change every part of it, or take only what you need. Make the w
     as="h2"
     class="margin-top-2xl"
     eyebrow="Why is it cool?"
-    title="The useful parts are already here"
+    title="Things this starter provides"
 />
 
 The template handles the foundation, while keeping you in control of the content, code, and design.
@@ -66,22 +67,26 @@ The template handles the foundation, while keeping you in control of the content
 <CardGrid setWidth="large" columns={2} class="margin-top-l">
 <Card heading="h3" title="You are in control" icon="padlock">
 
-The code, content, and finished website belong to you. Change anything, host it anywhere, and move it whenever you want.
+The code, content, and finished website belong to you. Change anything, host it anywhere, move it whenever you want.
 
 </Card>
 <Card heading="h3" title="Write in Markdown" icon="pencil">
 
 Markdown is easy to write, works in many different apps, and is simple to move elsewhere. It is also a format AI tools understand and work with well.
 
+See the [markdown style guide](/blog/markdown-style-guide) on how to write markdown.
+
 </Card>
 <Card heading="h3" title="Fast and performant" icon="rocket">
 
-Astro generates static pages and sends very little JavaScript to the browser by default, so your website stays quick.
+The static pages use very little JavaScript by default. Images and other content is compressed. No unnecessary libraries or other content is used, so it won't slow the site down. All so your website stays quick.
 
 </Card>
-<Card heading="h3" title="Accessible by default" icon="approve-check-circle">
+<Card heading="h3" title="Accessible" icon="approve-check-circle">
 
-The structure, navigation, focus states, and components give you an accessible starting point you can build on.
+The project follows modern web development practices and adheres to the Web Content Accessibility Guidelines (WCAG).
+
+So everything including structure, navigation, focus states, and components are built with accessibility in mind.
 
 </Card>
 <Card heading="h3" title="Free to use" icon="heart">
@@ -89,19 +94,23 @@ The structure, navigation, focus states, and components give you an accessible s
 The project is free, and you can publish a static website using a free hosting plan from several providers.
 
 </Card>
-<Card heading="h3" title="CSS that can grow" icon="setting">
+<Card heading="h3" title="Clean scalable plain CSS styling" icon="setting">
 
-A small token-based CSS system gives you consistent colors, spacing, typography, layouts, and utilities without adding framework bloat.
+A simple CSS system providing you consistent colors, spacing, typography, layouts, and utilities without adding framework bloat. Making it easy to define one design system. Scalable into anything you need.
+
+Customize the look through one simple [token-based var.css file](/blog/customizing-the-design).
 
 </Card>
 <Card heading="h3" title="Components included" icon="puzzle">
 
-Headers, footers, heroes, buttons, cards, icons, and section titles are ready to use and easy to adjust.
+Headers, footers, heroes, buttons, cards, icons, callouts, link groups, section titles with eyebrows and more are ready to use and easy to adjust. See the [component showcase](/blog/component-showcase) for more information.
 
 </Card>
 <Card heading="h3" title="SEO optimized" icon="magnifier">
 
-Canonical URLs, social metadata, structured data, and a sitemap help search engines understand and present your website. An RSS feed also makes it easy for readers to follow new posts.
+SEO optimized, including on-page and technical SEO. Correct semantic usage of elements, optimized components, canonical URLs, social metadata, structured data, and a sitemap to make your website show up on search engines and in AI chats.
+
+Plus a RSS feed also makes it easy for readers to follow new posts.
 
 </Card>
 </CardGrid>
@@ -110,8 +119,8 @@ Canonical URLs, social metadata, structured data, and a sitemap help search engi
     as="h2"
     id="get-started"
     class="padding-top-2xl"
-    eyebrow="How to use it"
-    title="Three steps, then make it your own"
+    eyebrow="Get started"
+    title="How to use this starter"
 />
 
 <Steps class="margin-top-l">
@@ -137,8 +146,8 @@ npm create @bryanhogan/web-starter@latest
 
 <SectionTitle
     as="h2"
-    eyebrow="Where it fits"
-    title="Use it for almost anything"
+    eyebrow="A flexible website template"
+    title="Use it for any web project"
 />
 
 Build a **blog**, **personal website**, **landing page**, **company website**, or something completely different. Start small and add more only when you need it.
@@ -152,7 +161,7 @@ Build a **blog**, **personal website**, **landing page**, **company website**, o
     title="Create the website you want"
 />
 
-Use the starter for your next website. If it saves you time and you want to help me keep improving it, you can also support the project financially.
+Use the starter for your next website. GitHub stars <Icon variant="star"/> are also appreciated.  If it saves you time and you want to help me keep improving it, you can also support the project financially.
 
 <CardGrid class="margin-top-l">
 <Card heading="h3" title="Use the project" icon="github">
