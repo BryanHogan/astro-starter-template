@@ -1,0 +1,107 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface InfoItem {
+    label: string;
+    content: string | number;
+}
+
+type Props = Omit<HTMLAttributes<"dl">, "class:list"> & {
+    items: InfoItem[];
+};
+
+const {
+    items,
+    class: className,
+    ...rest
+} = Astro.props;
+
+if (!Array.isArray(items) || items.length === 0) {
+    throw new Error("InfoBar requires at least one item.");
+}
+
+const normalizedItems = items.map((item, index) => {
+    if (typeof item?.label !== "string" || !item.label.trim()) {
+        throw new Error(
+            `InfoBar item ${index + 1} requires a non-empty \`label\`.`,
+        );
+    }
+
+    const hasValidStringContent =
+        typeof item.content === "string" && Boolean(item.content.trim());
+    const hasValidNumberContent =
+        typeof item.content === "number" && Number.isFinite(item.content);
+
+    if (!hasValidStringContent && !hasValidNumberContent) {
+        throw new Error(
+            `InfoBar item ${index + 1} requires a non-empty string or finite number \`content\`.`,
+        );
+    }
+
+    return {
+        label: item.label.trim(),
+        content: item.content,
+    };
+});
+---
+
+<dl {...rest} class:list={["info-bar", className]}>
+    {
+        normalizedItems.map((item) => (
+            <div class="info-bar__item">
+                <dt class="info-bar__label">{item.label}</dt>
+                <dd class="info-bar__content">{item.content}</dd>
+            </div>
+        ))
+    }
+</dl>
+
+<style>
+    .info-bar {
+        --info-bar-min-item-width: 10rem;
+
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--border-width-s);
+        overflow: hidden;
+        width: 100%;
+        padding: 0;
+        background-color: var(--color-border);
+        border: var(--border-width-s) solid var(--color-border);
+        border-radius: var(--border-radius-m);
+        box-shadow: var(--box-shadow-s);
+    }
+
+    .info-bar__item {
+        display: grid;
+        flex: 1 1 var(--info-bar-min-item-width);
+        align-content: start;
+        min-width: min(100%, var(--info-bar-min-item-width));
+        gap: var(--space-2xs);
+        padding: var(--space-m);
+        background-color: var(--color-surface);
+    }
+
+    .info-bar__label,
+    .info-bar__content {
+        min-width: 0;
+        overflow-wrap: anywhere;
+    }
+
+    .info-bar__label {
+        color: var(--color-text-muted);
+        font-size: var(--font-size-s);
+        font-weight: var(--font-weight-semi-bold);
+        line-height: var(--font-line-height);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+    }
+
+    .info-bar__content {
+        margin: 0;
+        color: var(--color-text-strong);
+        font-size: var(--font-size-xl);
+        font-weight: var(--font-weight-semi-bold);
+        line-height: var(--font-line-height-heading);
+    }
+</style>

@@ -15,6 +15,7 @@ import Callout from "../../components/Callout.astro";
 import DescriptionList from "../../components/DescriptionList.astro";
 import Figure from "../../components/Figure.astro";
 import Icon from "../../components/Icon.astro";
+import InfoBar from "../../components/InfoBar.astro";
 import SectionTitle from "../../components/SectionTitle.astro";
 import { Image } from "astro:assets";
 import showcaseImage from "../../assets/images/Seoul-Image-900-900.png";
@@ -147,6 +148,46 @@ Live example:
 />
 
 Each item requires a non-empty `label` and `description`. Add an `href` to make an individual row a link. The optional `eyebrow` labels the whole group.
+
+## InfoBar
+
+Use InfoBar to make a compact set of facts or metrics easy to scan.
+
+```mdx
+import InfoBar from "../components/InfoBar.astro";
+
+<InfoBar
+    items={[
+        { label: "Downloads", content: "45.2K" },
+        { label: "Weekly users", content: "3,800" },
+        { label: "Server status", content: "Online" },
+    ]}
+/>
+```
+
+Live example:
+
+<InfoBar
+    items={[
+        { label: "Downloads", content: "45.2K" },
+        { label: "Weekly users", content: "3,800" },
+        { label: "Server status", content: "Online" },
+    ]}
+/>
+
+Each item requires a non-empty `label` and non-empty string or finite number `content`. InfoBar automatically fits as many items as its container allows, then wraps the remaining items into evenly filled rows.
+
+Items use a minimum width of `10rem`. Override it for a particular bar with the `--info-bar-min-item-width` custom property:
+
+```mdx
+<InfoBar
+    style="--info-bar-min-item-width: 12rem;"
+    items={[
+        { label: "Plan", content: "Professional" },
+        { label: "Renewal", content: "September 30" },
+    ]}
+/>
+```
 
 ## Figure
 

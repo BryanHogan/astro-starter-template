@@ -14,6 +14,7 @@ import Steps from "../components/Steps.astro";
 import { Image } from "astro:assets";
 import heroImage from "../assets/images/Seoul-Image-900-900.png";
 import Icon from "../components/Icon.astro";
+import InfoBar from "../components/InfoBar.astro";
 
 <Hero
     heading="The simplest way to build"
@@ -152,6 +153,15 @@ npm create @bryanhogan/web-starter@latest
 
 Build a **blog**, **personal website**, **landing page**, **company website**, or something completely different. Start small and add more only when you need it.
 
+<InfoBar
+    class="margin-top-l"
+    items={[
+        { label: "Perfect for", content: "Personal sites" },
+        { label: "Perfect for", content: "Landing pages" },
+        { label: "Perfect for", content: "Company websites" }
+    ]}
+/>
+
 </section>
 
 <SectionTitle
@@ -161,7 +171,7 @@ Build a **blog**, **personal website**, **landing page**, **company website**, o
     title="Create the website you want"
 />
 
-Use the starter for your next website. GitHub stars <Icon variant="star"/> are also appreciated.  If it saves you time and you want to help me keep improving it, you can also support the project financially.
+Use the starter for your next website. GitHub stars <Icon name="star" /> are also appreciated.  If it saves you time and you want to help me keep improving it, you can also support the project financially.
 
 <CardGrid class="margin-top-l">
 <Card heading="h3" title="Use the project" icon="github">
