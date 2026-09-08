@@ -332,18 +332,20 @@ import Icon from "../components/Icon.astro";
 
 Live example: <Icon name="rocket" />
 
-The icon uses the current text color and is `1rem` by default. Change its size or color when needed:
+The icon sits inline with text, inherits its color, and defaults to `1em` so it scales with the surrounding font size. Change its size or color when needed:
 
 ```mdx
 <Icon
     name="information"
     label="Information"
-    size="1.5rem"
+    size="var(--icon-size-l)"
     color="var(--color-accent-300)"
 />
 ```
 
-<Icon name="information" label="Information" size="1.5rem" color="var(--color-accent-300)" />
+<Icon name="information" label="Information" size="var(--icon-size-l)" color="var(--color-accent-300)" />
+
+For consistent fixed sizes, use the tokens in `src/styles/var.css`: `--icon-size-s` (`1rem`), `--icon-size-m` (`1.25rem`), or `--icon-size-l` (`1.5rem`). Pass a token through `size` as shown above; the default `1em` follows text size instead.
 
 If nearby text already explains the icon, leave out `label`. The icon will be hidden from screen readers. Add a short `label` when the icon has meaning on its own.
 
@@ -355,7 +357,7 @@ If nearby text already explains the icon, leave out `label`. The icon will be hi
 | --- | --- |
 | `name` | Required name from `Icons.ts`. |
 | `label` | Accessible text for an icon with meaning. |
-| `size` | A CSS size such as `1.5rem` or `1em`. |
+| `size` | A CSS size such as `var(--icon-size-l)` or `1em`. Defaults to `1em`. |
 | `color` | A CSS color or design token. |
 | `class` | An extra CSS class. |
 

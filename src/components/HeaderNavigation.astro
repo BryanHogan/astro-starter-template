@@ -33,12 +33,12 @@ const isExternal = (link: { readonly href: string; readonly external?: boolean }
                     >
                         <Icon
                             name="bars"
-                            size="1.5rem"
+                            size="var(--icon-size-l)"
                             class="hamburger-icon"
                         />
                         <Icon
                             name="close"
-                            size="1.5rem"
+                            size="var(--icon-size-l)"
                             class="close-icon"
                         />
                     </button>
@@ -160,6 +160,9 @@ const isExternal = (link: { readonly href: string; readonly external?: boolean }
             padding: 0.5rem 0 0.5rem 0.5rem;
             border: 0;
             cursor: pointer;
+            .hamburger-icon {
+                display: block;
+            }
             .close-icon {
                 display: none;
             }

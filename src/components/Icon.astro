@@ -9,7 +9,7 @@ interface Props {
 	class?: string;
 }
 
-const { name, label, size = '1rem', color } = Astro.props;
+const { name, label, size = '1em', color } = Astro.props;
 const a11yAttributes = label ? ({ 'aria-label': label } as const) : ({ 'aria-hidden': 'true' } as const);
 ---
 
@@ -25,8 +25,10 @@ const a11yAttributes = label ? ({ 'aria-label': label } as const) : ({ 'aria-hid
 
 <style define:vars={{ 'icon-color': color, 'icon-size': size }}>
 	svg {
+		display: inline-block;
+		vertical-align: -0.125em;
 		color: var(--icon-color, currentColor);
-		font-size: var(--icon-size, 1rem);
+		font-size: var(--icon-size, 1em);
 		width: 1em;
 		height: 1em;
 	}
