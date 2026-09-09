@@ -23,15 +23,15 @@ Write your content simply in Markdown or MDX, change the colors, text and other 
 
 <details>
 
-<summary>For now consider using this explanation:</summary>
+<summary>Setup explanation:</summary>
 
 ### Prerequisites
 
 Before you begin, install:
 
-- [Node.js](https://nodejs.org/) 22.12.0 or newer. Check with `node --version`.
-- npm, which is included with Node.js. Check with `npm --version`.
+- [Node.js](https://nodejs.org/) 22.12.0 or newer. Check with `node --version`. You will also need npm, which is included with Node.js.
 - [Git](https://git-scm.com/)
+- A way to edit your files, e.g. [Visual Studio Code](https://code.visualstudio.com/) or [Zed](https://zed.dev/).
 
 ### 1. Create the project
 
@@ -48,13 +48,11 @@ The command downloads and runs the project generator; you do not need to clone t
 3. Whether to install dependencies with npm
 4. Whether to initialize a Git repository
 
-The two yes-or-no choices default to yes. The destination must be new or empty because the generator does not overwrite existing files. The blog, its example posts, `AGENTS.md`, and `CLAUDE.md` are always included. If the production URL is left blank, the generator uses `https://example.com` as a placeholder.
-
-When setup finishes, follow the commands shown in the terminal to enter the project directory and start Astro. Your site will normally be available at `http://localhost:4321`.
+When setup finishes, follow the commands shown in the terminal to enter the project directory and start Astro. Your site will local site using `npm run dev` be available at `http://localhost:4321`.
 
 <details>
 
-<summary>Command-line options and non-interactive setup</summary>
+<summary>Command-line options and non-interactive setup (totally optional)</summary>
 
 You can provide the destination directory in the command. For example, this creates `my-website` inside the current directory and accepts all default answers:
 
@@ -83,25 +81,11 @@ If you chose not to install dependencies during setup, run `npm install` before 
 
 </details>
 
-<details>
-
-<summary>Alternative: clone the repository directly</summary>
-
-Cloning gives you the promotional site exactly as it appears in this repository. It does not ask setup questions or replace its content with the neutral starter content produced by the generator.
-
-```bash
-git clone https://github.com/BryanHogan/astro-starter-template.git
-cd astro-starter-template
-npm install
-```
-
-If you downloaded a ZIP, extract it, open a terminal in the extracted directory, and run `npm install`.
-
-</details>
-
 ### 2. Review your site details
 
-The guided setup writes the essential values to `src/config.ts`. Analytics stays disabled and social profiles stay empty until you configure them. Review the navigation, social links, analytics, and social image settings before publishing.
+The guided setup writes the basic information to `src/config.ts`.
+
+You might want to add your social media profile links and other content such as a analytics link to the `config.ts` file. Review the navigation, social links, and social image settings before publishing.
 
 Also replace the example assets in `public/`, especially `favicon.svg` and `og-default.png`, when you are ready to use your own branding. The default social image is used by regular pages; blog posts generate title-based images automatically during the build.
 
@@ -128,23 +112,19 @@ If port 4321 is already in use, Astro selects another port; use the exact URL pr
 
 ### 5. Build and preview the production site
 
+There are many places where you can host your new static site for free, e.g. [Cloudflare](https://www.cloudflare.com/).
+
 ```bash
 npm run build
 npm run preview
 ```
 
-The finished site is placed in `dist/`. The preview command lets you check it before publishing.
-
-Each blog post also generates a 1200 × 630 social image at `dist/og/blog/<post-id>.png`. These files are build output rather than source assets, so they do not need to be added to `public/` or committed to Git.
-
 </details>
-
-<details>
-<summary>
 
 ## Commands
 
-</summary>
+<details>
+<summary>Commands for this project</summary>
 
 | Command | Purpose |
 | --- | --- |
@@ -166,21 +146,32 @@ Each blog post also generates a 1200 × 630 social image at `dist/og/blog/<post-
 You can use the entire project or take only the pieces you need, such as the styles, layouts, header, footer, or individual components.
 
 <details>
-
-<summary>How the project is put together</summary>
+<summary>About MDX support</summary>
 
 ### MDX support
 
 The [Astro MDX integration](https://docs.astro.build/en/guides/integrations-guide/mdx/) lets you use Astro components inside Markdown-like pages.
 
-<details>
-<summary>To remove MDX support:</summary>
+To remove MDX support:
 
 1. Convert or remove every `.mdx` page and blog post.
 2. Run `npm uninstall @astrojs/mdx`.
 3. Remove the `mdx()` integration from `astro.config.mjs`.
 
 </details>
+
+
+<details>
+<summary>About the automatically generated blog social preview images</summary>
+
+### The automatically generated blog social preview images
+
+Each blog post also generates a 1200 × 630 social image at `dist/og/blog/<post-id>.png`. These files are build output rather than source assets, so they do not need to be added to `public/` or committed to Git.
+
+</details>
+
+<details>
+<summary>Details on the CSS setup</summary>
 
 ### CSS setup
 
@@ -199,8 +190,9 @@ For more background, see the [Clean Web Dev Guide](https://webdev.bryanhogan.com
 </details>
 
 <details>
-
 <summary>Project folder guide</summary>
+
+### Project folder guide
 
 ```text
 src/
