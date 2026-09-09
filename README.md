@@ -48,7 +48,7 @@ The command downloads and runs the project generator; you do not need to clone t
 3. Whether to install dependencies with npm
 4. Whether to initialize a Git repository
 
-When setup finishes, follow the commands shown in the terminal to enter the project directory and start Astro. Your site will local site using `npm run dev` be available at `http://localhost:4321`.
+When setup finishes, follow the commands shown in the terminal to enter the project directory and start Astro. Your local site will be available at `http://localhost:4321` (after using `npm run dev`).
 
 <details>
 
@@ -85,7 +85,7 @@ If you chose not to install dependencies during setup, run `npm install` before 
 
 The guided setup writes the basic information to `src/config.ts`.
 
-You might want to add your social media profile links and other content such as a analytics link to the `config.ts` file. Review the navigation, social links, and social image settings before publishing.
+You might want to add your social media profile links and other content such as an analytic link to the `config.ts` file. Review the navigation, social links, and social image settings before publishing.
 
 Also replace the example assets in `public/`, especially `favicon.svg` and `og-default.png`, when you are ready to use your own branding. The default social image is used by regular pages; blog posts generate title-based images automatically during the build.
 
@@ -211,7 +211,7 @@ public/                  Static assets copied as-is
 
 ## Roadmap
 
-- Add deployment guides for common static hosting providers. Video set up guide.
+- Add deployment guides for common static hosting providers. And make a Video setup guide.
 
 
 ## Resources and credits

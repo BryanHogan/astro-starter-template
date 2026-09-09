@@ -32,7 +32,15 @@ Before publishing, review `src/config.ts` and replace the placeholder production
 
 Blog posts require `title`, `description`, and `pubDate` in their frontmatter. You can also set `updateDate`, which defaults to `pubDate`, or set `draft: true` to keep a post available during development but exclude its page, listing entry, RSS entry, and social image from production builds.
 
-Generated blog social images are written to `dist/og/blog/` during a production build. Keep `public/og-default.png` as the fallback image for regular pages.
+## Resources
+
+- [Bryan Web Starter website](https://starter.bryanhogan.com/)
+- [GitHub repository](https://github.com/BryanHogan/astro-starter-template)
+- [How to configure `src/config.ts`](https://starter.bryanhogan.com/blog/how-to-configure-config.ts)
+- [How to create Astro and MDX pages](https://starter.bryanhogan.com/blog/how-to-create-a-new-page)
+- [Customizing the design](https://starter.bryanhogan.com/blog/customizing-the-design)
+- [Component showcase](https://starter.bryanhogan.com/blog/component-showcase)
+- [Markdown style guide](https://starter.bryanhogan.com/blog/markdown-style-guide)
 
 ## License
 
