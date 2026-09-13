@@ -93,7 +93,7 @@
   max-width: var(--content-max-width);
 }
 
-
+/* Using "!important" is correct here, this is a utility and only used when you explicitly want the override, see https://webdev.bryanhogan.com/css/utility-classes/ for more information. */
 .margin-top-3xl { margin-top: var(--space-3xl) !important; }
 .margin-top-2xl { margin-top: var(--space-2xl) !important; }
 .margin-top-xl { margin-top: var(--space-xl) !important; }
