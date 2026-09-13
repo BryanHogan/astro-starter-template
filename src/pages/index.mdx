@@ -51,7 +51,9 @@ import InfoBar from "../components/InfoBar.astro";
     title="A simple way to make your website"
 />
 
-This Starter Template provides the complete base for creating a good website which you fully control. You write in Markdown, the resulting pages are performant, accessible and designed following actually modern design principles. The whole project is free and without any unnecessary dependencies.
+Everything you see on this website is built using this starter template using all default settings.
+
+This Starter Template provides the **complete base for creating a good website which you fully control**. You write in Markdown, the resulting pages are performant, accessible and designed following actually modern design principles. The whole project is free and without any unnecessary dependencies.
 
 The setup is simple. Clone the project, add your details to [`src/config.ts`](/blog/customizing-the-design), write your content, and host the generated static site.
 
@@ -118,6 +120,29 @@ Plus a RSS feed also makes it easy for readers to follow new posts.
 
 </Card>
 </CardGrid>
+
+<SectionTitle
+    as="h2"
+    id="tested-quality"
+    class="padding-top-2xl"
+    eyebrow="Everything is"
+    title="High-quality and tested"
+/>
+
+This site scored 100 in all four Google Lighthouse Test categories.
+
+<InfoBar
+    aria-label="Google Lighthouse scores"
+    items={[
+        { label: "Performance", content: "100" },
+        { label: "Accessibility", content: "100" },
+        { label: "Best Practices", content: "100" },
+        { label: "SEO", content: "100" }
+    ]}
+/>
+
+0ms total blocking time, 0 cumulative layout shift, 0.5s speed index, 0.5s for first contentful paint and 0.5s for large contentful paint. The size of this landing page is only 103KB. Giving you top ~1% performance.  
+<small>Test results from [WebPageTest](https://www.catchpoint.com/webpagetest/results?publicurl=https%3A%2F%2Fpublic.catchpoint.com%2FUI%2FEntry%2FWPTITP%2FARJY-D-E-B2ADljRjfESn0TkAA-N)</small>
 
 <SectionTitle
     as="h2"
