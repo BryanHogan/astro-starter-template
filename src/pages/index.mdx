@@ -6,6 +6,7 @@ topSpacing: false
 ---
 
 import Hero from "../components/Hero.astro";
+import AnimatedBackground from "../components/AnimatedBackground.astro";
 import Button from "../components/Button.astro";
 import Card from "../components/Card.astro";
 import CardGrid from "../components/CardGrid.astro";
@@ -16,6 +17,7 @@ import heroImage from "../assets/images/Seoul-Image-900-900.png";
 import Icon from "../components/Icon.astro";
 import InfoBar from "../components/InfoBar.astro";
 
+<AnimatedBackground>
 <Hero
     heading="The simplest way to build"
     headingHighlight="your high-quality website."
@@ -35,6 +37,7 @@ import InfoBar from "../components/InfoBar.astro";
         fetchpriority="high"
     />
 </Hero>
+</AnimatedBackground>
 
 <section
     id="what-is-this"

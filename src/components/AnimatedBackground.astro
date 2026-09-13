@@ -1,0 +1,238 @@
+<animated-background class="full-width base-layout">
+    <canvas class="full-width" aria-hidden="true"></canvas>
+    <slot />
+</animated-background>
+
+<style>
+    animated-background {
+        position: relative;
+        isolation: isolate;
+    }
+
+    canvas {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        display: block;
+        overflow: hidden;
+        pointer-events: none;
+        color: var(--color-accent-400);
+        border-top-color: var(--color-accent-alt-400);
+        width: 100%;
+        height: 100%;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        canvas {
+            visibility: hidden;
+        }
+    }
+</style>
+
+<script>
+    const settings = {
+        minSize: 24,
+        maxSize: 80,
+        minLifetime: 12,
+        maxLifetime: 20,
+        areaPerShape: 65000,
+        maxShapes: 14,
+        maxFps: 30,
+        opacity: 0.24,
+        opacityVariation: 0.1,
+        largeShapeDimming: 0.2,
+        lineWidth: 1,
+        maxPixelRatio: 2,
+        drift: 18,
+        topFadeDistance: 80,
+        topFadePadding: 8,
+        bottomFadeDistance: 80,
+        bottomFadePadding: 8,
+    };
+
+    const random = (min: number, max: number) =>
+        min + Math.random() * (max - min);
+    const smoothstep = (value: number) => {
+        const t = Math.max(0, Math.min(1, value));
+        return t * t * (3 - 2 * t);
+    };
+
+    function createShape() {
+        const width = random(settings.minSize, settings.maxSize);
+        const height = random(settings.minSize, settings.maxSize);
+        const relativeSize = ((width + height) / 2 - settings.minSize) /
+            Math.max(1, settings.maxSize - settings.minSize);
+        // Keep emphasis stable throughout the morph, with larger shapes fainter.
+        const opacity = settings.opacity *
+            (1 - relativeSize * settings.largeShapeDimming) *
+            random(1 - settings.opacityVariation, 1);
+
+        return {
+            age: -random(0, 5),
+            lifetime: random(settings.minLifetime, settings.maxLifetime),
+            x: Math.random(),
+            y: random(0.35, 1.05),
+            rise: random(0.4, 0.8),
+            width,
+            height,
+            opacity,
+            phase: random(0, Math.PI * 2),
+            alternate: Math.random() < 0.5,
+        };
+    }
+
+    class AnimatedBackground extends HTMLElement {
+        private cleanup?: () => void;
+
+        connectedCallback() {
+            this.cleanup?.();
+            const canvas = this.querySelector<HTMLCanvasElement>(":scope > canvas");
+            const context = canvas?.getContext("2d");
+            if (!canvas || !context) return;
+
+            const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+            let width = 0;
+            let height = 0;
+            let pixelRatio = 1;
+            let visible = false;
+            let frame: number | undefined;
+            let lastTime: number | undefined;
+            let nextDrawTime: number | undefined;
+            const frameInterval = 1000 / settings.maxFps;
+            let shapes: ReturnType<typeof createShape>[] = [];
+            let primaryColor = "";
+            let alternateColor = "";
+
+            const readColors = () => {
+                const style = getComputedStyle(canvas);
+                primaryColor = style.color;
+                alternateColor = style.borderTopColor;
+            };
+
+            const stop = () => {
+                if (frame !== undefined) cancelAnimationFrame(frame);
+                frame = undefined;
+                lastTime = undefined;
+                nextDrawTime = undefined;
+            };
+
+            const draw = (time: number) => {
+                frame = requestAnimationFrame(draw);
+                nextDrawTime ??= time;
+                if (time < nextDrawTime) return;
+                // Keep a steady drawing cadence without replaying missed frames.
+                nextDrawTime += (Math.floor((time - nextDrawTime) / frameInterval) + 1) * frameInterval;
+
+                const elapsed = lastTime === undefined ? 0 : (time - lastTime) / 1000;
+                lastTime = time;
+                context.clearRect(0, 0, width, height);
+                context.lineWidth = settings.lineWidth;
+
+                for (let index = 0; index < shapes.length; index++) {
+                    let shape = shapes[index];
+                    shape.age += elapsed;
+                    if (shape.age >= shape.lifetime) {
+                        shape = shapes[index] = createShape();
+                    }
+                    if (shape.age < 0) continue;
+
+                    const progress = shape.age / shape.lifetime;
+                    // Complete the morph before the lifetime fade.
+                    const morph = smoothstep((progress - 0.1) / 0.65);
+                    const diameter = (shape.width + shape.height) / 2;
+                    const w = shape.width + (diameter - shape.width) * morph;
+                    const h = shape.height + (diameter - shape.height) * morph;
+                    const y = (shape.y - progress * shape.rise) * height;
+                    // Fade the entire shape before its outer stroke reaches the top.
+                    const topEdge = y - h / 2 - settings.lineWidth / 2;
+                    const topFade = smoothstep(
+                        (topEdge - settings.topFadePadding) / settings.topFadeDistance,
+                    );
+                    // Reveal shapes only after their entire outline clears the bottom.
+                    const bottomEdge = y + h / 2 + settings.lineWidth / 2;
+                    const bottomFade = smoothstep(
+                        (height - bottomEdge - settings.bottomFadePadding) /
+                            settings.bottomFadeDistance,
+                    );
+
+                    const alpha = shape.opacity *
+                        smoothstep(progress / 0.15) *
+                        smoothstep((1 - progress) / 0.2) * topFade * bottomFade;
+                    if (alpha <= 0) continue;
+
+                    const radius = Math.min(w, h) * morph / 2;
+                    const x = shape.x * width +
+                        Math.sin(progress * Math.PI * 2 + shape.phase) * settings.drift;
+                    context.globalAlpha = alpha;
+                    context.strokeStyle = shape.alternate ? alternateColor : primaryColor;
+                    context.beginPath();
+                    context.roundRect(x - w / 2, y - h / 2, w, h, radius);
+                    context.stroke();
+                }
+            };
+
+            const update = () => {
+                if (motion.matches || document.hidden || !visible || !width || !height) {
+                    stop();
+                    if (motion.matches) context.clearRect(0, 0, width, height);
+                    return;
+                }
+                if (frame === undefined) {
+                    readColors();
+                    frame = requestAnimationFrame(draw);
+                }
+            };
+
+            const resize = () => {
+                const bounds = this.getBoundingClientRect();
+                const ratio = Math.min(window.devicePixelRatio || 1, settings.maxPixelRatio);
+                if (width !== bounds.width || height !== bounds.height || pixelRatio !== ratio) {
+                    width = bounds.width;
+                    height = bounds.height;
+                    pixelRatio = ratio;
+                    canvas.width = Math.round(width * pixelRatio);
+                    canvas.height = Math.round(height * pixelRatio);
+                    context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+                    const count = width && height
+                        ? Math.min(settings.maxShapes, Math.max(3, Math.round(width * height / settings.areaPerShape)))
+                        : 0;
+                    shapes = shapes.slice(0, count);
+                    while (shapes.length < count) shapes.push(createShape());
+                }
+                readColors();
+                update();
+            };
+
+            const resizeObserver = new ResizeObserver(resize);
+            const intersectionObserver = new IntersectionObserver(([entry]) => {
+                visible = entry.isIntersecting;
+                update();
+            });
+
+            resizeObserver.observe(this);
+            intersectionObserver.observe(this);
+            window.addEventListener("resize", resize);
+            document.addEventListener("visibilitychange", update);
+            motion.addEventListener("change", update);
+            resize();
+
+            this.cleanup = () => {
+                stop();
+                resizeObserver.disconnect();
+                intersectionObserver.disconnect();
+                window.removeEventListener("resize", resize);
+                document.removeEventListener("visibilitychange", update);
+                motion.removeEventListener("change", update);
+            };
+        }
+
+        disconnectedCallback() {
+            this.cleanup?.();
+            this.cleanup = undefined;
+        }
+    }
+
+    if (!customElements.get("animated-background")) {
+        customElements.define("animated-background", AnimatedBackground);
+    }
+</script>

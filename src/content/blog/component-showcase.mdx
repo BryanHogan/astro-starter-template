@@ -304,6 +304,31 @@ The Hero changes to a two-column layout on wide screens when it has media.
 
 <details>
 
+<summary>Add an animated background to the Hero</summary>
+
+To add animation, import `AnimatedBackground` and wrap the `Hero` component in it:
+
+```mdx
+import Hero from "../components/Hero.astro";
+import AnimatedBackground from "../components/AnimatedBackground.astro";
+
+<AnimatedBackground>
+    <Hero
+        heading="Build your first website"
+        headingId="home-title"
+        description="Start with useful pages, components, and styles."
+    />
+</AnimatedBackground>
+```
+
+The background spans the full page width, with outlined rectangles that float upward and smoothly become circles. Keep any `actions` and `media` inside `Hero` as usual. See `src/pages/index.mdx` for a complete example.
+
+Animation is optional: use `Hero` on its own for a plain background. The animation pauses when offscreen or the browser tab is hidden, and is disabled for visitors who prefer reduced motion.
+
+</details>
+
+<details>
+
 <summary>Change the Hero layout</summary>
 
 You can set CSS custom properties through `style`:

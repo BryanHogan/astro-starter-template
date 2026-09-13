@@ -1,6 +1,9 @@
 ---
 import type { HTMLAttributes } from "astro/types";
 
+// For an animated background, import AnimatedBackground.astro and wrap the Hero:
+// <AnimatedBackground><Hero heading="..." headingId="..." /></AnimatedBackground>
+
 type Props = Omit<
     HTMLAttributes<"section">,
     "aria-labelledby" | "class:list"
