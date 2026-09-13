@@ -1,0 +1,30 @@
+# Cloudflare Pages and Netlify read this file. Other hosting providers may ignore it, so check your provider's documentation when deploying elsewhere.
+
+# Applies to every response. Do NOT add Cache-Control here: headers from multiple matching blocks are joined with a comma, which would corrupt the route-specific cache rules below. (Cloudflare-specific)
+/*
+  Strict-Transport-Security: max-age=31536000
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: DENY
+
+# Astro fingerprints these assets, so they can be cached for one year.
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Public assets keep stable filenames and use a shorter cache lifetime.
+/favicon.svg
+  Cache-Control: public, max-age=2592000
+
+/og-default.png
+  Cache-Control: public, max-age=2592000
+
+/icons/*
+  Cache-Control: public, max-age=2592000
+
+# Generated blog social images reuse their URL when a post title changes, so they get a shorter lifetime than the hand-placed assets above.
+/og/*
+  Cache-Control: public, max-age=86400
+
+# Let browser-based feed readers fetch the feed cross-origin.
+/rss.xml
+  Access-Control-Allow-Origin: *
