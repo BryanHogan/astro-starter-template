@@ -98,11 +98,10 @@ const websiteJsonLd = {
 };
 ---
 
-<!-- Document -->
+<!-- See https://webdev.bryanhogan.com/seo/head/ for more information -->
+
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-
-<!-- Primary SEO -->
 <title>{title}</title>
 <meta name="description" content={description} />
 <link rel="canonical" href={canonicalURL} />
@@ -147,11 +146,9 @@ const websiteJsonLd = {
     <script type="application/ld+json" set:html={JSON.stringify(websiteJsonLd)} />
 )}
 
-<!-- Icons -->
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<!-- Misc -->
 <!-- Add a public/favicon.ico if you want a fallback: <link rel="icon" href="/favicon.ico" /> -->
-
-<!-- Discovery -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
 <link
     rel="alternate"
@@ -159,17 +156,16 @@ const websiteJsonLd = {
     title={`${SITE.name} RSS feed`}
     href="/rss.xml"
 />
-
-<!-- Misc -->
 <meta name="copyright" content={SITE.author} />
 <meta name="theme-color" content={SITE.themeColor} />
 
-<!-- Analytics — set SITE.analytics.umamiId in src/config.ts to enable -->
+<!-- Uses SITE.analytics.umamiId in src/config.ts -->
 {SITE.analytics.umamiId && (
     <script is:inline defer src="https://cloud.umami.is/script.js" data-website-id={SITE.analytics.umamiId}></script>
 )}
 
+<!-- For animated transitions between pages, see: https://docs.astro.build/en/guides/view-transitions/ -->
 <ClientRouter />
 
-<!-- Escape hatch: pages can inject page-specific head tags via <Fragment slot="head"> -->
+<!-- Pages can inject page-specific head tags via <Fragment slot="head"> -->
 <slot name="head" />
