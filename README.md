@@ -185,6 +185,8 @@ The project loads its CSS in this order:
 
 The shared layouts load these files for you. Each component keeps its own extra styles.
 
+Colors use a subset of Flexoki's neutral scale with its original numbering: `50`, `100` through `900` in steps of `100`, and `950`; chromatic scales run from `100` to `900`. Components use semantic tokens such as `--color-background`, `--color-surface`, and `--color-text`. Adjust these mappings in `var.css` to customize each theme. The template uses neutral `950` for the dark background and `50` for the light background, with surfaces at `900` and `100` respectively.
+
 For more background, see the [Clean Web Dev Guide](https://webdev.bryanhogan.com/).
 
 </details>
@@ -219,4 +221,4 @@ public/                  Static assets copied as-is
 - [Using the Astro framework](https://astro.build/)
 - [Built as described on Clean Web Dev Guide](https://webdev.bryanhogan.com/)
 - [Built by Bryan Hogan](https://bryanhogan.com/)
-- [Using the Flexoki color scheme](https://stephango.com/flexoki) with some adjustments.
+- [Using the Flexoki color palette](https://stephango.com/flexoki) with custom semantic theme mappings.

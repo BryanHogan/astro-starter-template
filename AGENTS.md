@@ -36,7 +36,7 @@ This is Bryan Hogan's Astro starter template, a lightweight, accessible foundati
 ## Styling System
 
 - Stylesheets load in order via BaseLayout: `reset.css` → `var.css` → `global.css` → `util.css`; PageLayout adds `markdown.css` for prose
-- `var.css` holds all design tokens: Flexoki-based color scales (`--color-{hue}-100` to `-900`), typography, spacing, borders, shadows, z-index, layout widths (`--site-max-width: 84rem`, `--content-max-width: 45rem`)
+- `var.css` holds all design tokens: Flexoki color scales (neutral `50`, `100` through `900` in steps of `100`, and `950`; chromatic hues `100` to `900`), typography, spacing, borders, shadows, z-index, layout widths (`--site-max-width: 84rem`, `--content-max-width: 45rem`)
 - Semantic color tokens map onto the scales: `--color-accent-*`, `--color-background`, `--color-surface`, `--color-text`, `--color-border`, `--color-link`, `--color-focus-ring`
 - `util.css` provides utility classes: `.base-layout` (3-column grid with `.full-width` breakout), `.flow`, `.height-smart-fill-screen`, flex helpers, and margin/padding classes per spacing token
 - `global.css` sets element defaults and responsive heading sizes

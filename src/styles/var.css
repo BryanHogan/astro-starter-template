@@ -3,8 +3,8 @@
 
     /* Color */
 
-    --color-neutral-100: #F2F0E5;
-    --color-neutral-150: #E6E4D9;
+    --color-neutral-50: #F2F0E5;
+    --color-neutral-100: #E6E4D9;
     --color-neutral-200: #CECDC3;
     --color-neutral-300: #B7B5AC;
     --color-neutral-400: #9F9D96;
@@ -12,8 +12,8 @@
     --color-neutral-600: #6F6E69;
     --color-neutral-700: #575653;
     --color-neutral-800: #403E3C;
-    --color-neutral-850: #282726;
-    --color-neutral-900: #1C1B1A;
+    --color-neutral-900: #282726;
+    --color-neutral-950: #1C1B1A;
 
     --color-red-100: #FFCABB;
     --color-red-200: #F89A8A;
@@ -120,10 +120,10 @@
     --color-accent-alt-800: var(--color-cyan-800);
     --color-accent-alt-900: var(--color-cyan-900);
 
-    --color-background: var(--color-neutral-900);
-    --color-surface: var(--color-neutral-850);
+    --color-background: var(--color-neutral-950);
+    --color-surface: var(--color-neutral-900);
     --color-surface-muted: var(--color-neutral-700);
-    --color-text-strong: var(--color-neutral-100);
+    --color-text-strong: var(--color-neutral-50);
     --color-text: var(--color-neutral-200);
     --color-text-subtle: var(--color-neutral-300);
     --color-text-muted: var(--color-neutral-400);
@@ -224,10 +224,10 @@
 [data-theme="light"] {
     color-scheme: light;
 
-    --color-background: var(--color-neutral-100);
-    --color-surface: var(--color-neutral-150);
+    --color-background: var(--color-neutral-50);
+    --color-surface: var(--color-neutral-100);
     --color-surface-muted: var(--color-neutral-300);
-    --color-text-strong: var(--color-neutral-900);
+    --color-text-strong: var(--color-neutral-950);
     --color-text: var(--color-neutral-800);
     --color-text-subtle: var(--color-neutral-700);
     --color-text-muted: color-mix(

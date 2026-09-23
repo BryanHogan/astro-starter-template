@@ -30,6 +30,21 @@ Keep related values together and check that text, links, and buttons remain easy
 
 </Callout>
 
+## Neutral colors and surfaces
+
+The neutral palette uses a subset of [Flexoki's original scale](https://stephango.com/flexoki), preserving its numbering: `50`, `100` through `900` in steps of `100`, and `950`. These tokens use the `--color-neutral-` prefix. Chromatic palettes use `100` through `900`. The `--color-black` and `--color-white` tokens hold Flexoki's black and paper colors.
+
+Semantic tokens assign palette colors to interface roles. The template uses these mappings:
+
+| Token | Dark theme | Light theme |
+| --- | --- | --- |
+| `--color-background` | Neutral `950` | Neutral `50` |
+| `--color-surface` | Neutral `900` | Neutral `100` |
+| `--color-text` | Neutral `200` | Neutral `800` |
+| `--color-text-strong` | Neutral `50` | Neutral `950` |
+
+These are custom theme mappings; Flexoki itself uses black and paper as its main backgrounds. To change a surface without changing text, update `--color-surface` rather than a shared neutral shade. Use semantic tokens in components so both themes follow the mappings in `var.css`.
+
 ## Light sections
 
 The website is dark by default. Add `data-theme="light"` to any section that should use the light colors:
