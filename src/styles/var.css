@@ -4,6 +4,7 @@
     /* Color */
 
     --color-neutral-100: #F2F0E5;
+    --color-neutral-150: #E6E4D9;
     --color-neutral-200: #CECDC3;
     --color-neutral-300: #B7B5AC;
     --color-neutral-400: #9F9D96;
@@ -11,6 +12,7 @@
     --color-neutral-600: #6F6E69;
     --color-neutral-700: #575653;
     --color-neutral-800: #403E3C;
+    --color-neutral-850: #282726;
     --color-neutral-900: #1C1B1A;
 
     --color-red-100: #FFCABB;
@@ -119,8 +121,7 @@
     --color-accent-alt-900: var(--color-cyan-900);
 
     --color-background: var(--color-neutral-900);
-    --color-surface: var(--color-neutral-800);
-    --color-surface: color-mix(in srgb, var(--color-neutral-800) 35%, var(--color-background));
+    --color-surface: var(--color-neutral-850);
     --color-surface-muted: var(--color-neutral-700);
     --color-text-strong: var(--color-neutral-100);
     --color-text: var(--color-neutral-200);
@@ -224,8 +225,7 @@
     color-scheme: light;
 
     --color-background: var(--color-neutral-100);
-    --color-surface: var(--color-neutral-200);
-    --color-surface: color-mix(in srgb, var(--color-neutral-200) 35%, var(--color-background));
+    --color-surface: var(--color-neutral-150);
     --color-surface-muted: var(--color-neutral-300);
     --color-text-strong: var(--color-neutral-900);
     --color-text: var(--color-neutral-800);
