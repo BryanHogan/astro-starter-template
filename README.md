@@ -19,11 +19,15 @@ Write your content simply in Markdown or MDX, change the colors, text and other 
 
 ## Installation and first run
 
-[![Watch the setup video](public/images/setup-video-thumbnail.png)](https://youtu.be/EZgQ8eDH8do)
+Watch the setup video:
+
+<a href="https://youtu.be/EZgQ8eDH8do"><img src="public/images/setup-video-thumbnail.png" alt="Watch the setup video" width="640"></a>
 
 <details>
 
-<summary>Setup explanation:</summary>
+Quick summary: Install [Node.js](https://nodejs.org/), [Git](https://git-scm.com/) and [VSCode](https://code.visualstudio.com/). Run `npm create @bryanhogan/web-starter@latest` and go through the setup. Run as `npm run dev` for testing, might need to fix execution policy. Initialize repository and connect to GitHub. Adjust the `config.ts` file. Adjust relevant pages. Add to static site host.
+
+<summary>Detailed setup explanation:</summary>
 
 ### Prerequisites
 
@@ -98,6 +102,8 @@ npm run dev
 ```
 
 Astro shows a local address in the terminal, normally `http://localhost:4321`. Open it in your browser. Your changes appear while the server is running.
+
+Windows might tell you that the execution policy is not set, run `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser` on the powershell as an administrator to fix that.
 
 Press <kbd>Ctrl</kbd> + <kbd>C</kbd> in the terminal to stop the server.
 
