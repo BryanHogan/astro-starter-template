@@ -19,7 +19,7 @@ Write your content simply in Markdown or MDX, change the colors, text and other 
 
 ## Installation and first run
 
-Watch the setup video:
+Watch the [setup video](https://youtu.be/EZgQ8eDH8do):
 
 <a href="https://youtu.be/EZgQ8eDH8do"><img src="public/images/setup-video-thumbnail.png" alt="Watch the setup video" width="640"></a>
 
