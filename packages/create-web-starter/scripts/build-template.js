@@ -8,6 +8,7 @@ const repositoryRoot = resolve(packageDirectory, "../..");
 const templateDirectory = join(packageDirectory, "template");
 const baseDirectory = join(templateDirectory, "base");
 const sourceDirectory = join(packageDirectory, "source");
+const setupVideoThumbnail = join(repositoryRoot, "public", "images", "setup-video-thumbnail.png");
 
 if (!templateDirectory.startsWith(`${packageDirectory}${sep}`)) {
     throw new Error("Refusing to rebuild a template outside the generator package.");
@@ -26,6 +27,7 @@ for (const entry of [
 ]) {
     await cp(join(repositoryRoot, entry), join(baseDirectory, entry), {
         recursive: true,
+        filter: (source) => source !== setupVideoThumbnail,
     });
 }
 
