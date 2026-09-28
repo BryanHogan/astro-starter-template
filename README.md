@@ -19,7 +19,7 @@ Write your content simply in Markdown or MDX, change the colors, text and other 
 
 ## Installation and first run
 
-*Planning on adding a video guide soon.*
+[![Watch the setup video](https://img.youtube.com/vi/EZgQ8eDH8do/hqdefault.jpg)](https://youtu.be/EZgQ8eDH8do)
 
 <details>
 
