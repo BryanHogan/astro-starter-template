@@ -23,9 +23,9 @@ Watch the setup video:
 
 <a href="https://youtu.be/EZgQ8eDH8do"><img src="public/images/setup-video-thumbnail.png" alt="Watch the setup video" width="640"></a>
 
-<details>
-
 Quick summary: Install [Node.js](https://nodejs.org/), [Git](https://git-scm.com/) and [VSCode](https://code.visualstudio.com/). Run `npm create @bryanhogan/web-starter@latest` and go through the setup. Run as `npm run dev` for testing, might need to fix execution policy. Initialize repository and connect to GitHub. Adjust the `config.ts` file. Adjust relevant pages. Add to static site host.
+
+<details>
 
 <summary>Detailed setup explanation:</summary>
 
