@@ -85,6 +85,6 @@ export const SITE = {
 
     /** Analytics. Leave `umamiId` empty to disable the umami script entirely. */
     analytics: { // To Do: Add Google Analytics and Matomo.
-        umamiId: "",
+        umamiId: "14e66146-ad1d-4a66-a16e-7d7d79df5b6e",
     },
 } as const;
