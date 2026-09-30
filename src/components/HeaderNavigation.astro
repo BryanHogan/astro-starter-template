@@ -127,8 +127,12 @@ const isExternal = (link: { readonly href: string; readonly external?: boolean }
             text-decoration: none;
             transition: var(--transition-normal) color;
             font-weight: var(--font-weight-semi-bold);
-            &:hover,
-            &:focus-within {
+            @media (hover: hover) {
+                &:hover {
+                    color: var(--color-link-hover);
+                }
+            }
+            &:focus-visible {
                 color: var(--color-link-hover);
             }
             &:active {

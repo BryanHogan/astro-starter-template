@@ -108,7 +108,13 @@ const visualSize = size ?? "medium";
     .button.primary {
         background-color: var(--color-accent-300);
         color: var(--color-black);
-        &:not(:disabled, [aria-disabled="true"]):is(:hover, :focus-within) {
+        @media (hover: hover) {
+            &:not(:disabled, [aria-disabled="true"]):hover {
+                background-color: var(--color-accent-200);
+                color: var(--color-black);
+            }
+        }
+        &:not(:disabled, [aria-disabled="true"]):focus-visible {
             background-color: var(--color-accent-200);
             color: var(--color-black);
         }
@@ -120,40 +126,69 @@ const visualSize = size ?? "medium";
     .button.secondary {
         background-color: var(--color-surface);
         color: var(--color-text-strong);
-        &:not(:disabled, [aria-disabled="true"]):is(:hover, :focus-within) {
+        @media (hover: hover) {
+            &:not(:disabled, [aria-disabled="true"]):hover {
+                background-color: var(--color-surface-muted);
+                color: var(--color-text-strong);
+            }
+        }
+        &:not(:disabled, [aria-disabled="true"]):focus-visible {
             background-color: var(--color-surface-muted);
             color: var(--color-text-strong);
         }
         &:not(:disabled, [aria-disabled="true"]):active {
+            background-color: var(--color-surface-muted);
             color: var(--color-text-strong);
         }
     }
     .button.outline {
         border-color: var(--color-border);
         color: var(--color-text-strong);
-        &:not(:disabled, [aria-disabled="true"]):is(:hover, :focus-within) {
+        @media (hover: hover) {
+            &:not(:disabled, [aria-disabled="true"]):hover {
+                border-color: var(--color-accent-300);
+                background-color: var(--color-surface);
+                color: var(--color-text-strong);
+            }
+        }
+        &:not(:disabled, [aria-disabled="true"]):focus-visible {
             border-color: var(--color-accent-300);
             background-color: var(--color-surface);
             color: var(--color-text-strong);
         }
         &:not(:disabled, [aria-disabled="true"]):active {
+            border-color: var(--color-accent-300);
+            background-color: var(--color-surface);
             color: var(--color-text-strong);
         }
     }
     .button.ghost {
         color: var(--color-text-strong);
-        &:not(:disabled, [aria-disabled="true"]):is(:hover, :focus-within) {
+        @media (hover: hover) {
+            &:not(:disabled, [aria-disabled="true"]):hover {
+                background-color: var(--color-surface);
+                color: var(--color-text-strong);
+            }
+        }
+        &:not(:disabled, [aria-disabled="true"]):focus-visible {
             background-color: var(--color-surface);
             color: var(--color-text-strong);
         }
         &:not(:disabled, [aria-disabled="true"]):active {
+            background-color: var(--color-surface);
             color: var(--color-text-strong);
         }
     }
     .button.danger {
         background-color: var(--color-red-600);
         color: var(--color-white);
-        &:not(:disabled, [aria-disabled="true"]):is(:hover, :focus-within) {
+        @media (hover: hover) {
+            &:not(:disabled, [aria-disabled="true"]):hover {
+                background-color: var(--color-red-500);
+                color: var(--color-white);
+            }
+        }
+        &:not(:disabled, [aria-disabled="true"]):focus-visible {
             background-color: var(--color-red-500);
             color: var(--color-white);
         }

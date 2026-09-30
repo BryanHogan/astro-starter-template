@@ -34,8 +34,13 @@ a {
     color: var(--color-link);
 }
 
-a:hover,
-a:focus-within {
+@media (hover: hover) {
+    a:hover {
+        color: var(--color-link-hover);
+    }
+}
+
+a:focus-visible {
     color: var(--color-link-hover);
 }
 

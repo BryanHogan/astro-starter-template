@@ -95,7 +95,13 @@ const posts = (await getBlogPosts()).slice(0, limit);
             background-color var(--transition-normal);
     }
 
-    .blog-posts-link:hover,
+    @media (hover: hover) {
+        .blog-posts-link:hover {
+            color: var(--color-link-hover);
+            background-color: var(--color-surface);
+        }
+    }
+
     .blog-posts-link:focus-visible {
         color: var(--color-link-hover);
         background-color: var(--color-surface);

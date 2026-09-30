@@ -180,13 +180,16 @@ const normalizedItems = items.map((item, index) => {
         content: none;
     }
 
-    .description-list__row--link:hover,
-    .description-list__row--link:focus-visible {
-        color: var(--color-text);
-        background-color: var(--color-surface-muted);
+    @media (hover: hover) {
+        .description-list__row--link:hover {
+            color: var(--color-text);
+            background-color: var(--color-surface-muted);
+        }
     }
 
     .description-list__row--link:focus-visible {
+        color: var(--color-text);
+        background-color: var(--color-surface-muted);
         outline-offset: calc(var(--border-width-m) * -1);
     }
 

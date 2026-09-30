@@ -207,7 +207,12 @@ const isExternal = (link: { readonly href: string; readonly external?: boolean }
         transition: color var(--transition-normal);
     }
 
-    .social-navigation a:hover,
+    @media (hover: hover) {
+        .social-navigation a:hover {
+            background-color: var(--color-surface-muted);
+        }
+    }
+
     .social-navigation a:focus-visible {
         background-color: var(--color-surface-muted);
     }

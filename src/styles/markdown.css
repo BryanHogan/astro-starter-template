@@ -22,7 +22,13 @@
     a {
         color: var(--color-link);
 
-        &:hover {
+        @media (hover: hover) {
+            &:hover {
+                color: var(--color-link-hover);
+            }
+        }
+
+        &:focus-visible {
             color: var(--color-link-hover);
         }
     }
@@ -66,7 +72,13 @@
             color: var(--color-link);
         }
 
-        &:hover {
+        @media (hover: hover) {
+            &:hover {
+                background-color: var(--color-surface);
+            }
+        }
+
+        &:focus-visible {
             background-color: var(--color-surface);
         }
     }

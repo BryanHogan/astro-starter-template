@@ -63,13 +63,16 @@ const { previousPost, nextPost } = Astro.props;
         transition: background-color var(--transition-normal);
     }
 
-    .post-navigation-link:hover,
-    .post-navigation-link:focus-within {
-        color: var(--color-text-strong);
-        background-color: var(--color-surface-muted);
+    @media (hover: hover) {
+        .post-navigation-link:hover {
+            color: var(--color-text-strong);
+            background-color: var(--color-surface-muted);
+        }
     }
 
     .post-navigation-link:focus-visible {
+        color: var(--color-text-strong);
+        background-color: var(--color-surface-muted);
         outline-offset: -3px;
     }
 
