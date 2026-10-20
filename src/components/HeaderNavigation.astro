@@ -10,7 +10,7 @@ const isExternal = (link: { readonly href: string; readonly external?: boolean }
     link.external ?? false;
 ---
 
-<div class="backdrop-area">
+<div class="header-backdrop">
     <div class="header-container">
         <header>
             <a href="/"
@@ -19,7 +19,7 @@ const isExternal = (link: { readonly href: string; readonly external?: boolean }
                     alt={SITE.name}
                     height="25"
                     width="25"
-                    class="logo"
+                    class="header-logo"
                 /></a
             >
             {navigationLinks.length > 0 && (
@@ -29,20 +29,20 @@ const isExternal = (link: { readonly href: string; readonly external?: boolean }
                         aria-label="Navigation menu"
                         aria-controls="primary-navigation"
                         aria-expanded="false"
-                        class="menu-toggle-button"
+                        class="header-menu-toggle-button"
                     >
                         <Icon
                             name="bars"
                             size="var(--icon-size-l)"
-                            class="hamburger-icon"
+                            class="header-hamburger-icon"
                         />
                         <Icon
                             name="close"
                             size="var(--icon-size-l)"
-                            class="close-icon"
+                            class="header-close-icon"
                         />
                     </button>
-                    <nav id="primary-navigation" class="primary-navigation" aria-label="Primary">
+                    <nav id="primary-navigation" class="header-navigation" aria-label="Primary">
                         <ul role="list">
                             {
                                 navigationLinks.map((link) => {
@@ -79,10 +79,10 @@ const isExternal = (link: { readonly href: string; readonly external?: boolean }
 </div>
 
 <style>
-    .logo {
+    .header-logo {
         margin-left: 0.25rem;
     }
-    .backdrop-area {
+    .header-backdrop {
         width: 100%;
         height: var(--navbar-height);
     }
@@ -118,7 +118,7 @@ const isExternal = (link: { readonly href: string; readonly external?: boolean }
         padding-block: var(--space-xs);
         height: var(--navbar-height);
     }
-    .primary-navigation ul {
+    .header-navigation ul {
         display: flex;
         gap: 1rem;
         & li a {
@@ -147,15 +147,15 @@ const isExternal = (link: { readonly href: string; readonly external?: boolean }
             }
         }
     }
-    .menu-toggle-button {
+    .header-menu-toggle-button {
         display: none;
     }
 
     @media only screen and (max-width: 47.999rem) {
-        .primary-navigation {
+        .header-navigation {
             display: none;
         }
-        .menu-toggle-button {
+        .header-menu-toggle-button {
             display: block;
             position: absolute;
             z-index: 30;
@@ -164,18 +164,18 @@ const isExternal = (link: { readonly href: string; readonly external?: boolean }
             padding: 0.5rem 0 0.5rem 0.5rem;
             border: 0;
             cursor: pointer;
-            .hamburger-icon {
+            .header-hamburger-icon {
                 display: block;
             }
-            .close-icon {
+            .header-close-icon {
                 display: none;
             }
         }
         [aria-expanded="true"] {
-            .close-icon {
+            .header-close-icon {
                 display: block;
             }
-            .hamburger-icon {
+            .header-hamburger-icon {
                 display: none;
             }
         }

@@ -16,10 +16,10 @@ const isExternal = (link: { readonly href: string; readonly external?: boolean }
 <footer>
     <div class="footer-content set-site-max-width">
         <div class="footer-grid">
-            <div class="brand-container">
-                <a class="brand-link" href="/">
+            <div class="footer-brand-container">
+                <a class="footer-brand-link" href="/">
                     <img
-                        class="brand-logo"
+                        class="footer-brand-logo"
                         src="/favicon.svg"
                         alt=""
                         aria-hidden="true"
@@ -28,10 +28,10 @@ const isExternal = (link: { readonly href: string; readonly external?: boolean }
                     />
                     <span>{SITE.name}</span>
                 </a>
-                <p class="brand-description">{SITE.description}</p>
+                <p class="footer-brand-description">{SITE.description}</p>
 
                 {socialLinks.length > 0 && (
-                    <nav class="social-navigation" aria-label="Social profiles">
+                    <nav class="footer-social-navigation" aria-label="Social profiles">
                         <ul role="list">
                             {socialLinks.map((link) => (
                                 <li>
@@ -52,12 +52,12 @@ const isExternal = (link: { readonly href: string; readonly external?: boolean }
             </div>
 
             {SITE.footer.linkGroups.length > 0 && (
-                <div class="link-groups">
+                <div class="footer-link-groups">
                     {SITE.footer.linkGroups.map((group, groupIndex) => {
                         const headingId = `footer-group-${groupIndex}`;
 
                         return (
-                            <nav class="link-group" aria-labelledby={headingId}>
+                            <nav class="footer-link-group" aria-labelledby={headingId}>
                                 <h2 id={headingId}>{group.label}</h2>
                                 <ul role="list">
                                     {group.links.map((link) => (
@@ -129,19 +129,19 @@ const isExternal = (link: { readonly href: string; readonly external?: boolean }
         text-align: center;
     }
 
-    .link-groups {
+    .footer-link-groups {
         display: grid;
         grid-template-columns: 1fr;
         gap: var(--space-l);
     }
 
-    .brand-container,
-    .link-groups,
-    .link-group {
+    .footer-brand-container,
+    .footer-link-groups,
+    .footer-link-group {
         min-width: 0;
     }
 
-    .brand-link {
+    .footer-brand-link {
         display: inline-flex;
         align-items: center;
         gap: var(--space-s);
@@ -151,30 +151,30 @@ const isExternal = (link: { readonly href: string; readonly external?: boolean }
         text-decoration: none;
     }
 
-    .brand-logo {
+    .footer-brand-logo {
         width: 2rem;
         height: 2rem;
         flex: 0 0 auto;
     }
 
-    .brand-description {
+    .footer-brand-description {
         max-width: 32rem;
         margin: var(--space-s) auto 0;
         color: var(--color-text-muted);
         font-size: var(--font-size-s);
     }
 
-    .social-navigation {
+    .footer-social-navigation {
         margin-top: var(--space-s);
     }
 
-    .social-navigation ul {
+    .footer-social-navigation ul {
         display: flex;
         justify-content: center;
         gap: var(--space-s);
     }
 
-    .social-navigation a {
+    .footer-social-navigation a {
         display: grid;
         width: 2.75rem;
         height: 2.75rem;
@@ -186,7 +186,7 @@ const isExternal = (link: { readonly href: string; readonly external?: boolean }
             background-color var(--transition-normal);
     }
 
-    .link-group h2 {
+    .footer-link-group h2 {
         color: var(--color-text-muted);
         font-size: var(--font-size-s);
         font-weight: var(--font-weight-semi-bold);
@@ -194,13 +194,13 @@ const isExternal = (link: { readonly href: string; readonly external?: boolean }
         text-transform: uppercase;
     }
 
-    .link-group ul {
+    .footer-link-group ul {
         display: grid;
         gap: var(--space-xs);
         margin-top: var(--space-s);
     }
 
-    .link-group a,
+    .footer-link-group a,
     .footer-utility a {
         font-size: var(--font-size-s);
         text-decoration: none;
@@ -208,12 +208,12 @@ const isExternal = (link: { readonly href: string; readonly external?: boolean }
     }
 
     @media (hover: hover) {
-        .social-navigation a:hover {
+        .footer-social-navigation a:hover {
             background-color: var(--color-surface-muted);
         }
     }
 
-    .social-navigation a:focus-visible {
+    .footer-social-navigation a:focus-visible {
         background-color: var(--color-surface-muted);
     }
 
@@ -249,25 +249,25 @@ const isExternal = (link: { readonly href: string; readonly external?: boolean }
             text-align: left;
         }
 
-        .brand-container:only-child {
+        .footer-brand-container:only-child {
             grid-column: 1 / -1;
         }
 
-        .link-groups {
+        .footer-link-groups {
             grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
         }
 
-        .link-group h2 {
+        .footer-link-group h2 {
             display: flex;
             min-height: 2rem;
             align-items: center;
         }
 
-        .brand-description {
+        .footer-brand-description {
             margin-inline: 0;
         }
 
-        .social-navigation ul {
+        .footer-social-navigation ul {
             justify-content: flex-start;
         }
 

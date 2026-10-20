@@ -36,7 +36,7 @@ const hasMedia = Astro.slots.has("media");
         "full-width",
         "set-site-max-width",
         "margin-inline-auto",
-        { "has-media": hasMedia },
+        { "hero-has-media": hasMedia },
         className,
     ]}
     aria-labelledby={headingId}
@@ -143,7 +143,7 @@ const hasMedia = Astro.slots.has("media");
     }
 
     @media (min-width: 64rem) {
-        .hero-section.has-media {
+        .hero-section.hero-has-media {
             --hero-columns: minmax(0, 1.1fr) minmax(18rem, 0.9fr);
             --hero-content-alignment: start;
             --hero-content-max-width: 36rem;
@@ -163,7 +163,7 @@ const hasMedia = Astro.slots.has("media");
             );
         }
 
-        .hero-section.has-media .hero-content {
+        .hero-section.hero-has-media .hero-content {
             margin-inline: 0;
         }
     }

@@ -54,16 +54,16 @@ const titleText = title?.trim() ?? callout.defaultTitle;
 
 <div
     {...rest}
-    class:list={["callout", `callout--${variant}`, className]}
+    class:list={["callout", `callout-${variant}`, className]}
 >
-    <div class="callout__heading">
-        <span class="callout__icon" aria-hidden="true">
+    <div class="callout-heading">
+        <span class="callout-icon" aria-hidden="true">
             <Icon name={callout.icon} size="var(--icon-size-l)" />
         </span>
-        <strong class="callout__title">{titleText}</strong>
+        <strong class="callout-title">{titleText}</strong>
     </div>
 
-    <div class="callout__content">
+    <div class="callout-content">
         <slot />
     </div>
 </div>
@@ -84,35 +84,35 @@ const titleText = title?.trim() ?? callout.defaultTitle;
         border-end-end-radius: var(--border-radius-m);
     }
 
-    .callout--success {
+    .callout-success {
         --callout-accent: light-dark(
             var(--color-green-700),
             var(--color-green-300)
         );
     }
 
-    .callout--warning {
+    .callout-warning {
         --callout-accent: light-dark(
             var(--color-yellow-700),
             var(--color-yellow-300)
         );
     }
 
-    .callout--danger {
+    .callout-danger {
         --callout-accent: light-dark(
             var(--color-red-700),
             var(--color-red-300)
         );
     }
 
-    .callout__heading {
+    .callout-heading {
         display: grid;
         grid-template-columns: auto minmax(0, 1fr);
         gap: var(--space-s);
         align-items: center;
     }
 
-    .callout__icon {
+    .callout-icon {
         display: inline-flex;
         flex: 0 0 auto;
         align-items: center;
@@ -120,24 +120,24 @@ const titleText = title?.trim() ?? callout.defaultTitle;
         color: var(--callout-accent);
     }
 
-    .callout__title {
+    .callout-title {
         min-width: 0;
         color: var(--color-text-strong);
         font-weight: var(--font-weight-semi-bold);
         line-height: var(--font-line-height-heading);
     }
 
-    .callout__content {
+    .callout-content {
         min-width: 0;
         margin-block-start: var(--space-s);
         color: var(--color-text);
     }
 
-    .callout__content :global(:where(p, li)) {
+    .callout-content :global(:where(p, li)) {
         color: var(--color-text);
     }
 
-    .callout__content > :global(* + *) {
+    .callout-content > :global(* + *) {
         margin-block-start: var(--space-s);
     }
 </style>

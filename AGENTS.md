@@ -50,6 +50,7 @@ This is Bryan Hogan's Astro starter template, a lightweight, accessible foundati
 - `.astro` pages wrap content in `BaseLayout` directly; `.mdx` pages declare `layout: ../layouts/PageLayout.astro` in frontmatter with `title` and `description`. `PageLayout` adds top spacing by default; set `topSpacing: false` when the first component provides its own spacing
 - Responsive breakpoint: `@media (min-width: 48rem)`
 - Components use scoped `<style>` blocks referencing tokens from `var.css`
+- Component-owned CSS classes use prefixed kebab-case for elements, variants, and states.
 
 ## Technical Features
 

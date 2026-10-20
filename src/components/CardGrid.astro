@@ -43,7 +43,7 @@ const widthClasses: Record<GridWidth, string[]> = {
     {...rest}
     class:list={[
         "card-grid",
-        `columns-${columns}`,
+        `card-grid-columns-${columns}`,
         widthClasses[setWidth],
         className,
     ]}
@@ -64,11 +64,11 @@ const widthClasses: Record<GridWidth, string[]> = {
     }
 
     @media (min-width: 48rem) {
-        .columns-2 {
+        .card-grid-columns-2 {
             grid-template-columns: repeat(2, minmax(0, 1fr));
         }
 
-        .columns-3 {
+        .card-grid-columns-3 {
             grid-template-columns: repeat(3, minmax(0, 1fr));
         }
     }

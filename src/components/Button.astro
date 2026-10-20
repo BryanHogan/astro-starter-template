@@ -42,9 +42,9 @@ const visualSize = size ?? "medium";
     {...rest}
     class:list={[
         "button",
-        variant,
-        visualSize,
-        { "explicit-size": size !== undefined },
+        `button-${variant}`,
+        `button-${visualSize}`,
+        { "button-explicit-size": size !== undefined },
         className,
     ]}
     href={isDisabled ? undefined : href}
@@ -82,30 +82,30 @@ const visualSize = size ?? "medium";
         }
     }
 
-    .explicit-size {
+    .button-explicit-size {
         inline-size: fit-content;
         max-inline-size: 100%;
     }
 
-    .small {
+    .button-small {
         padding: var(--space-2xs) var(--space-s);
         font-size: var(--font-size-s);
         gap: var(--space-2xs);
         font-weight: var(--font-weight-regular);
     }
-    .medium {
+    .button-medium {
         padding: var(--space-xs) var(--space-m);
         font-size: var(--font-size-base);
         gap: var(--space-xs);
     }
-    .large {
+    .button-large {
         padding: var(--space-s) var(--space-l);
         font-size: var(--font-size-base);
         gap: var(--space-xs);
     }
 
     /* Keep variant colors above prose link styles, including when disabled. */
-    .button.primary {
+    .button.button-primary {
         background-color: var(--color-accent-300);
         color: var(--color-black);
         @media (hover: hover) {
@@ -123,7 +123,7 @@ const visualSize = size ?? "medium";
             color: var(--color-black);
         }
     }
-    .button.secondary {
+    .button.button-secondary {
         background-color: var(--color-surface);
         color: var(--color-text-strong);
         @media (hover: hover) {
@@ -141,7 +141,7 @@ const visualSize = size ?? "medium";
             color: var(--color-text-strong);
         }
     }
-    .button.outline {
+    .button.button-outline {
         border-color: var(--color-border);
         color: var(--color-text-strong);
         @media (hover: hover) {
@@ -162,7 +162,7 @@ const visualSize = size ?? "medium";
             color: var(--color-text-strong);
         }
     }
-    .button.ghost {
+    .button.button-ghost {
         color: var(--color-text-strong);
         @media (hover: hover) {
             &:not(:disabled, [aria-disabled="true"]):hover {
@@ -179,7 +179,7 @@ const visualSize = size ?? "medium";
             color: var(--color-text-strong);
         }
     }
-    .button.danger {
+    .button.button-danger {
         background-color: var(--color-red-600);
         color: var(--color-white);
         @media (hover: hover) {

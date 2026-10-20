@@ -66,25 +66,25 @@ const normalizedItems = items.map((item, index) => {
 <div {...rest} class:list={["description-list", className]}>
     {eyebrow && <p class="eyebrow">{eyebrow.trim()}</p>}
 
-    <ul class="description-list__items" role="list">
+    <ul class="description-list-items" role="list">
         {
             normalizedItems.map((item) => (
-                <li class="description-list__item">
+                <li class="description-list-item">
                     {item.href ? (
                         <a
-                            class="description-list__row description-list__row--link"
+                            class="description-list-row description-list-row-link"
                             href={item.href}
                         >
-                            <span class="description-list__content">
-                                <strong class="description-list__label">
+                            <span class="description-list-content">
+                                <strong class="description-list-label">
                                     {item.label}
                                 </strong>
-                                <span class="description-list__description">
+                                <span class="description-list-description">
                                     {item.description}
                                 </span>
                             </span>
                             <span
-                                class="description-list__icon"
+                                class="description-list-icon"
                                 aria-hidden="true"
                             >
                                 <Icon
@@ -94,12 +94,12 @@ const normalizedItems = items.map((item, index) => {
                             </span>
                         </a>
                     ) : (
-                        <div class="description-list__row">
-                            <span class="description-list__content">
-                                <strong class="description-list__label">
+                        <div class="description-list-row">
+                            <span class="description-list-content">
+                                <strong class="description-list-label">
                                     {item.label}
                                 </strong>
-                                <span class="description-list__description">
+                                <span class="description-list-description">
                                     {item.description}
                                 </span>
                             </span>
@@ -116,7 +116,7 @@ const normalizedItems = items.map((item, index) => {
         width: 100%;
     }
 
-    .description-list__items {
+    .description-list-items {
         overflow: hidden;
         margin: 0;
         padding: 0;
@@ -127,45 +127,45 @@ const normalizedItems = items.map((item, index) => {
         list-style: none;
     }
 
-    .description-list__item {
+    .description-list-item {
         margin: 0;
     }
 
-    .description-list__item + .description-list__item {
+    .description-list-item + .description-list-item {
         border-block-start: var(--border-width-s) solid var(--color-border);
     }
 
-    .description-list__row {
+    .description-list-row {
         display: grid;
         width: 100%;
         min-width: 0;
         padding: var(--space-m);
     }
 
-    .description-list__content {
+    .description-list-content {
         display: grid;
         min-width: 0;
         gap: var(--space-2xs);
     }
 
-    .description-list__label,
-    .description-list__description {
+    .description-list-label,
+    .description-list-description {
         min-width: 0;
         overflow-wrap: anywhere;
         font-size: var(--font-size-base);
     }
 
-    .description-list__label {
+    .description-list-label {
         color: var(--color-text-strong);
         font-weight: var(--font-weight-semi-bold);
         line-height: var(--font-line-height-heading);
     }
 
-    .description-list__description {
+    .description-list-description {
         color: var(--color-text);
     }
 
-    .description-list__row--link {
+    .description-list-row-link {
         grid-template-columns: minmax(0, 1fr) auto;
         gap: var(--space-m);
         align-items: center;
@@ -176,28 +176,28 @@ const normalizedItems = items.map((item, index) => {
             var(--transition-normal) color;
     }
 
-    .description-list .description-list__row--link::after {
+    .description-list .description-list-row-link::after {
         content: none;
     }
 
     @media (hover: hover) {
-        .description-list__row--link:hover {
+        .description-list-row-link:hover {
             color: var(--color-text);
             background-color: var(--color-surface-muted);
         }
     }
 
-    .description-list__row--link:focus-visible {
+    .description-list-row-link:focus-visible {
         color: var(--color-text);
         background-color: var(--color-surface-muted);
         outline-offset: calc(var(--border-width-m) * -1);
     }
 
-    .description-list__row--link:active {
+    .description-list-row-link:active {
         color: var(--color-text);
     }
 
-    .description-list__icon {
+    .description-list-icon {
         display: inline-flex;
         flex: 0 0 auto;
         align-items: center;
@@ -206,21 +206,21 @@ const normalizedItems = items.map((item, index) => {
     }
 
     @media (min-width: 48rem) {
-        .description-list__row {
+        .description-list-row {
             grid-template-columns: 12rem minmax(0, 1fr);
             gap: var(--space-l);
             align-items: start;
         }
 
-        .description-list__row--link {
+        .description-list-row-link {
             grid-template-columns: 12rem minmax(0, 1fr) auto;
         }
 
-        .description-list__content {
+        .description-list-content {
             display: contents;
         }
 
-        .description-list__icon {
+        .description-list-icon {
             align-self: center;
         }
     }

@@ -51,15 +51,15 @@ const creditUrl = creditHref?.trim();
     {...rest}
     class:list={["figure", className]}
 >
-    <div class="figure__media">
+    <div class="figure-media">
         <slot />
     </div>
 
-    <figcaption class="figure__caption">
+    <figcaption class="figure-caption">
         <span>{captionText}</span>
         {
             creditText && (
-                <span class="figure__credit">
+                <span class="figure-credit">
                     Credit: {creditUrl ? (
                         <a href={creditUrl}>{creditText}</a>
                     ) : (
@@ -78,7 +78,7 @@ const creditUrl = creditHref?.trim();
         margin-block: 0;
     }
 
-    .figure__media {
+    .figure-media {
         width: 100%;
         min-width: 0;
         overflow: hidden;
@@ -86,12 +86,12 @@ const creditUrl = creditHref?.trim();
         border-radius: var(--border-radius-m);
     }
 
-    .figure__media :global(> *) {
+    .figure-media :global(> *) {
         width: 100%;
         max-width: 100%;
     }
 
-    .figure__media :global(:is(img, picture, video)) {
+    .figure-media :global(:is(img, picture, video)) {
         display: block;
         width: 100%;
         max-width: 100%;
@@ -99,11 +99,11 @@ const creditUrl = creditHref?.trim();
         border-radius: 0;
     }
 
-    .figure__media :global(:is(img, video)) {
+    .figure-media :global(:is(img, video)) {
         height: auto;
     }
 
-    .figure__caption {
+    .figure-caption {
         display: grid;
         gap: var(--space-2xs);
         margin-block-start: var(--space-xs);
@@ -114,7 +114,7 @@ const creditUrl = creditHref?.trim();
         text-align: start;
     }
 
-    .figure__credit {
+    .figure-credit {
         color: var(--color-text-muted);
     }
 </style>

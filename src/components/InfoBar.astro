@@ -48,9 +48,9 @@ const normalizedItems = items.map((item, index) => {
 <dl {...rest} class:list={["info-bar", className]}>
     {
         normalizedItems.map((item) => (
-            <div class="info-bar__item">
-                <dt class="info-bar__label">{item.label}</dt>
-                <dd class="info-bar__content">{item.content}</dd>
+            <div class="info-bar-item">
+                <dt class="info-bar-label">{item.label}</dt>
+                <dd class="info-bar-content">{item.content}</dd>
             </div>
         ))
     }
@@ -72,7 +72,7 @@ const normalizedItems = items.map((item, index) => {
         box-shadow: var(--box-shadow-s);
     }
 
-    .info-bar__item {
+    .info-bar-item {
         display: grid;
         flex: 1 1 var(--info-bar-min-item-width);
         align-content: start;
@@ -82,13 +82,13 @@ const normalizedItems = items.map((item, index) => {
         background-color: var(--color-surface);
     }
 
-    .info-bar__label,
-    .info-bar__content {
+    .info-bar-label,
+    .info-bar-content {
         min-width: 0;
         overflow-wrap: anywhere;
     }
 
-    .info-bar__label {
+    .info-bar-label {
         color: var(--color-text-muted);
         font-size: var(--font-size-s);
         font-weight: var(--font-weight-semi-bold);
@@ -97,7 +97,7 @@ const normalizedItems = items.map((item, index) => {
         text-transform: uppercase;
     }
 
-    .info-bar__content {
+    .info-bar-content {
         margin: 0;
         color: var(--color-text-strong);
         font-size: var(--font-size-xl);
