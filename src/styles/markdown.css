@@ -106,7 +106,7 @@
         padding-block: var(--space-s);
         padding-inline: var(--space-m);
         background-color: var(--color-surface);
-        border-inline-start: var(--border-width-s) solid var(--color-accent-500);
+        border-inline-start: var(--border-width-l) solid var(--color-accent-500);
         border-start-start-radius: 0;
         border-start-end-radius: var(--border-radius-m);
         border-end-start-radius: 0;
@@ -130,6 +130,10 @@
         margin-bottom: 0.5em;
     }
 
+    :where(ol:not([role="list"]), ul:not([role="list"])) > li > :where(p, ul, ol, blockquote, pre, table, figure, details, div, h1, h2, h3, h4, h5, h6):not(:first-child) {
+        margin-block-start: var(--flow-space);
+    }
+
     table {
         display: block;
         inline-size: fit-content;
@@ -142,17 +146,16 @@
 
         td,
         th {
+            padding-inline: var(--space-xs);
             border: var(--border-width-s) solid var(--color-border);
         }
 
         td {
             padding-block: var(--space-2xs);
-            padding-inline: var(--space-xs);
         }
 
         th {
             padding-block: var(--space-s);
-            padding-inline: var(--space-m);
             color: var(--color-text-strong);
             font-weight: var(--font-weight-semi-bold);
             text-align: start;
@@ -203,7 +206,8 @@
     }
 
     pre.astro-code {
-        background-color: var(--color-surface) !important;
+        /* Preserve the syntax theme's matching foreground and background. */
+        color-scheme: dark;
     }
 
     kbd {
