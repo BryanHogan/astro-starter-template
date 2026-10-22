@@ -11,7 +11,7 @@ const isExternal = (link: { readonly href: string; readonly external?: boolean }
 ---
 
 <div class="header-backdrop">
-    <div class="header-container">
+    <div class="header-container base-layout">
         <header>
             <a href="/"
                 ><Image
@@ -19,7 +19,6 @@ const isExternal = (link: { readonly href: string; readonly external?: boolean }
                     alt={SITE.name}
                     height="25"
                     width="25"
-                    class="header-logo"
                 /></a
             >
             {navigationLinks.length > 0 && (
@@ -79,9 +78,6 @@ const isExternal = (link: { readonly href: string; readonly external?: boolean }
 </div>
 
 <style>
-    .header-logo {
-        margin-left: 0.25rem;
-    }
     .header-backdrop {
         width: 100%;
         height: var(--navbar-height);
@@ -112,9 +108,6 @@ const isExternal = (link: { readonly href: string; readonly external?: boolean }
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-inline: auto;
-        max-width: var(--site-max-width);
-        padding-inline: var(--side-gap-padding);
         padding-block: var(--space-xs);
         height: var(--navbar-height);
     }
@@ -159,7 +152,7 @@ const isExternal = (link: { readonly href: string; readonly external?: boolean }
             display: block;
             position: absolute;
             z-index: 30;
-            right: 1rem;
+            right: var(--side-gap-padding);
             background-color: transparent;
             padding: 0.5rem 0 0.5rem 0.5rem;
             border: 0;

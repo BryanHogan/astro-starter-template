@@ -50,7 +50,7 @@ const wasUpdated = updateDate.getTime() !== pubDate.getTime();
         tabindex="-1"
         class="base-layout base-layout-content height-smart-fill-screen"
     >
-        <article class="blog-post">
+        <article class="blog-post full-width base-layout">
             <header class="blog-post-header main-header-element">
                 <nav class="blog-post-navigation" aria-label="Blog navigation">
                     <Button
@@ -71,7 +71,7 @@ const wasUpdated = updateDate.getTime() !== pubDate.getTime();
                 <h1>{title}</h1>
             </header>
 
-            <div class="blog-post-body markdown-container">
+            <div class="blog-post-body markdown-container full-width base-layout">
                 <slot />
             </div>
 
