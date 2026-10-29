@@ -63,6 +63,7 @@ export const SITE = {
                     { label: "About", href: "/about" },
                     { label: "Blog", href: "/blog" },
                     { label: "Contact", href: "/contact" },
+                    { label: "Showcase", href: "/site-showcase" },
                 ],
             },
             {
