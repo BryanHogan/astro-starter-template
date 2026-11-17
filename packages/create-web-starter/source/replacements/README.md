@@ -36,11 +36,11 @@ Blog posts require `title`, `description`, and `pubDate` in their frontmatter. Y
 
 - [Bryan Web Starter website](https://starter.bryanhogan.com/)
 - [GitHub repository](https://github.com/BryanHogan/astro-starter-template)
-- [How to configure `src/config.ts`](https://starter.bryanhogan.com/blog/how-to-configure-config.ts)
-- [How to create Astro and MDX pages](https://starter.bryanhogan.com/blog/how-to-create-a-new-page)
-- [Customizing the design](https://starter.bryanhogan.com/blog/customizing-the-design)
-- [Component showcase](https://starter.bryanhogan.com/blog/component-showcase)
-- [Markdown style guide](https://starter.bryanhogan.com/blog/markdown-style-guide)
+- [How to configure `src/config.ts`](https://starter.bryanhogan.com/docs/how-to-configure-config)
+- [How to create Astro and MDX pages](https://starter.bryanhogan.com/docs/how-to-create-a-new-page)
+- [Customizing the design](https://starter.bryanhogan.com/docs/customizing-the-design)
+- [Component showcase](https://starter.bryanhogan.com/docs/component-showcase)
+- [Markdown style guide](https://starter.bryanhogan.com/docs/markdown-style-guide)
 
 ## License
 

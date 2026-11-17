@@ -1,30 +1,34 @@
 ---
+import type { CollectionKey } from "astro:content";
 import { SITE } from "../config";
-import { getBlogPosts } from "../utils/getBlogPosts";
+import { getEntries } from "../utils/getEntries";
 
 interface Props {
-    /** Maximum number of posts to display. Omit to show every post. */
+    /** Content collection to list. Entries link to `/<collection>/<id>`. */
+    collection: CollectionKey;
+    /** Maximum number of entries to display. Omit to show every entry. */
     limit?: number;
-    /** Heading level used for each post title. */
+    /** Heading level used for each entry title. */
     headingLevel?: "h2" | "h3" | "h4";
-    /** Whether to display each post description. */
+    /** Whether to display each entry description. */
     showDescription?: boolean;
 }
 
 const {
+    collection,
     limit,
     headingLevel: Heading = "h2",
     showDescription = true,
 } = Astro.props;
 
 if (limit !== undefined && (!Number.isInteger(limit) || limit < 1)) {
-    throw new Error("BlogPostsList `limit` must be a positive integer.");
+    throw new Error("EntryList `limit` must be a positive integer.");
 }
 
 const headingLevels = ["h2", "h3", "h4"] as const;
 
 if (!headingLevels.includes(Heading)) {
-    throw new Error("BlogPostsList `headingLevel` must be h2, h3, or h4.");
+    throw new Error("EntryList `headingLevel` must be h2, h3, or h4.");
 }
 
 const dateFormatter = new Intl.DateTimeFormat(SITE.locale, {
@@ -33,54 +37,56 @@ const dateFormatter = new Intl.DateTimeFormat(SITE.locale, {
     timeZone: "UTC",
 });
 
-const posts = (await getBlogPosts()).slice(0, limit);
+const entries = (await getEntries(collection)).slice(0, limit);
 ---
 
 {
-    posts.length > 0 ? (
-        <ul class="blog-posts" role="list">
-            {posts.map((post) => (
-                <li class="blog-posts-item">
-                    <a class="blog-posts-link" href={`/blog/${post.id}`}>
-                        <div class="blog-posts-content">
-                            <Heading class="blog-posts-title">
-                                {post.data.title}
+    entries.length > 0 ? (
+        <ul class="entry-list" role="list">
+            {entries.map((entry) => (
+                <li class="entry-list-item">
+                    <a class="entry-list-link" href={`/${collection}/${entry.id}`}>
+                        <div class="entry-list-content">
+                            <Heading class="entry-list-title">
+                                {entry.data.title}
                             </Heading>
                             {showDescription && (
-                                <p class="blog-posts-description">
-                                    {post.data.description}
+                                <p class="entry-list-description">
+                                    {entry.data.description}
                                 </p>
                             )}
                         </div>
-                        <time
-                            class="blog-posts-date"
-                            datetime={post.data.pubDate
-                                .toISOString()
-                                .slice(0, 10)}
-                        >
-                            {dateFormatter.format(post.data.pubDate)}
-                        </time>
+                        {"pubDate" in entry.data && (
+                            <time
+                                class="entry-list-date"
+                                datetime={entry.data.pubDate
+                                    .toISOString()
+                                    .slice(0, 10)}
+                            >
+                                {dateFormatter.format(entry.data.pubDate)}
+                            </time>
+                        )}
                     </a>
                 </li>
             ))}
         </ul>
     ) : (
-        <p class="blog-posts-empty">No posts yet.</p>
+        <p class="entry-list-empty">Nothing here yet.</p>
     )
 }
 
 <style>
-    .blog-posts {
+    .entry-list {
         display: grid;
         gap: var(--space-2xs);
         padding: 0;
     }
 
-    .blog-posts-item {
+    .entry-list-item {
         margin: 0;
     }
 
-    .blog-posts-link {
+    .entry-list-link {
         display: grid;
         grid-template-columns: minmax(0, 1fr);
         gap: var(--space-2xs);
@@ -96,34 +102,34 @@ const posts = (await getBlogPosts()).slice(0, limit);
     }
 
     @media (hover: hover) {
-        .blog-posts-link:hover {
+        .entry-list-link:hover {
             color: var(--color-link-hover);
             background-color: var(--color-surface);
         }
     }
 
-    .blog-posts-link:focus-visible {
+    .entry-list-link:focus-visible {
         color: var(--color-link-hover);
         background-color: var(--color-surface);
     }
 
-    .blog-posts-content {
+    .entry-list-content {
         min-width: 0;
     }
 
-    .blog-posts-title {
+    .entry-list-title {
         color: inherit;
         font-size: var(--font-size-base);
         font-weight: var(--font-weight-semi-bold);
     }
 
-    .blog-posts-description {
+    .entry-list-description {
         margin-block-start: var(--space-2xs);
         color: var(--color-text-subtle);
         font-size: var(--font-size-base);
     }
 
-    .blog-posts-date {
+    .entry-list-date {
         grid-row: 1;
         padding-block-start: 0;
         color: var(--color-text-muted);
@@ -131,17 +137,17 @@ const posts = (await getBlogPosts()).slice(0, limit);
         white-space: nowrap;
     }
 
-    .blog-posts-empty {
+    .entry-list-empty {
         color: var(--color-text-muted);
     }
 
     @media (min-width: 48rem) {
-        .blog-posts-link {
+        .entry-list-link {
             grid-template-columns: minmax(0, 1fr) auto;
             gap: var(--space-l);
         }
 
-        .blog-posts-date {
+        .entry-list-date {
             grid-row: auto;
             padding-block-start: 0.1em;
         }

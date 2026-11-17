@@ -1,7 +1,7 @@
 ---
 title: How to create a new page
 description: Learn how to add a simple MDX or Astro page to your first website.
-pubDate: 2026-08-01
+order: 2
 ---
 
 Every page in `src/pages/` becomes a page on your website. See the existing page such as `index.mdx` for reference.
@@ -81,7 +81,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 </BaseLayout>
 ```
 
-The shared skip link targets `#main-content`. The negative tabindex lets the main element receive focus without adding it to the normal Tab order. MDX pages using `PageLayout` and blog posts using `BlogPostLayout` already receive this main element from their layouts; do not add another one.
+The shared skip link targets `#main-content`. The negative tabindex lets the main element receive focus without adding it to the normal Tab order. MDX pages using `PageLayout` and blog posts and docs using `EntryLayout` already receive this main element from their layouts; do not add another one.
 
 </details>
 

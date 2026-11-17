@@ -91,7 +91,7 @@ You might want to add your social media profile links and other content such as 
 
 Also replace the example assets in `public/`, especially `favicon.svg` and `og-default.png`, when you are ready to use your own branding. The default social image is used by regular pages; blog posts generate title-based images automatically during the build.
 
-See [How to configure `config.ts`](https://starter.bryanhogan.com/blog/how-to-configure-config.ts) for every available field.
+See [How to configure `config.ts`](https://starter.bryanhogan.com/docs/how-to-configure-config) for every available field.
 
 ### 3. Start the development server
 
@@ -110,7 +110,8 @@ If port 4321 is already in use, Astro selects another port; use the exact URL pr
 ### 4. Create your content
 
 - Edit or replace the example pages in `src/pages/`.
-- Add blog posts to `src/content/blog/`.
+- Add blog posts to `src/content/blog/`. The welcome post is an example you can edit or delete.
+- Edit or remove the template guides in `src/content/docs/`. They are served at `/docs`, ordered by the `order` frontmatter field; sites created with the npm package do not include them.
 - Add processed images to `src/assets/images/` or static files to `public/`.
 - Update the header and footer navigation links in `src/config.ts` when your page structure changes.
 
@@ -141,11 +142,11 @@ npm run preview
 
 ## Documentation
 
-- [How to configure `src/config.ts`](https://starter.bryanhogan.com/blog/how-to-configure-config.ts)
-- [How to create Astro and MDX pages](https://starter.bryanhogan.com/blog/how-to-create-a-new-page)
-- [Customizing the design](https://starter.bryanhogan.com/blog/customizing-the-design)
-- [Component showcase](https://starter.bryanhogan.com/blog/component-showcase)
-- [Markdown style guide](https://starter.bryanhogan.com/blog/markdown-style-guide)
+- [How to configure `src/config.ts`](https://starter.bryanhogan.com/docs/how-to-configure-config)
+- [How to create Astro and MDX pages](https://starter.bryanhogan.com/docs/how-to-create-a-new-page)
+- [Customizing the design](https://starter.bryanhogan.com/docs/customizing-the-design)
+- [Component showcase](https://starter.bryanhogan.com/docs/component-showcase)
+- [Markdown style guide](https://starter.bryanhogan.com/docs/markdown-style-guide)
 
 You can use the entire project or take only the pieces you need, such as the styles, layouts, header, footer, or individual components.
 
@@ -170,7 +171,7 @@ To remove MDX support:
 
 ### The automatically generated blog social preview images
 
-Each blog post also generates a 1200 × 630 social image at `dist/og/blog/<post-id>.png`. These files are build output rather than source assets, so they do not need to be added to `public/` or committed to Git.
+Each blog post also generates a 1200 × 630 social image at `dist/og/blog/<post-id>.png`, and each doc at `dist/og/docs/<doc-id>.png`. These files are build output rather than source assets, so they do not need to be added to `public/` or committed to Git.
 
 </details>
 
@@ -205,11 +206,12 @@ src/
 ├── assets/images/       Images processed by Astro
 ├── components/          Reusable Astro components
 ├── content/blog/        Markdown and MDX blog posts
+├── content/docs/        Template guides served at /docs
 ├── layouts/             Shared page and post layouts
 ├── pages/               File-based website routes
 ├── styles/              Global design system and prose styles
 ├── config.ts            Site-wide configuration
-└── content.config.ts    Blog collection schema
+└── content.config.ts    Blog and docs collection schemas
 public/                  Static assets copied as-is
 ```
 

@@ -1,22 +1,22 @@
 ---
 import type { GetStaticPaths } from "astro";
 import { render, type CollectionEntry } from "astro:content";
-import BlogPostLayout from "../../layouts/BlogPostLayout.astro";
-import type { BlogPostNavigationItem } from "../../types/blog";
-import { getBlogPosts } from "../../utils/getBlogPosts";
+import EntryLayout from "../../layouts/EntryLayout.astro";
+import type { EntryNavigationItem } from "../../types/entry";
+import { getEntries } from "../../utils/getEntries";
 
 interface Props {
     post: CollectionEntry<"blog">;
-    previousPost?: BlogPostNavigationItem;
-    nextPost?: BlogPostNavigationItem;
+    previousEntry?: EntryNavigationItem;
+    nextEntry?: EntryNavigationItem;
 }
 
 export const getStaticPaths = (async () => {
-    const posts = await getBlogPosts();
+    const posts = await getEntries("blog");
 
     const toNavigationItem = (
         post: CollectionEntry<"blog">,
-    ): BlogPostNavigationItem => ({
+    ): EntryNavigationItem => ({
         title: post.data.title,
         href: `/blog/${post.id}`,
     });
@@ -25,9 +25,9 @@ export const getStaticPaths = (async () => {
         params: { id: post.id },
         props: {
             post,
-            previousPost:
+            previousEntry:
                 index > 0 ? toNavigationItem(posts[index - 1]) : undefined,
-            nextPost:
+            nextEntry:
                 index < posts.length - 1
                     ? toNavigationItem(posts[index + 1])
                     : undefined,
@@ -35,11 +35,17 @@ export const getStaticPaths = (async () => {
     }));
 }) satisfies GetStaticPaths;
 
-const { post, previousPost, nextPost } = Astro.props;
+const { post, previousEntry, nextEntry } = Astro.props;
 const { Content } = await render(post);
 const ogImage = `/og/blog/${post.id}.png`;
 ---
 
-<BlogPostLayout {...post.data} {ogImage} {previousPost} {nextPost}>
+<EntryLayout
+    {...post.data}
+    {ogImage}
+    backLink={{ href: "/blog", label: "Back to blog" }}
+    {previousEntry}
+    {nextEntry}
+>
     <Content />
-</BlogPostLayout>
+</EntryLayout>

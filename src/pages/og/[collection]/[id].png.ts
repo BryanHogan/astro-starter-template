@@ -1,6 +1,8 @@
 import type { APIRoute, GetStaticPaths } from "astro";
+import type { CollectionKey } from "astro:content";
 import { SITE } from "../../../config";
-import { getBlogPosts } from "../../../utils/getBlogPosts";
+import { collections } from "../../../content.config";
+import { getEntries } from "../../../utils/getEntries";
 import { generateSocialImage } from "../../../utils/generateSocialImage";
 
 interface Props {
@@ -8,12 +10,17 @@ interface Props {
 }
 
 export const getStaticPaths = (async () => {
-    const posts = await getBlogPosts();
+    const collectionKeys = Object.keys(collections) as CollectionKey[];
+    const paths = await Promise.all(
+        collectionKeys.map(async (collection) =>
+            (await getEntries(collection)).map((entry) => ({
+                params: { collection, id: entry.id },
+                props: { title: entry.data.title } satisfies Props,
+            })),
+        ),
+    );
 
-    return posts.map((post) => ({
-        params: { id: post.id },
-        props: { title: post.data.title } satisfies Props,
-    }));
+    return paths.flat();
 }) satisfies GetStaticPaths;
 
 export const GET = (async ({ props }) => {

@@ -1,7 +1,7 @@
 ---
 title: How to make this template yours - Configuring config.ts
 description: Learn what to change in src/config.ts before you publish your first website.
-pubDate: 2026-08-01
+order: 1
 ---
 
 import DescriptionList from "../../components/DescriptionList.astro";
@@ -197,7 +197,7 @@ ogImage: "/og-default.png",
 
 This is the default image shown when someone shares a regular page on your website. The example path points to `public/og-default.png`.
 
-Blog posts use a title-based image generated automatically at `/og/blog/<post-id>.png` during the build, so this default is only their fallback if you remove that blog-specific behavior.
+Blog posts and docs use a title-based image generated automatically at `/og/blog/<post-id>.png` or `/og/docs/<doc-id>.png` during the build, so this default is only their fallback if you remove that behavior.
 
 Replace that file with your own 1200 × 630 PNG image. Keep the same filename and path for the easiest setup.
 

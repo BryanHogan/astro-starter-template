@@ -8,7 +8,16 @@ const repositoryRoot = resolve(packageDirectory, "../..");
 const templateDirectory = join(packageDirectory, "template");
 const baseDirectory = join(templateDirectory, "base");
 const sourceDirectory = join(packageDirectory, "source");
-const setupVideoThumbnail = join(repositoryRoot, "public", "images", "setup-video-thumbnail.png");
+
+// The docs explain the template itself, so generated sites only get the blog.
+const excludedPaths = new Set(
+    [
+        ["public", "images", "setup-video-thumbnail.png"],
+        ["src", "content", "docs"],
+        ["src", "pages", "docs"],
+        ["src", "pages", "docs.mdx"],
+    ].map((segments) => join(repositoryRoot, ...segments)),
+);
 
 if (!templateDirectory.startsWith(`${packageDirectory}${sep}`)) {
     throw new Error("Refusing to rebuild a template outside the generator package.");
@@ -27,7 +36,7 @@ for (const entry of [
 ]) {
     await cp(join(repositoryRoot, entry), join(baseDirectory, entry), {
         recursive: true,
-        filter: (source) => source !== setupVideoThumbnail,
+        filter: (source) => !excludedPaths.has(resolve(source)),
     });
 }
 

@@ -1,9 +1,9 @@
 import rss from "@astrojs/rss";
 import { SITE } from "../config";
-import { getBlogPosts } from "../utils/getBlogPosts";
+import { getEntries } from "../utils/getEntries";
 
 export async function GET() {
-    const posts = await getBlogPosts();
+    const posts = await getEntries("blog");
 
     return rss({
         title: `${SITE.name} Blog`,

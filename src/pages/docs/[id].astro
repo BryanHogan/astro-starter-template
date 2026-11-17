@@ -1,0 +1,53 @@
+---
+import type { GetStaticPaths } from "astro";
+import { render, type CollectionEntry } from "astro:content";
+import EntryLayout from "../../layouts/EntryLayout.astro";
+import type { EntryNavigationItem } from "../../types/entry";
+import { getEntries } from "../../utils/getEntries";
+
+interface Props {
+    doc: CollectionEntry<"docs">;
+    previousEntry?: EntryNavigationItem;
+    nextEntry?: EntryNavigationItem;
+}
+
+export const getStaticPaths = (async () => {
+    const docs = await getEntries("docs");
+
+    const toNavigationItem = (
+        doc: CollectionEntry<"docs">,
+    ): EntryNavigationItem => ({
+        title: doc.data.title,
+        href: `/docs/${doc.id}`,
+    });
+
+    return docs.map((doc, index) => ({
+        params: { id: doc.id },
+        props: {
+            doc,
+            previousEntry:
+                index > 0 ? toNavigationItem(docs[index - 1]) : undefined,
+            nextEntry:
+                index < docs.length - 1
+                    ? toNavigationItem(docs[index + 1])
+                    : undefined,
+        },
+    }));
+}) satisfies GetStaticPaths;
+
+const { doc, previousEntry, nextEntry } = Astro.props;
+const { Content } = await render(doc);
+const ogImage = `/og/docs/${doc.id}.png`;
+---
+
+<EntryLayout
+    title={doc.data.title}
+    description={doc.data.description}
+    {ogImage}
+    backLink={{ href: "/docs", label: "All docs" }}
+    showAuthorBio={false}
+    {previousEntry}
+    {nextEntry}
+>
+    <Content />
+</EntryLayout>

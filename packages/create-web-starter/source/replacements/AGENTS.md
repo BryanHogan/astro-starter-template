@@ -22,7 +22,7 @@ This is a generated Astro website with MDX support, accessible components, a tok
 ## Key directories
 
 - `src/pages/` - Page routes
-- `src/layouts/` - Shared page and blog-post layouts
+- `src/layouts/` - `BaseLayout.astro` (all pages), `PageLayout.astro` (MDX pages), and `EntryLayout.astro` (blog posts)
 - `src/components/` - Reusable Astro components
 - `src/content/blog/` - Blog content collection
 - `src/styles/` - Global stylesheets and design tokens

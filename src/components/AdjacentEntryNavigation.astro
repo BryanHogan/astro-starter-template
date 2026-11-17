@@ -1,38 +1,38 @@
 ---
-import type { BlogPostNavigationItem } from "../types/blog";
+import type { EntryNavigationItem } from "../types/entry";
 
 interface Props {
-    previousPost?: BlogPostNavigationItem;
-    nextPost?: BlogPostNavigationItem;
+    previousEntry?: EntryNavigationItem;
+    nextEntry?: EntryNavigationItem;
 }
 
-const { previousPost, nextPost } = Astro.props;
+const { previousEntry, nextEntry } = Astro.props;
 ---
 
 {
-    (previousPost || nextPost) && (
-        <nav class="post-navigation" aria-label="Post navigation">
-            {previousPost && (
+    (previousEntry || nextEntry) && (
+        <nav class="entry-navigation" aria-label="Previous and next pages">
+            {previousEntry && (
                 <a
-                    class="post-navigation-link post-navigation-previous"
-                    href={previousPost.href}
+                    class="entry-navigation-link entry-navigation-previous"
+                    href={previousEntry.href}
                     rel="prev"
                 >
-                    <span class="post-navigation-label">Previous post</span>
-                    <span class="post-navigation-title">
-                        {previousPost.title}
+                    <span class="entry-navigation-label">Previous</span>
+                    <span class="entry-navigation-title">
+                        {previousEntry.title}
                     </span>
                 </a>
             )}
 
-            {nextPost && (
+            {nextEntry && (
                 <a
-                    class="post-navigation-link post-navigation-next"
-                    href={nextPost.href}
+                    class="entry-navigation-link entry-navigation-next"
+                    href={nextEntry.href}
                     rel="next"
                 >
-                    <span class="post-navigation-label">Next post</span>
-                    <span class="post-navigation-title">{nextPost.title}</span>
+                    <span class="entry-navigation-label">Next</span>
+                    <span class="entry-navigation-title">{nextEntry.title}</span>
                 </a>
             )}
         </nav>
@@ -40,7 +40,7 @@ const { previousPost, nextPost } = Astro.props;
 }
 
 <style>
-    .post-navigation {
+    .entry-navigation {
         display: grid;
         grid-template-columns: minmax(0, 1fr);
         width: 100%;
@@ -51,7 +51,7 @@ const { previousPost, nextPost } = Astro.props;
         box-shadow: var(--box-shadow-s);
     }
 
-    .post-navigation-link {
+    .entry-navigation-link {
         display: flex;
         justify-content: flex-start;
         flex-direction: column;
@@ -64,27 +64,27 @@ const { previousPost, nextPost } = Astro.props;
     }
 
     @media (hover: hover) {
-        .post-navigation-link:hover {
+        .entry-navigation-link:hover {
             color: var(--color-text-strong);
             background-color: var(--color-surface-muted);
         }
     }
 
-    .post-navigation-link:focus-visible {
+    .entry-navigation-link:focus-visible {
         color: var(--color-text-strong);
         background-color: var(--color-surface-muted);
         outline-offset: -3px;
     }
 
-    .post-navigation-link + .post-navigation-link {
+    .entry-navigation-link + .entry-navigation-link {
         border-block-start: var(--border-width-s) solid var(--color-border);
     }
 
-    .post-navigation-next {
+    .entry-navigation-next {
         text-align: end;
     }
 
-    .post-navigation-label {
+    .entry-navigation-label {
         color: var(--color-accent-text);
         font-size: var(--font-size-s);
         font-weight: var(--font-weight-semi-bold);
@@ -92,7 +92,7 @@ const { previousPost, nextPost } = Astro.props;
         text-transform: uppercase;
     }
 
-    .post-navigation-title {
+    .entry-navigation-title {
         overflow-wrap: anywhere;
         color: var(--color-text-strong);
         font-size: var(--font-size-l);
@@ -104,19 +104,19 @@ const { previousPost, nextPost } = Astro.props;
     }
 
     @media (min-width: 48rem) {
-        .post-navigation {
+        .entry-navigation {
             grid-template-columns: repeat(2, minmax(0, 1fr));
         }
 
-        .post-navigation-link {
+        .entry-navigation-link {
             padding: var(--space-l);
         }
 
-        .post-navigation-link:only-child {
+        .entry-navigation-link:only-child {
             grid-column: 1 / -1;
         }
 
-        .post-navigation-link + .post-navigation-link {
+        .entry-navigation-link + .entry-navigation-link {
             border-block-start: 0;
             border-inline-start: var(--border-width-s) solid var(--color-border);
         }

@@ -1,0 +1,148 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import AdjacentEntryNavigation from "../components/AdjacentEntryNavigation.astro";
+import Button from "../components/Button.astro";
+import { Content as AuthorBio } from "../content/author.md";
+import "../styles/markdown.css";
+import { SITE } from "../config";
+import type { EntryNavigationItem } from "../types/entry";
+
+interface Props {
+    title: string;
+    description: string;
+    ogImage: string;
+    backLink: { href: string; label: string };
+    /** Shows the date and article metadata when set. */
+    pubDate?: Date;
+    updateDate?: Date;
+    showAuthorBio?: boolean;
+    previousEntry?: EntryNavigationItem;
+    nextEntry?: EntryNavigationItem;
+}
+
+const {
+    title,
+    description,
+    ogImage,
+    backLink,
+    pubDate,
+    updateDate,
+    showAuthorBio = true,
+    previousEntry,
+    nextEntry,
+} = Astro.props;
+
+const dateFormatter = new Intl.DateTimeFormat(SITE.locale, {
+    dateStyle: "long",
+    timeZone: "UTC",
+});
+const wasUpdated =
+    pubDate && updateDate && updateDate.getTime() !== pubDate.getTime();
+---
+
+<BaseLayout
+    title={title}
+    description={description}
+    ogImage={ogImage}
+    ogImageAlt={`${title} — ${SITE.name}`}
+    ogType={pubDate ? "article" : undefined}
+    articlePublished={pubDate}
+    articleModified={updateDate}
+>
+    <main
+        id="main-content"
+        tabindex="-1"
+        class="base-layout base-layout-content height-smart-fill-screen"
+    >
+        <article class="entry full-width base-layout">
+            <header class="entry-header main-header-element">
+                <nav class="entry-back-navigation" aria-label="Section navigation">
+                    <Button
+                        href={backLink.href}
+                        variant="outline"
+                        size="small"
+                        iconLeft="left-arrow"
+                    >
+                        {backLink.label}
+                    </Button>
+                </nav>
+                {
+                    pubDate && updateDate && (
+                        <time
+                            class="entry-date"
+                            datetime={updateDate.toISOString().slice(0, 10)}
+                        >
+                            {wasUpdated
+                                ? `Updated ${dateFormatter.format(updateDate)}`
+                                : dateFormatter.format(pubDate)}
+                        </time>
+                    )
+                }
+                <h1>{title}</h1>
+            </header>
+
+            <div class="entry-body markdown-container full-width base-layout">
+                <slot />
+            </div>
+
+            {
+                showAuthorBio && (
+                    <section class="entry-author markdown-container">
+                        <AuthorBio />
+                    </section>
+                )
+            }
+
+            {
+                (previousEntry || nextEntry) && (
+                    <div class="entry-adjacent-navigation">
+                        <AdjacentEntryNavigation
+                            previousEntry={previousEntry}
+                            nextEntry={nextEntry}
+                        />
+                    </div>
+                )
+            }
+        </article>
+    </main>
+</BaseLayout>
+
+<style>
+    .entry {
+        min-width: 0;
+        padding-block-end: var(--space-2xl);
+    }
+
+    .entry-header {
+        display: grid;
+        gap: var(--space-s);
+    }
+
+    .entry-back-navigation {
+        margin-block-end: var(--space-m);
+    }
+
+    .entry-date {
+        color: var(--color-text-muted);
+        font-size: var(--font-size-s);
+    }
+
+    .entry-header h1 {
+        overflow-wrap: anywhere;
+        text-wrap: balance;
+    }
+
+    .entry-body {
+        margin-block-start: var(--space-xl);
+    }
+
+    .entry-author {
+        padding-block-start: var(--space-l);
+        margin-block-start: var(--space-2xl);
+        border-block-start: var(--border-width-s) solid var(--color-border);
+    }
+
+    .entry-adjacent-navigation {
+        margin-block-start: var(--space-xl);
+    }
+</style>

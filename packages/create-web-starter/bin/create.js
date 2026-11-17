@@ -325,9 +325,14 @@ async function configureProject(directory, answers) {
         __SITE_AUTHOR_JSON__: JSON.stringify(answers.author),
         __OG_IMAGE_ALT_JSON__: JSON.stringify(`${answers.siteName} social image`),
         __START_YEAR__: String(new Date().getFullYear()),
+        __TODAY__: formatLocalDate(new Date()),
     };
 
-    for (const relativePath of ["src/config.ts", "src/pages/index.mdx"]) {
+    for (const relativePath of [
+        "src/config.ts",
+        "src/pages/index.mdx",
+        "src/content/blog/welcome.mdx",
+    ]) {
         await replaceTokens(join(directory, relativePath), structuredReplacements);
     }
 
@@ -353,6 +358,12 @@ async function replaceTokens(filePath, replacements) {
     }
 
     await writeFile(filePath, content);
+}
+
+/** Format a date as YYYY-MM-DD in the local time zone. */
+function formatLocalDate(date) {
+    const pad = (value) => String(value).padStart(2, "0");
+    return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
 }
 
 function createPackageName(value) {

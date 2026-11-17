@@ -8,6 +8,7 @@ This is Bryan Hogan's Astro starter template, a lightweight, accessible foundati
 - **Site URL**: https://starter.bryanhogan.com (set in `src/config.ts`, not hardcoded). People are expected to place their URL there themselves when using this template.
 - **Node**: >= 22.12.0
 - **Pages**: `.astro` and `.mdx` files in `src/pages/`
+- **Content**: `blog` and `docs` collections in `src/content/`
 - **RSS**: Summary feed generated from the blog content collection at `/rss.xml`
 - **No tests or linter**
 
@@ -48,6 +49,7 @@ This is Bryan Hogan's Astro starter template, a lightweight, accessible foundati
 - Use semantic color tokens (`--color-text`, `--color-accent-500`) in components, not raw scale values
 - Page structure uses the `.base-layout` grid with `.full-width` breakout, don't invent custom containers
 - `.astro` pages wrap content in `BaseLayout` directly; `.mdx` pages declare `layout: ../layouts/PageLayout.astro` in frontmatter with `title` and `description`. `PageLayout` adds top spacing by default; set `topSpacing: false` when the first component provides its own spacing
+- `packages/create-web-starter` builds its template from `src/` and `public/` without the docs; files in `source/replacements/` override root files, so keep them in sync
 - Responsive breakpoint: `@media (min-width: 48rem)`
 - Components use scoped `<style>` blocks referencing tokens from `var.css`
 - Component-owned CSS classes use prefixed kebab-case for elements, variants, and states.

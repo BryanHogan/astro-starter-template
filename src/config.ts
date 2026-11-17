@@ -28,6 +28,7 @@ export const SITE = {
     /** Header navigation. Add, remove, or reorder links without editing the header component. */
     header: {
         links: [
+            { label: "Docs", href: "/docs" },
             { label: "Blog", href: "/blog" },
             { label: "About", href: "/about" },
             { label: "Contact", href: "/contact" },
@@ -61,6 +62,7 @@ export const SITE = {
                 links: [
                     { label: "Home", href: "/" },
                     { label: "About", href: "/about" },
+                    { label: "Docs", href: "/docs" },
                     { label: "Blog", href: "/blog" },
                     { label: "Contact", href: "/contact" },
                     { label: "Showcase", href: "/site-showcase" },
