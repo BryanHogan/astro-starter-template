@@ -19,7 +19,9 @@ Write your content simply in Markdown or MDX, change the colors, text and other 
 
 ## Installation and first run
 
-*Setup video is currently being adjusted.*
+Watch the [setup video](https://youtu.be/zuP6iLnreZo):
+
+<a href="https://youtu.be/zuP6iLnreZo"><img src="public/images/setup-video-thumbnail.png" alt="Watch the setup video" width="640"></a>
 
 Quick summary: Install [Node.js](https://nodejs.org/), [Git](https://git-scm.com/) and [VSCode](https://code.visualstudio.com/). Run `npm create @bryanhogan/web-starter@latest` and go through the setup. Run as `npm run dev` for testing, might need to fix execution policy. Initialize repository and connect to GitHub. Adjust the `config.ts` file. Adjust relevant pages. Add to static site host.
 
