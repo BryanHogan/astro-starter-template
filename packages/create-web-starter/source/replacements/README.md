@@ -2,7 +2,7 @@
 
 __SITE_DESCRIPTION_MARKDOWN__
 
-This Astro website was generated with [Bryan Web Starter](https://starter.bryanhogan.com/).
+This Astro website was generated with [StarStarter](https://starter.bryanhogan.com/).
 
 ## First run
 
@@ -34,7 +34,7 @@ Blog posts require `title`, `description`, and `pubDate` in their frontmatter. Y
 
 ## Resources
 
-- [Bryan Web Starter website](https://starter.bryanhogan.com/)
+- [StarStarter website](https://starter.bryanhogan.com/)
 - [GitHub repository](https://github.com/BryanHogan/astro-starter-template)
 - [How to configure `src/config.ts`](https://starter.bryanhogan.com/docs/how-to-configure-config)
 - [How to create Astro and MDX pages](https://starter.bryanhogan.com/docs/how-to-create-a-new-page)

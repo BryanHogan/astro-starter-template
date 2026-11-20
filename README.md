@@ -1,6 +1,8 @@
-# Astro Starter Template by Bryan Hogan
+# StarStarter for Astro by Bryan Hogan
 
-A free Astro starter template for good, fast and accessible websites you fully control.
+StarStarter is a free Astro starter template for good, fast and accessible websites you fully control.
+
+See the [StarStarter website](https://starter.bryanhogan.com/) for a live demo and the full docs.
 
 Write your content simply in Markdown or MDX, change the colors, text and other styling, then publish the finished site anywhere. You own the code and can change every part of it.
 
@@ -113,7 +115,7 @@ If port 4321 is already in use, Astro selects another port; use the exact URL pr
 
 - Edit or replace the example pages in `src/pages/`.
 - Add blog posts to `src/content/blog/`. The welcome post is an example you can edit or delete.
-- Edit or remove the template guides in `src/content/docs/`. They are served at `/docs`, ordered by the `order` frontmatter field; sites created with the npm package do not include them.
+- Edit or remove the template guides in `src/content/docs/`. They are served at `/docs`, ordered by the `order` frontmatter field. Sites created with the npm package do not include them or the site showcase page.
 - Add processed images to `src/assets/images/` or static files to `public/`.
 - Update the header and footer navigation links in `src/config.ts` when your page structure changes.
 

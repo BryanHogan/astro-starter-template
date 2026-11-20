@@ -1,6 +1,6 @@
-# @bryanhogan/create-web-starter
+# StarStarter for Astro
 
-Create a configured Astro website using Bryan Web Starter.
+The official generator for [StarStarter](https://starter.bryanhogan.com/), a free Astro starter template for fast, accessible websites you fully control. Create a configured StarStarter site with one command:
 
 ```bash
 npm create @bryanhogan/web-starter@latest
@@ -28,7 +28,15 @@ Available flags:
 
 The generated website includes Astro, MDX pages, a blog with optional update
 dates and production-safe drafts, RSS, sitemap support, SEO metadata,
-accessible components, and a token-based CSS design system.
+accessible components, and a token-based CSS design system. The template
+guides and site showcase from the StarStarter website are left out, so you
+start with a clean site of your own.
+
+## Documentation
+
+- [StarStarter website](https://starter.bryanhogan.com/)
+- [Docs](https://starter.bryanhogan.com/docs)
+- [GitHub repository](https://github.com/BryanHogan/astro-starter-template)
 
 ## Requirements
 

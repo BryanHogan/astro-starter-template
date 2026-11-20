@@ -4,10 +4,10 @@ export const SITE = {
     url: "https://starter.bryanhogan.com",
 
     /** Brand/site name — og:site_name, WebSite JSON-LD, footer. */
-    name: "Astro Starter Template",
+    name: "StarStarter",
 
     /** Default site description — used in the RSS feed and site-wide JSON-LD. */
-    description: "A lightweight, accessible Astro starter template with a simple color system, SEO-ready head, and sensible defaults.",
+    description: "StarStarter is a lightweight, accessible Astro starter template with a simple color system, SEO-ready head, and sensible defaults.",
 
     /** Person behind the site — meta author + copyright, footer, JSON-LD author/publisher. */
     author: "Bryan Hogan",
@@ -23,7 +23,7 @@ export const SITE = {
 
     /** Default social share image (place the file in public/) and its alt text. */
     ogImage: "/og-default.png",
-    ogImageAlt: "Astro Starter Template by Bryan Hogan",
+    ogImageAlt: "StarStarter for Astro by Bryan Hogan",
 
     /** Header navigation. Add, remove, or reorder links without editing the header component. */
     header: {

@@ -68,7 +68,7 @@ async function main() {
     const useDefaults = parsedArguments.values.yes ?? false;
     const providedDirectory = parsedArguments.positionals[0];
 
-    p.intro("Create a Bryan Web Starter site");
+    p.intro("Create a site with StarStarter");
 
     const projectDirectory = useDefaults
         ? providedDirectory ?? "my-website"
@@ -95,7 +95,7 @@ async function main() {
     const answers = useDefaults
         ? {
               siteName: defaultSiteName,
-              description: "A website built with Bryan Web Starter.",
+              description: "A website built with StarStarter.",
               author: "Your Name",
               siteUrl: "https://example.com",
               installDependencies: !parsedArguments.values["no-install"],

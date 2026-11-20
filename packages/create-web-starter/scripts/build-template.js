@@ -9,13 +9,14 @@ const templateDirectory = join(packageDirectory, "template");
 const baseDirectory = join(templateDirectory, "base");
 const sourceDirectory = join(packageDirectory, "source");
 
-// The docs explain the template itself, so generated sites only get the blog.
+// Keep the StarStarter demo's docs and showcase out of generated sites.
 const excludedPaths = new Set(
     [
         ["public", "images", "setup-video-thumbnail.png"],
         ["src", "content", "docs"],
         ["src", "pages", "docs"],
         ["src", "pages", "docs.mdx"],
+        ["src", "pages", "site-showcase.mdx"],
     ].map((segments) => join(repositoryRoot, ...segments)),
 );
 

@@ -1,6 +1,6 @@
-# AGENTS.md for Astro Starter Template
+# AGENTS.md
 
-This is Bryan Hogan's Astro starter template, a lightweight, accessible foundation for performant websites with a token-based design system, SEO-ready head, and sensible defaults. It is a reusable template.
+This is Bryan Hogan's StarStarter, an Astro starter template: a lightweight, accessible foundation for performant websites with a token-based design system, SEO-ready head, and sensible defaults. It is a reusable template.
 
 ## Project Structure
 
