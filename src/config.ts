@@ -7,7 +7,7 @@ export const SITE = {
     name: "StarStarter",
 
     /** Default site description — used in the RSS feed and site-wide JSON-LD. */
-    description: "StarStarter is a lightweight, accessible Astro starter template with a simple color system, SEO-ready head, and sensible defaults.",
+    description: "StarStarter is a lightweight, accessible Astro starter template with a simple CSS token-based design system, SEO-ready setup, and sensible defaults.",
 
     /** Person behind the site — meta author + copyright, footer, JSON-LD author/publisher. */
     author: "Bryan Hogan",
