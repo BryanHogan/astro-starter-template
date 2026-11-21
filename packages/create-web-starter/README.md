@@ -43,18 +43,6 @@ start with a clean site of your own.
 - Node.js 22.12.0 or newer
 - npm
 
-## Publishing
-
-From the repository root:
-
-```bash
-npm run pack:generator:dry-run
-npm version patch --workspace @bryanhogan/create-web-starter
-npm publish --workspace @bryanhogan/create-web-starter
-```
-
-Publishing requires an npm account with the required two-factor authentication.
-
 ## License
 
 MIT
