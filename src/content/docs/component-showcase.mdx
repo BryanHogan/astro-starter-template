@@ -392,7 +392,7 @@ Open `src/components/Icons.ts` for the complete list. It includes arrows, carets
 
 ## SectionTitle
 
-SectionTitle gives page sections a small label and a heading.
+SectionTitle gives a section a heading with an optional label above it.
 
 ```mdx
 import SectionTitle from "../components/SectionTitle.astro";
@@ -420,7 +420,7 @@ Use `as="h2"` for a main section below the page title. Use `as="h3"` for a secti
 
 | Prop | Purpose |
 | --- | --- |
-| `eyebrow` | Required small label above the title. |
+| `eyebrow` | Optional small label above the title. |
 | `title` | Required heading text. |
 | `as` | Required heading level from `h1` to `h6`. |
 | `id` | Optional custom link target. |
@@ -439,6 +439,6 @@ Add your own ID when the same title appears more than once:
 />
 ```
 
-The eyebrow and title cannot be empty, and a custom ID cannot contain spaces.
+Give the title and any eyebrow you include at least one word. A custom ID cannot contain spaces.
 
 </details>
