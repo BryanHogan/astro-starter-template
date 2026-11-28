@@ -13,9 +13,9 @@ npm run dev
 
 Before publishing, review `src/config.ts` and replace the placeholder production URL if you left the setup answer blank. Add your navigation, social profiles, and contact details. `AGENTS.md` and `CLAUDE.md` are included for AI coding tools.
 
-To use your own favicon, replace `public/favicon.svg` with your logo. That’s the icon you see in the browser tab. When you build your site, Astro also creates `favicon.ico` and the icons people see when they save your site to their phone’s home screen. On iOS and Android, your logo sits on a white background with a little space around it.
+Replace `public/favicon.svg` with your logo. Astro uses it to generate `favicon.ico` and the iOS and Android home-screen icons at build time.
 
-Want to change the image people see when you share a link to your site? Replace `public/og-default.png`. Blog posts get their own image with the post title when you build the site.
+Replace `public/og-default.png` to change the default sharing image. Each blog post gets its own image with the post title.
 
 ## Commands
 
