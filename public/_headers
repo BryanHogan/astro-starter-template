@@ -15,13 +15,19 @@
 /favicon.svg
   Cache-Control: public, max-age=2592000
 
+/favicon.ico
+  Cache-Control: public, max-age=2592000
+
+/apple-touch-icon.png
+  Cache-Control: public, max-age=2592000
+
 /og-default.png
   Cache-Control: public, max-age=2592000
 
 /icons/*
   Cache-Control: public, max-age=2592000
 
-# Generated blog social images reuse their URL when a post title changes, so they get a shorter lifetime than the hand-placed assets above.
+# Generated blog social images reuse their URL when a post title changes, so they get a shorter lifetime.
 /og/*
   Cache-Control: public, max-age=86400
 
